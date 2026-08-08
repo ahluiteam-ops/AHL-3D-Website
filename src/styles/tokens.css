@@ -1,0 +1,46 @@
+/* ==========================================================================
+   American Hairline — hero tokens
+   A white room. The page carries no colour of its own, so the single blue
+   gradient does all the pointing: it marks the active link, the two buttons,
+   the eyebrow, and the slider controls, and nothing else.
+   ========================================================================== */
+
+:root {
+  /* ---- Surfaces ---- */
+  --page: #ffffff;
+  --page-2: #f1f3f6; /* the recessed ground the second section sits on */
+  --card: #eceff1; /* the grey studio backdrop inside each style card */
+  --line: rgb(15 23 42 / 0.1);
+
+  /* ---- Text ----
+     Three steps, all clearing 4.5:1 on white. */
+  --text: #0c0d10; /* 19.4:1 — headline */
+  --text-dim: #5a6270; /* 6.2:1 — body copy */
+  --text-nav: #1c1f26; /* 15.1:1 — nav links */
+
+  /* ---- Accent ----
+     The brand gradient runs #4686FE → #1769FF. Both stops are too light to
+     carry small dark-on-white text (#1769FF measures 4.06:1), so anything set
+     in blue *type* uses --accent-ink instead, which clears AA at 6.3:1. Blue
+     as a *fill* behind white type keeps the real gradient. */
+  --accent-a: #4686fe;
+  --accent-b: #1769ff;
+  --accent-ink: #0f55d8;
+  --grad: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+  --grad-ink: linear-gradient(135deg, var(--accent-b), var(--accent-ink));
+
+  /* ---- Elevation ---- */
+  --shadow-btn: 0 12px 26px -12px rgb(23 105 255 / 0.55);
+  --shadow-card: 0 14px 30px -16px rgb(12 13 16 / 0.3), 0 2px 6px rgb(12 13 16 / 0.06);
+  --shadow-ctrl: 0 8px 18px -10px rgb(23 105 255 / 0.6);
+
+  /* ---- Type ---- */
+  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', 'Times New Roman', serif;
+
+  /* ---- Rhythm ----
+     One gutter drives the nav, the hero, and the wordmark inset so the three
+     stay locked to the same left edge at every width. */
+  --gutter: clamp(20px, 4.2vw, 84px);
+  --radius-card: 14px;
+}

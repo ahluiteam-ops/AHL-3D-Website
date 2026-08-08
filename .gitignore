@@ -1,0 +1,18 @@
+node_modules
+dist
+*.tsbuildinfo
+.DS_Store
+
+# Reference recordings: 205 MB of screen captures that are inputs to the build
+# process, not part of it. They stay on disk; nothing in them is needed to
+# rebuild the page. Images/ and the two PDF folders ARE tracked, on the
+# client's instruction, so their originals are versioned with the code.
+reference/
+
+# Plain-folder snapshots of tagged versions. Git already holds these at their
+# tags, so tracking them would store every byte twice.
+versions/
+
+# Scratch output from the video-analysis passes.
+.tmp-*
+.vframes.mjs
