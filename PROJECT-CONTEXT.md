@@ -129,6 +129,51 @@ a `--host` flag when testing on a phone.
 
 ---
 
+## 1b. Versions — how to hand back a named version
+
+**This IS a git repository now.** It was not for the first two weeks, and that
+cost a real recovery: see the 2026-08-07 entry where a deleted component had to
+be reconstructed from a session transcript because there was no history to
+check out. Do not let that happen again — commit before large changes.
+
+| Version | Tag | Plain folder | What it is |
+|---|---|---|---|
+| Homepage v1 | `homepage-v1` | `versions/homepage-v1/` | 18 of the client's 20 spine sections, 2026-08-08 |
+
+**"Give me homepage version 1" — do this:**
+
+```bash
+git switch --detach homepage-v1   # look at it
+git switch -                      # come back
+git diff homepage-v1 -- src       # what changed since
+```
+
+Or just read `versions/homepage-v1/`, which is a plain copy needing no git. It
+was produced with `git archive` from the tag, so it is the tag byte for byte.
+
+**Cutting the next version:**
+
+```bash
+git add -A && git commit -m "feat: homepage version 2"
+git tag -a homepage-v2 -m "..."
+mkdir -p versions && git archive --format=tar --prefix=homepage-v2/ homepage-v2 \
+  | (cd versions && tar -xf -)
+```
+
+Two settings that matter and are already configured:
+
+- `core.autocrlf` is **false**. On Windows git's default rewrites every LF to
+  CRLF on checkout, which would touch every source file and invites exactly the
+  encoding damage recorded in §5. Leave it off.
+- `reference/` is **not** tracked — 205 MB of screen recordings that are inputs
+  to the work, not part of it. `Images/` and both PDF folders **are** tracked,
+  on the client's instruction, which is why the repo is ~580 MB. It has no
+  remote; pushing it anywhere would need Git LFS first.
+- `versions/` is ignored. Git already holds those bytes at their tags, so
+  tracking the folders too would store everything twice.
+
+---
+
 ## 2. What this project is — and is not
 
 **From-scratch front-end build** of American Hairline homepage, matched to
@@ -2165,3 +2210,46 @@ tool-internal transcripts are intentionally not stored.
   Under reduced motion the card transform stayed `none` through a hover. Zero
   console errors, zero page errors, zero failed requests, zero horizontal
   overflow in every mode.
+
+### 2026-08-08 - Wrap the homepage as version 1, and put the project under git
+
+- Request: freeze the current homepage as version 1 so that future work is
+  version 2 and "give me homepage version 1" can be answered later. The user
+  asked whether that is a problem.
+- It was a problem, and the reason is worth keeping: **this was not a git
+  repository.** A `.gitignore` existed but no `.git`, so "version 1" lived only
+  in the current files and would have been destroyed by the next edit. The
+  project had already paid for this once — the collection surfer had to be
+  reconstructed from a session transcript in the 2026-08-07 revert, because
+  there was no history to check out. Assistant memory does not survive a
+  session; only files do.
+- User chose both snapshot methods, and to track everything except
+  `reference/`.
+- `.gitignore` extended: `reference/` (205 MB of recordings — inputs to the
+  work, not part of it), `versions/` (git already holds those bytes at their
+  tags), `.tmp-*` and `.vframes.mjs`. `Images/` and both PDF folders are
+  tracked on the client's instruction, which puts the repo at about 580 MB. It
+  has no remote; pushing it anywhere would need Git LFS first.
+- **`core.autocrlf` set to false before the first commit.** Git's Windows
+  default was about to rewrite LF to CRLF in all 70-odd source files on the
+  next checkout. That would have touched every file on disk and invited exactly
+  the encoding damage recorded in §5. The index was cleared and re-added after
+  the setting changed, so the first commit stores the true bytes: the second
+  `git add` produced zero conversion warnings against 70 on the first.
+- Commit `1f4d0b0`, 234 files, 20,314 insertions, tagged `homepage-v1`. The
+  message records what is built, what remains (spine items 2 and 19), and the
+  three launch blockers, so the tag explains itself without this file.
+- Plain-folder copy at `versions/homepage-v1/` — 234 files, 579.5 MB, produced
+  with `git archive` from the tag, so it is the tag byte for byte and needs no
+  git to read.
+- Added §1b to this file: the version table, the exact commands to hand back a
+  named version, the recipe for cutting the next one, and why the three git
+  settings above are what they are.
+- Files changed: `.gitignore`, `PROJECT-CONTEXT.md`. New: `.git/`,
+  `versions/homepage-v1/`. No application source was touched, so no rebuild was
+  needed — the tag is the same tree the last build passed on (2,007 modules).
+- Verification: `git ls-tree -r homepage-v1` returns 234 files; the top level
+  contains `src`, `public`, `Images`, both PDF folders, `scripts` and the
+  config, and does not contain `reference`, `node_modules`, `dist` or
+  `versions`. `git status` is clean, which also confirms `versions/` is being
+  ignored rather than tracked.
