@@ -41,8 +41,8 @@ const socialIcons: Record<SocialIcon, () => JSX.Element> = {
  * the legal line — sits under that arrangement rather than being replaced by
  * it, which is what "the same, with more content" asks for.
  *
- * The reference loops one phrase; this loops six, alternating consultative
- * invitations with the brand's proof numbers, separated by an asterisk.
+ * The reference loops one phrase; this loops the five brand phrases in
+ * `footerMarquee`, separated by an asterisk.
  *
  * The marquee is two identical copies of the same list translated by exactly
  * -50%. That is the whole trick: at -50% the second copy sits precisely where
@@ -61,7 +61,7 @@ export function Footer() {
     <footer className="foot">
       {/* Outlined, oversized, and clipped by the section on purpose. */}
       <div className="foot__wordmark" aria-hidden="true">
-        <span>{footerWordmark}</span>
+        <span style={{ lineHeight: '1' }}>{footerWordmark}</span>
       </div>
 
       <div className="foot__marquee">

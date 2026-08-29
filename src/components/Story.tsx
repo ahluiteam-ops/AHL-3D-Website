@@ -1,22 +1,6 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
-import {
-  ArrowUpRight,
-  EyeOff,
-  Frown,
-  Pill,
-  ShieldCheck,
-  Smile,
-  Syringe,
-} from 'lucide-react'
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-  type MotionStyle,
-  type MotionValue,
-} from 'motion/react'
-import { usePrefersReducedMotion } from '../hooks'
+import { ArrowUpRight, EyeOff, Frown, Pill, ShieldCheck, Smile, Syringe } from 'lucide-react'
+import { StackRow, useScrollStack } from './ScrollStack'
+import { useReveal } from '../hooks'
 import { storyCta, storyPoints, storyTitle, type StoryIcon } from '../site'
 
 const icons: Record<StoryIcon, typeof Frown> = {
@@ -29,58 +13,6 @@ const icons: Record<StoryIcon, typeof Frown> = {
 
 /* One row per point, plus the closing card. */
 const ROWS = storyPoints.length + 1
-const LAST = ROWS - 1
-
-const clamp01 = (value: number) => Math.min(1, Math.max(0, value))
-
-type RowProps = {
-  index: number
-  progress: MotionValue<number>
-  still: boolean
-  className?: string
-  children: ReactNode
-}
-
-function StoryRow({ index, progress, still, className, children }: RowProps) {
-  /* Two overlapping ramps. `open` runs a row from its peek to its full height
-     over one step of scroll. `peek` starts a step earlier, which is what puts
-     the next card on screen as a narrower slab under the current one — the
-     move the reference makes, and the thing that tells you more is coming. */
-  const open = useTransform(progress, (value) =>
-    clamp01(value * LAST - (index - 1)),
-  )
-  const peek = useTransform(progress, (value) =>
-    clamp01(value * LAST - (index - 2)),
-  )
-
-  /* `fr` cannot appear inside `calc()`, so this one value is written as a
-     string from here rather than composed in the stylesheet. `0fr` collapses
-     the row and `1fr` resolves to its content height, which is how the row
-     opens to exactly the height its copy needs with nothing measured.
-     The `minmax(0, …)` is load-bearing: a bare `fr` track carries an automatic
-     min-content minimum, so `0fr` alone left every closed row standing at the
-     height of its own padding — measured 46px instead of collapsing. */
-  const rows = useTransform(open, (value) => `minmax(0, ${value}fr)`)
-  const scaleX = useTransform(open, [0, 1], [0.955, 1])
-
-  return (
-    <motion.li
-      className={`story__row${className ? ` ${className}` : ''}`}
-      style={
-        still
-          ? undefined
-          : ({
-              gridTemplateRows: rows,
-              scaleX,
-              '--open': open,
-              '--peek-amt': peek,
-            } as MotionStyle)
-      }
-    >
-      <div className="story__rowIn">{children}</div>
-    </motion.li>
-  )
-}
 
 /**
  * "This Might Sound Like Your Story".
@@ -90,36 +22,16 @@ function StoryRow({ index, progress, still, className, children }: RowProps) {
  * left while the cards stack in on the right one at a time, each one preceded
  * by a narrower slab of itself peeking out from under the card above.
  *
+ * The mechanism itself lives in `ScrollStack`, shared with `NaturalFront` on
+ * page 4. Only the appearance is here.
+ *
  * Below 901px and for reduced motion the pin is dropped and every card is
  * simply open — the content is five short lines and an offer, and none of it
  * depends on the animation to make sense.
  */
 export function Story() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const reduced = usePrefersReducedMotion()
-  const [still, setStill] = useState(true)
-
-  useEffect(() => {
-    const read = () =>
-      setStill(reduced || !window.matchMedia('(min-width: 901px)').matches)
-    read()
-    window.addEventListener('resize', read)
-    return () => window.removeEventListener('resize', read)
-  }, [reduced])
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
-  })
-
-  const eased = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 26,
-    mass: 0.4,
-    restDelta: 0.0005,
-  })
-
-  const progress = useTransform(eased, clamp01)
+  const { sectionRef, still, progress, last } = useScrollStack(ROWS)
+  const { ref: revealRef, shown } = useReveal<HTMLDivElement>()
 
   return (
     <section
@@ -128,7 +40,11 @@ export function Story() {
       aria-labelledby="story-title"
     >
       <div className="story__pin">
-        <div className="story__in wrap">
+        <div
+          className="story__in wrap"
+          ref={revealRef}
+          data-shown={shown ? 'true' : 'false'}
+        >
           <h2 className="story__title" id="story-title">
             {storyTitle.map((line) => (
               <span key={line}>{line}</span>
@@ -139,25 +55,30 @@ export function Story() {
             {storyPoints.map((point, i) => {
               const Icon = icons[point.icon]
               return (
-                <StoryRow
+                <StackRow
                   key={point.text}
                   index={i}
+                  last={last}
                   progress={progress}
                   still={still}
+                  className="story__row"
+                  innerClassName="story__rowIn"
                 >
                   <span className="story__icon" aria-hidden="true">
                     <Icon size={20} strokeWidth={2.2} />
                   </span>
                   <p>{point.text}</p>
-                </StoryRow>
+                </StackRow>
               )
             })}
 
-            <StoryRow
-              index={LAST}
+            <StackRow
+              index={last}
+              last={last}
               progress={progress}
               still={still}
-              className="story__row--cta"
+              className="story__row story__row--cta"
+              innerClassName="story__rowIn"
             >
               <Smile
                 className="story__ctaMark"
@@ -171,7 +92,7 @@ export function Story() {
                 {storyCta.action}
                 <ArrowUpRight size={15} strokeWidth={2.4} />
               </a>
-            </StoryRow>
+            </StackRow>
           </ol>
         </div>
       </div>

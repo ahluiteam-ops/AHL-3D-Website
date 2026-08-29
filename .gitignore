@@ -16,3 +16,12 @@ versions/
 # Scratch output from the video-analysis passes.
 .tmp-*
 .vframes.mjs
+crv-out/
+
+# Tool-specific skill mirrors. The canonical project-local snapshot lives in
+# .agents/skills/ and these directories only duplicate or junction to it.
+.claude/
+agent/
+
+# Local Vite process logs.
+.vite-*.log

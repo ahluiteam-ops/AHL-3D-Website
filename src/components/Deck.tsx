@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { useMotionValueEvent, useScroll, useSpring, useTransform } from 'motion/react'
+import { ChevronsLeftRight } from 'lucide-react'
+import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'motion/react'
 import { usePrefersReducedMotion, useReveal } from '../hooks'
 import { CardStack, type CardStackItem } from './ui/card-stack'
 import { deckCards, deckTitle } from '../site'
@@ -159,6 +160,22 @@ export function Deck() {
               )
             }}
           />
+
+          <div className="deck__swipeHint">
+            <span>Swipe to see more transformations</span>
+            <motion.span
+              className="deck__swipeIcon"
+              aria-hidden="true"
+              animate={reduced ? { x: 0 } : { x: [-2, 3, -2] }}
+              transition={
+                reduced
+                  ? { duration: 0 }
+                  : { duration: 1.6, ease: 'easeInOut', repeat: Infinity }
+              }
+            >
+              <ChevronsLeftRight size={18} strokeWidth={2.2} />
+            </motion.span>
+          </div>
         </div>
       </div>
     </section>

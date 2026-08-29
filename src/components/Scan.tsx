@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useSpring, useTransform } from 'motion/react'
-import { usePrefersReducedMotion } from '../hooks'
+import { usePrefersReducedMotion, useReveal } from '../hooks'
 import { scanImage, scanTitle } from '../site'
 
 type Rect = { left: number; top: number; width: number; height: number }
@@ -34,6 +34,7 @@ export function Scan() {
   const pinRef = useRef<HTMLDivElement>(null)
   const slotRef = useRef<HTMLSpanElement>(null)
   const reduced = usePrefersReducedMotion()
+  const { ref: revealRef, shown } = useReveal<HTMLDivElement>()
   const [still, setStill] = useState(true)
   const [slot, setSlot] = useState<Rect>(ZERO)
   const [stage, setStage] = useState<Rect>(ZERO)
@@ -46,7 +47,23 @@ export function Scan() {
     if (!pin || !el) return
     const p = pin.getBoundingClientRect()
     const s = el.getBoundingClientRect()
-    setStage({ left: 0, top: 0, width: p.width, height: p.height })
+
+    /* The grown panel stops at the pin's padding box, not at its edges, so the
+       picture keeps air on all four sides. The inset lives in the stylesheet
+       as `.scan__pin`'s padding and is read back here; there is no second
+       number to keep in step. The panel is absolutely positioned against the
+       padding box, which with no border is the border box, so these
+       coordinates and the slot's below are already in the same space. */
+    const cs = getComputedStyle(pin)
+    const padX = parseFloat(cs.paddingLeft) || 0
+    const padY = parseFloat(cs.paddingTop) || 0
+
+    setStage({
+      left: padX,
+      top: padY,
+      width: Math.max(0, p.width - padX * 2),
+      height: Math.max(0, p.height - padY * 2),
+    })
     setSlot({
       left: s.left - p.left,
       top: s.top - p.top,
@@ -97,7 +114,10 @@ export function Scan() {
   const top = useTransform(t, [0, 1], [slot.top, stage.top])
   const width = useTransform(t, [0, 1], [slot.width, stage.width])
   const height = useTransform(t, [0, 1], [slot.height, stage.height])
-  const radius = useTransform(t, [0, 0.86], [14, 0], { clamp: true })
+  /* It stays a card. The radius used to run to 0 because the panel used to
+     finish flush with the viewport, where a corner would have been cut off by
+     the edge anyway; inset, a squared-off rectangle would just look unfinished. */
+  const radius = useTransform(t, [0, 1], [12, 20], { clamp: true })
   /* The type dims rather than disappearing: the panel is passing in front of
      it, not deleting it. */
   const titleOpacity = useTransform(t, [0.12, 0.72], [1, 0.28], { clamp: true })
@@ -110,10 +130,11 @@ export function Scan() {
       aria-labelledby="scan-title"
     >
       <div className="scan__pin" ref={pinRef}>
-        <div className="scan__in wrap">
+        <div className="scan__in wrap" ref={revealRef}>
           <motion.h2
             className="scan__title"
             id="scan-title"
+            data-shown={shown ? 'true' : 'false'}
             style={still ? undefined : { opacity: titleOpacity }}
           >
             {/* The spaces are real, not the slot's margin: the slot is
@@ -130,6 +151,7 @@ export function Scan() {
 
         <motion.div
           className="scan__panel"
+          data-shown={shown ? 'true' : 'false'}
           style={still ? undefined : { left, top, width, height, borderRadius: radius }}
         >
           <motion.img
@@ -139,6 +161,7 @@ export function Scan() {
             loading="lazy"
             decoding="async"
           />
+          <span className="scan__sweep" aria-hidden="true" />
         </motion.div>
       </div>
     </section>

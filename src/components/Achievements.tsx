@@ -69,7 +69,10 @@ export function Achievements() {
         >
           <div className="work__intro">
             <h2 className="work__title" id="work-title">
-              Our Big
+              {/* The space before the break is a real text node. A bare `<br>`
+                  produces none, so the heading announced as
+                  "Our BigAchievements". */}
+              Our Big{' '}
               <br />
               Achievements
             </h2>
@@ -79,15 +82,20 @@ export function Achievements() {
             </a>
           </div>
 
-          {achievements.map((item) => (
-            <article className="work__item" key={item.title}>
-              <div className="work__media">
-                <img src={item.img} alt={item.title} loading="lazy" />
-              </div>
-              <h3 className="work__name">{item.title}</h3>
-              <p className="work__note">{item.note}</p>
-            </article>
-          ))}
+          {/* Cards flagged `hidden` in `site.ts` stay in the record but off the
+              page. Filtering here rather than in the data keeps the reason for
+              a card's absence next to the card itself. */}
+          {achievements
+            .filter((item) => !item.hidden)
+            .map((item) => (
+              <article className="work__item" key={item.title}>
+                <div className="work__media">
+                  <img src={item.img} alt={item.title} loading="lazy" />
+                </div>
+                <h3 className="work__name">{item.title}</h3>
+                <p className="work__note">{item.note}</p>
+              </article>
+            ))}
 
           <div className="work__outro">
             <p className="work__outroCopy">

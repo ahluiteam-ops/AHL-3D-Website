@@ -40,6 +40,11 @@ const probe = () => {
     addressLengths: items.map((i) =>
       i.querySelector('.salons__address').textContent.trim().length,
     ),
+    addressLines: items.map((i) => {
+      const address = i.querySelector('.salons__address')
+      const style = getComputedStyle(address)
+      return Math.round(address.getBoundingClientRect().height / parseFloat(style.lineHeight))
+    }),
     directions: [...document.querySelectorAll('.salons__direction')].map((a) => [
       a.textContent.trim(),
       a.getAttribute('target'),

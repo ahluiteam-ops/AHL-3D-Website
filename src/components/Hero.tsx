@@ -1,29 +1,16 @@
+import type { RefObject } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { Wordmark } from './Wordmark'
 import { MatchSlider } from './MatchSlider'
 
-// The stage is scoped to the hero alone: .hero__bg is absolutely positioned
-// against it, so anything outside this wrapper stays clear of the video.
-export function Hero() {
-  return (
-    <div id="home" className="stage">
-      <Wordmark />
+type HeroProps = {
+  rootRef?: RefObject<HTMLDivElement>
+}
 
-      {/* Decorative loop; muted + playsInline is what allows it to autoplay.
-          It spans the wordmark AND the hero as one stage, painted after the
-          wordmark with mix-blend-mode: darken — the footage's white ground
-          drops away, so the mannequin reads as standing in front of the
-          chrome letters, exactly as in the reference. */}
-      <video
-        className="hero__bg"
-        src="/video/hero-bg.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-hidden="true"
-        tabIndex={-1}
-      />
+export function Hero({ rootRef }: HeroProps) {
+  return (
+    <div id="home" className="stage" ref={rootRef}>
+      <Wordmark />
 
       <section className="hero">
         <div className="wrap hero__in">

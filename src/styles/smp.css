@@ -1,0 +1,1057 @@
+.smpPage {
+  --smp-max: 1180px;
+  background: #fff;
+  color: var(--text);
+}
+
+.smpPage h1,
+.smpPage h2,
+.smpPage h3 {
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.smpPage h2 {
+  font-size: clamp(2rem, 3.15vw, 3.35rem);
+  font-weight: 760;
+  text-wrap: balance;
+}
+
+.smpPage p {
+  color: #343943;
+}
+
+.smpPage .wrap {
+  max-width: calc(var(--smp-max) + (var(--gutter) * 2));
+}
+
+/* SMP follows the shared guide-hero system, with the tighter vertical rhythm
+   shown in its supplied reference. */
+.smpPage .guideHero {
+  padding-top: clamp(12px, 2vh, 18px);
+}
+
+.smpPage .guideHero__header {
+  gap: clamp(12px, 1.5vh, 16px);
+}
+
+.smpPage .guideHero__mediaWrap {
+  margin-top: clamp(30px, 4vh, 40px);
+}
+
+.smpEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: max-content;
+  min-height: 30px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  background: #eef4ff;
+  color: var(--accent-ink);
+  font-size: 0.78rem;
+  font-weight: 680;
+  letter-spacing: 0;
+}
+
+.smpEyebrow img {
+  width: 18px;
+  height: 18px;
+}
+
+.smpNoBreak {
+  white-space: nowrap;
+}
+
+.smpResults {
+  --smp-results-edge: max(var(--gutter), calc((100vw - var(--smp-max)) / 2));
+  position: relative;
+  overflow-x: clip;
+  background: #f2f4f7;
+}
+
+.smpResults__pin {
+  padding: clamp(68px, 8vw, 112px) 0 58px;
+}
+
+.smpResults.is-pinned .smpResults__pin {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+
+.smpResults__head h2 {
+  max-width: 720px;
+  margin-bottom: 42px;
+}
+
+.smpResults__rail {
+  width: calc(100% - var(--smp-results-edge));
+  margin-left: var(--smp-results-edge);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.smpResults.is-pinned .smpResults__rail {
+  overflow: hidden;
+  scroll-snap-type: none;
+}
+
+.smpResults__track {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: max-content;
+  padding-right: var(--smp-results-edge);
+  will-change: transform;
+}
+
+.smpResults__rail::-webkit-scrollbar,
+.smpProcess__rail::-webkit-scrollbar,
+.smpTreatments__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.smpResults__card {
+  flex: 0 0 clamp(220px, 18vw, 280px);
+  overflow: hidden;
+  border-radius: 12px;
+  scroll-snap-align: start;
+  background: #151b24;
+  box-shadow: 0 16px 28px -18px rgb(2 9 20 / 0.4);
+}
+
+.smpResults__card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.smpAbout {
+  padding: clamp(78px, 9vw, 140px) 0;
+}
+
+.smpAbout__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  width: 100%;
+  min-height: 490px;
+  overflow: hidden;
+  border: 1px solid rgb(12 13 16 / 0.1);
+  border-radius: 22px;
+  background: #fff;
+  text-align: left;
+  box-shadow: 0 20px 55px -42px rgb(12 13 16 / 0.35);
+}
+
+.smpAbout__copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(34px, 5vw, 72px);
+}
+
+.smpAbout__title {
+  display: block;
+  margin-top: 18px;
+  font-size: clamp(2rem, 3.2vw, 3.4rem);
+  font-weight: 760;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.smpAbout__title strong {
+  color: var(--accent-b);
+}
+
+.smpAbout__card > img {
+  align-self: end;
+  justify-self: end;
+  width: min(100%, 710px);
+  max-height: 490px;
+  object-fit: contain;
+  object-position: right bottom;
+  transition: transform 350ms ease;
+}
+
+.smpAbout__card:hover > img {
+  transform: scale(1.025);
+}
+
+.smpAbout__plus {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 3;
+  display: grid;
+  width: 50px;
+  height: 50px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 8px 20px rgb(12 13 16 / 0.2);
+}
+
+.smpAbout__plus svg {
+  width: 26px;
+  height: 26px;
+}
+
+.smpModal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgb(4 6 10 / 0.78);
+  backdrop-filter: blur(8px);
+}
+
+.smpModal__dialog {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(360px, 1.1fr);
+  width: min(1160px, 100%);
+  max-height: calc(100dvh - 48px);
+  overflow: hidden auto;
+  border-radius: 24px;
+  background: #f6f7f9;
+  box-shadow: 0 34px 90px rgb(0 0 0 / 0.35);
+}
+
+.smpModal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 3;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border-radius: 50%;
+  background: #111318;
+  color: #fff;
+}
+
+.smpModal__copy {
+  position: relative;
+  z-index: 2;
+  padding: clamp(44px, 5vw, 78px);
+}
+
+.smpModal__copy h2 {
+  font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+}
+
+.smpModal__copy h2 span {
+  color: var(--accent-b);
+}
+
+.smpModal__copy > p {
+  max-width: 540px;
+  margin-top: 18px;
+  line-height: 1.65;
+}
+
+.smpModal__copy h3 {
+  margin-top: 26px;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.smpModal__copy ul {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.smpModal__copy li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 10px 24px -20px rgb(12 13 16 / 0.5);
+}
+
+.smpModal__copy li svg {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  padding: 2px;
+  border-radius: 3px;
+  background: #24bd4b;
+  color: #fff;
+}
+
+.smpModal__copy .smpModal__cons svg {
+  background: #e3373f;
+}
+
+.smpModal__image {
+  align-self: end;
+  width: 100%;
+  max-height: 720px;
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+.smpPerfect,
+.smpProcess,
+.smpWhy {
+  background: #f3f5f7;
+}
+
+/* White, by request. Split out of the group above rather than overridden after
+   it, so there is one declaration per section and no rule that is immediately
+   undone. `.smpPerfect`, `.smpProcess` and `.smpWhy` keep the tint. */
+.smpTreatments,
+.smpForm {
+  background: #fff;
+}
+
+.smpPerfect {
+  padding: clamp(78px, 9vw, 130px) 0;
+}
+
+.smpPerfect__grid {
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: clamp(54px, 8vw, 130px);
+  align-items: start;
+}
+
+.smpPerfect__grid > h2 {
+  position: sticky;
+  top: 40px;
+}
+
+.smpPerfect__list {
+  display: grid;
+  gap: 14px;
+}
+
+.smpPerfect__item {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 18px;
+  align-items: center;
+  min-height: 98px;
+  padding: 16px 24px;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 14px 26px -22px rgb(15 23 42 / 0.35);
+}
+
+.smpPerfect__item > span {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border-radius: 11px;
+  background: #eaf1ff;
+  color: var(--accent-b);
+}
+
+.smpPerfect__item svg {
+  width: 28px;
+  height: 28px;
+}
+
+.smpPerfect__item p {
+  font-size: 1.06rem;
+  line-height: 1.5;
+}
+
+.smpPerfect__cta {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 18px;
+  padding: 28px;
+  border-radius: 16px;
+  background: var(--grad-ink);
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+}
+
+.smpPerfect__cta > svg {
+  width: 64px;
+  height: 64px;
+  stroke-width: 1.4;
+}
+
+.smpPerfect__cta h3 {
+  font-size: clamp(1.45rem, 2vw, 2rem);
+}
+
+.smpPerfect__cta p {
+  max-width: 520px;
+  margin-top: 12px;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.smpPerfect__cta a,
+.smpTreatments__content > a,
+.smpFaq aside a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  margin-top: 20px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #fff;
+  color: #111318;
+  font-weight: 680;
+}
+
+.smpPerfect__cta a svg,
+.smpTreatments__content > a svg,
+.smpFaq aside a svg,
+.smpForm button svg {
+  width: 17px;
+  height: 17px;
+}
+
+.smpSituations {
+  padding: clamp(82px, 9vw, 142px) 0;
+}
+
+.smpSituations h2,
+.smpTreatments h2,
+.smpWhy h2 {
+  text-align: center;
+}
+
+.smpSituations__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 28px;
+  margin-top: clamp(44px, 6vw, 78px);
+}
+
+.smpSituations__grid > div,
+.smpWhy article {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 84px;
+  padding: 20px 24px;
+  border: 1px solid rgb(12 13 16 / 0.08);
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 14px 28px -24px rgb(12 13 16 / 0.34);
+}
+
+.smpSituations__grid svg,
+.smpWhy article svg {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border-radius: 4px;
+  background: var(--accent-b);
+  color: #fff;
+  stroke-width: 3;
+}
+
+.smpSituations__grid p,
+.smpWhy article p {
+  font-size: 1.05rem;
+  line-height: 1.48;
+}
+
+.smpProcess {
+  padding: clamp(80px, 9vw, 132px) 0 64px;
+  overflow: hidden;
+}
+
+.smpProcess__rail {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 46px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.smpProcess__card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 540px;
+  overflow: hidden;
+  flex-direction: column;
+  padding: 22px 20px 0;
+  border-radius: 14px;
+  background: #fff;
+  scroll-snap-align: start;
+  box-shadow: 0 16px 28px -22px rgb(12 13 16 / 0.36);
+}
+
+.smpProcess__card > span {
+  align-self: flex-start;
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: var(--accent-b);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.smpProcess__card h3 {
+  min-height: 52px;
+  margin-top: 18px;
+  font-size: 1.3rem;
+  letter-spacing: -0.025em;
+}
+
+.smpProcess__card p {
+  min-height: 94px;
+  margin-top: 8px;
+  font-size: 0.92rem;
+  line-height: 1.52;
+}
+
+.smpProcess__card img {
+  display: block;
+  width: calc(100% + 40px);
+  max-width: none;
+  height: auto;
+  margin: auto -20px 0;
+}
+
+.smpTreatments {
+  padding: clamp(86px, 10vw, 150px) 0;
+}
+
+.smpTreatments__tabs {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  margin: 52px auto 38px;
+  overflow-x: auto;
+  padding: 6px;
+  border-radius: 999px;
+  background: #fff;
+  scrollbar-width: none;
+}
+
+.smpTreatments__tabs button {
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  color: #616975;
+  font-weight: 650;
+  white-space: nowrap;
+  transition: background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.smpTreatments__tabs button[aria-selected='true'] {
+  background: var(--grad-ink);
+  color: #fff;
+  box-shadow: var(--shadow-ctrl);
+}
+
+.smpTreatments__panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.smpTreatments__panel > img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.smpTreatments__content {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 18px;
+}
+
+.smpTreatments__content > div {
+  padding: clamp(26px, 4vw, 46px);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 14px 30px -24px rgb(12 13 16 / 0.34);
+}
+
+.smpTreatments__content h3 {
+  font-size: 1.5rem;
+}
+
+.smpTreatments__content ul {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.smpTreatments__content li {
+  position: relative;
+  padding-left: 18px;
+  color: #343943;
+  line-height: 1.55;
+}
+
+.smpTreatments__content li::before {
+  content: '';
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #111318;
+}
+
+.smpTreatments__content > a {
+  width: 100%;
+  min-height: 56px;
+  margin-top: 0;
+  background: var(--grad-ink);
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+}
+
+.smpWhy {
+  padding: clamp(86px, 10vw, 146px) 0;
+}
+
+.smpWhy__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 28px;
+  margin-top: clamp(44px, 6vw, 72px);
+}
+
+.smpFaq {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(84px, 10vw, 150px) 0;
+  background:
+    radial-gradient(circle at 18% 12%, rgb(23 105 255 / 0.25), transparent 30%),
+    radial-gradient(circle at 82% 84%, rgb(70 134 254 / 0.16), transparent 34%),
+    linear-gradient(150deg, #1d2026, #08090c 68%);
+  color: #fff;
+}
+
+.smpFaq::before {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(118deg, transparent 37%, rgb(255 255 255 / 0.08) 50%, transparent 63%);
+  transform: rotate(-7deg);
+  pointer-events: none;
+}
+
+.smpFaq__in {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: clamp(46px, 8vw, 120px);
+}
+
+.smpFaq header {
+  position: sticky;
+  top: 44px;
+  align-self: start;
+}
+
+.smpFaq header > p {
+  margin-bottom: 12px;
+  color: #76a7ff;
+  font-size: 0.82rem;
+  font-weight: 720;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.smpFaq h2 {
+  color: #fff;
+}
+
+.smpFaq__list {
+  display: grid;
+  gap: 10px;
+}
+
+.smpFaq__item {
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 0.13);
+  border-radius: 13px;
+  background: rgb(255 255 255 / 0.075);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px -28px rgb(0 0 0 / 0.8);
+}
+
+.smpFaq__item button {
+  display: flex;
+  width: 100%;
+  min-height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 18px;
+  color: #fff;
+  text-align: left;
+  letter-spacing: -0.01em;
+}
+
+.smpFaq__item button span {
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.smpFaq__item button svg {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  color: #82adff;
+}
+
+.smpFaq__answer {
+  display: grid;
+  grid-template-rows: minmax(0, 0fr);
+  transition: grid-template-rows 260ms ease;
+}
+
+.smpFaq__item[data-open='true'] .smpFaq__answer {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.smpFaq__answer > div {
+  overflow: hidden;
+}
+
+.smpFaq__answer p {
+  padding: 0 48px 20px 18px;
+  color: rgb(255 255 255 / 0.72);
+  line-height: 1.62;
+}
+
+.smpFaq aside {
+  grid-column: 2;
+  margin-top: 10px;
+  padding: 26px;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgb(23 105 255 / 0.8), rgb(15 85 216 / 0.62));
+  backdrop-filter: blur(14px);
+}
+
+.smpFaq aside h3 {
+  font-size: 1.55rem;
+}
+
+.smpFaq aside p {
+  margin-top: 8px;
+  color: rgb(255 255 255 / 0.82);
+}
+
+.smpForm {
+  padding: clamp(86px, 10vw, 146px) 0;
+}
+
+.smpForm__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(60px, 10vw, 150px);
+  align-items: start;
+}
+
+.smpForm form {
+  display: grid;
+  padding: clamp(24px, 3.5vw, 38px);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 18px 38px -28px rgb(12 13 16 / 0.42);
+}
+
+.smpForm label {
+  margin: 15px 0 8px;
+  font-weight: 700;
+}
+
+.smpForm label:first-child {
+  margin-top: 0;
+}
+
+.smpForm input,
+.smpForm select {
+  width: 100%;
+  min-height: 54px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: #eef0f2;
+  padding: 0 16px;
+  color: #20242b;
+  font: inherit;
+}
+
+.smpForm input:focus,
+.smpForm select:focus {
+  border-color: var(--accent-b);
+  background: #fff;
+  outline: 3px solid rgb(23 105 255 / 0.15);
+}
+
+.smpForm button {
+  display: inline-flex;
+  min-height: 56px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 22px;
+  border-radius: 9px;
+  background: var(--grad-ink);
+  color: #fff;
+  font-weight: 760;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-btn);
+}
+
+.smpForm__status {
+  margin-top: 14px;
+  color: #11662b !important;
+  font-weight: 650;
+}
+
+@media (max-width: 980px) {
+  .smpPerfect__grid,
+  .smpFaq__in {
+    grid-template-columns: 1fr;
+  }
+
+  .smpPerfect__grid > h2,
+  .smpFaq header {
+    position: static;
+  }
+
+  .smpFaq aside {
+    grid-column: 1;
+  }
+
+  .smpProcess__rail {
+    grid-template-columns: repeat(4, minmax(255px, 1fr));
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 900px) {
+  .smpResults__pin {
+    padding-bottom: 48px;
+  }
+}
+
+@media (max-width: 760px) {
+  .smpPage h2 {
+    font-size: clamp(1.85rem, 8vw, 2.5rem);
+  }
+
+  .smpHeroBreak {
+    display: none;
+  }
+
+  .smpPage .guideHero__title {
+    max-width: 100%;
+    font-size: clamp(2rem, 8.4vw, 2.25rem);
+  }
+
+  .smpResults__head h2 {
+    max-width: 360px;
+    margin-bottom: 34px;
+  }
+
+  .smpResults__card {
+    flex-basis: min(76vw, 280px);
+  }
+
+  .smpAbout__card {
+    grid-template-columns: 1fr;
+    min-height: 570px;
+  }
+
+  .smpAbout__copy {
+    justify-content: flex-start;
+    padding: 30px;
+  }
+
+  .smpAbout__card > img {
+    position: absolute;
+    right: -8%;
+    bottom: 0;
+    width: 112%;
+    max-height: 390px;
+  }
+
+  .smpModal {
+    padding: 0;
+  }
+
+  .smpModal__dialog {
+    grid-template-columns: 1fr;
+    width: 100%;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  .smpModal__copy {
+    padding: 70px 22px 24px;
+  }
+
+  .smpModal__image {
+    max-height: 480px;
+  }
+
+  .smpPerfect__grid {
+    gap: 38px;
+  }
+
+  .smpPerfect__item {
+    grid-template-columns: 48px 1fr;
+    min-height: 84px;
+    padding: 14px 16px;
+  }
+
+  .smpPerfect__item > span {
+    width: 48px;
+    height: 48px;
+  }
+
+  .smpPerfect__item p {
+    font-size: 1rem;
+  }
+
+  .smpPerfect__cta {
+    grid-template-columns: 1fr;
+  }
+
+  .smpPerfect__cta > svg {
+    width: 54px;
+    height: 54px;
+  }
+
+  .smpSituations__grid,
+  .smpWhy__grid,
+  .smpForm__grid,
+  .smpTreatments__panel {
+    grid-template-columns: 1fr;
+  }
+
+  .smpSituations h2,
+  .smpTreatments h2,
+  .smpWhy h2 {
+    text-align: left;
+  }
+
+  .smpSituations__grid,
+  .smpWhy__grid {
+    gap: 12px;
+    margin-top: 34px;
+  }
+
+  .smpSituations__grid > div,
+  .smpWhy article {
+    min-height: 72px;
+    padding: 16px;
+  }
+
+  .smpProcess__rail {
+    grid-template-columns: repeat(4, minmax(78vw, 1fr));
+  }
+
+  .smpProcess__card {
+    min-height: 520px;
+  }
+
+  .smpProcess__card h3,
+  .smpProcess__card p {
+    min-height: 0;
+  }
+
+  .smpTreatments__tabs {
+    width: 100%;
+    margin: 36px 0 26px;
+  }
+
+  .smpTreatments__tabs button {
+    padding-inline: 17px;
+  }
+
+  .smpTreatments__panel > img {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .smpTreatments__content > div {
+    min-height: 320px;
+  }
+
+  .smpFaq__in {
+    gap: 36px;
+  }
+
+  .smpForm__grid {
+    gap: 38px;
+  }
+}
+
+@media (max-width: 420px) {
+  .smpAbout__title {
+    font-size: 2rem;
+  }
+
+  .smpAbout__card {
+    min-height: 530px;
+  }
+
+  .smpPerfect__item {
+    gap: 12px;
+  }
+
+  .smpPerfect__cta,
+  .smpFaq aside,
+  .smpForm form {
+    padding: 22px;
+  }
+
+  .smpProcess__rail {
+    grid-template-columns: repeat(4, minmax(82vw, 1fr));
+  }
+
+  .smpFaq__answer p {
+    padding-right: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smpPage *,
+  .smpPage *::before,
+  .smpPage *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

@@ -17,7 +17,22 @@ import {
   type ChecklistPoint,
 } from '../site'
 
-const LAST = checklistPoints.length - 1
+type ChecklistVideo = {
+  src: string
+  poster: string
+  alt: string
+  label: string
+}
+
+export type ChecklistProps = {
+  /** Defaults bind the homepage's own twenty-one points, so the many existing
+   *  `<Checklist />` call sites keep working untouched. */
+  titleId?: string
+  title?: readonly string[]
+  lede?: string
+  points?: readonly ChecklistPoint[]
+  video?: ChecklistVideo
+}
 
 /* The scrubbed section is one long sticky stage. `--cursor` is the only value
  * that travels: the track reads it to translate itself, the progress rail
@@ -129,9 +144,9 @@ function Odometer({ value }: { value: number }) {
   )
 }
 
-function ChecklistMedia() {
+function ChecklistMedia({ video }: { video: ChecklistVideo }) {
   const [playing, setPlaying] = useState(false)
-  const playable = checklistVideo.src !== ''
+  const playable = video.src !== ''
 
   if (playable && playing) {
     return (
@@ -139,8 +154,8 @@ function ChecklistMedia() {
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           className="checklist__video"
-          src={checklistVideo.src}
-          poster={checklistVideo.poster}
+          src={video.src}
+          poster={video.poster}
           controls
           autoPlay
           playsInline
@@ -152,8 +167,8 @@ function ChecklistMedia() {
   const inner = (
     <>
       <img
-        src={checklistVideo.poster}
-        alt={playable ? '' : checklistVideo.alt}
+        src={video.poster}
+        alt={playable ? '' : video.alt}
         loading="lazy"
         decoding="async"
       />
@@ -161,7 +176,7 @@ function ChecklistMedia() {
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M8 5.2v13.6L19 12z" fill="currentColor" />
         </svg>
-        {checklistVideo.label}
+        {video.label}
       </span>
     </>
   )
@@ -190,10 +205,17 @@ function ChecklistMedia() {
  * the index at the right edge rolls over as the focus moves. Reduced-motion
  * users get the same content as a plain static list with no pin at all.
  */
-export function Checklist() {
+export function Checklist({
+  titleId = 'checklist-title',
+  title = checklistTitle,
+  lede = checklistLede,
+  points = checklistPoints,
+  video = checklistVideo,
+}: ChecklistProps = {}) {
   const sectionRef = useRef<HTMLElement>(null)
   const still = usePrefersReducedMotion()
   const [active, setActive] = useState(0)
+  const LAST = points.length - 1
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -231,36 +253,48 @@ export function Checklist() {
     <section
       className={`checklist${still ? ' checklist--still' : ''}`}
       ref={sectionRef}
-      aria-labelledby="checklist-title"
+      aria-labelledby={titleId}
     >
       <div className="checklist__pin">
         <motion.div
           className="checklist__in wrap"
-          style={still ? undefined : ({ '--cursor': cursor } as MotionStyle)}
+          style={
+            {
+              /* The rail divides by this, so it has to follow the data rather
+                 than stay the 21 the stylesheet defaults to. */
+              '--checklist-count': points.length,
+              ...(still ? {} : { '--cursor': cursor }),
+            } as MotionStyle
+          }
         >
           <div className="checklist__aside">
-            <h2 id="checklist-title" className="checklist__title">
-              {checklistTitle.map((line) => (
-                <span key={line}>{line}</span>
+            <h2 id={titleId} className="checklist__title">
+              {/* The trailing space is a real text node. These spans are
+                  blocks, so it collapses visually — but without it the lines
+                  concatenate in `textContent`, which is what a screen reader
+                  reads: "Our 21-Point ChecklistFor A Perfect Hair System". */}
+              {title.map((line) => (
+                <span key={line}>{line} </span>
               ))}
             </h2>
-            <p className="checklist__lede">{checklistLede}</p>
+            <p className="checklist__lede">{lede}</p>
 
-            <ChecklistMedia />
+            <ChecklistMedia video={video} />
 
             <div className="checklist__progress" aria-hidden="true">
               <span className="checklist__rail">
                 <span className="checklist__railFill" />
               </span>
               <span className="checklist__tally">
-                {String(active + 1).padStart(2, '0')} / {checklistPoints.length}
+                {String(active + 1).padStart(2, '0')} /{' '}
+                {String(points.length).padStart(2, '0')}
               </span>
             </div>
           </div>
 
           <div className="checklist__viewport">
             <ol className="checklist__track">
-              {checklistPoints.map((point, i) => (
+              {points.map((point, i) => (
                 <ChecklistRow
                   key={point.title}
                   point={point}

@@ -54,9 +54,20 @@ const probe = () => {
         )
       : null,
     activeAlt: activeEl ? activeEl.querySelector('img')?.alt.slice(0, 24) : null,
-    /* Everything under the deck was removed on request. */
+    /* Dots and old follow-up content stay removed. Mobile gets one explicit
+       gesture cue because the fan itself does not explain that it drags. */
     dots: document.querySelectorAll('.cstack__dot').length,
     follow: document.querySelectorAll('.deck__follow').length,
+    swipeHint: (() => {
+      const hint = document.querySelector('.deck__swipeHint')
+      const style = getComputedStyle(hint)
+      const rect = hint.getBoundingClientRect()
+      return {
+        text: hint.textContent.trim(),
+        visible: style.display !== 'none' && rect.width > 0 && rect.height > 0,
+        size: [round(rect.width), round(rect.height)],
+      }
+    })(),
     /* The fan must stay inside the section it belongs to. */
     lowestCardVsStage: (() => {
       const rects = cards.map((c) => c.getBoundingClientRect())
@@ -89,7 +100,10 @@ async function run(width, height, reduced, tag) {
     await page.emulateMediaFeatures([
       { name: 'prefers-reduced-motion', value: 'reduce' },
     ])
-  await page.goto(URL, { waitUntil: 'networkidle2' })
+  // The page intentionally keeps video requests alive, so DOM readiness is the
+  // stable signal here; network-idle can time out even when the deck is ready.
+  await page.goto(URL, { waitUntil: 'domcontentloaded' })
+  await page.waitForSelector('.deck__swipeHint')
   await new Promise((r) => setTimeout(r, 700))
 
   const box = await page.evaluate(() => {

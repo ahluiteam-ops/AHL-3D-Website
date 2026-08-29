@@ -29,11 +29,12 @@ Vite + React + TypeScript, plain CSS (no framework), and
 | Nav bar + menu drawer | [src/components/Nav.tsx](src/components/Nav.tsx) |
 | The chrome `100% NATURAL` band | [src/components/Wordmark.tsx](src/components/Wordmark.tsx) |
 | Headline column | [src/components/Hero.tsx](src/components/Hero.tsx) |
+| Unified Hero-to-Secret film controller | [src/components/HeroSecret.tsx](src/components/HeroSecret.tsx) |
 | Style carousel | [src/components/MatchSlider.tsx](src/components/MatchSlider.tsx) |
 | Site content and asset paths | [src/site.ts](src/site.ts) |
-| Hero background video | `public/video/hero-bg.mp4` |
+| Unified Hero + Secret video | `public/video/hair-system-unified-clean.mp4` |
 | Section 2 — "The Secret…" | [src/components/Secret.tsx](src/components/Secret.tsx) |
-| Section 2 hair-system video | `public/video/secret-hair-system.mp4` |
+| Unified Higgsfield source | `reference/v3.mp4` (source; not shipped) |
 | Section 3 — Achievements | [src/components/Achievements.tsx](src/components/Achievements.tsx) |
 | Section 4 — Why Men Choose Us / Key Facts | [src/components/KeyFacts.tsx](src/components/KeyFacts.tsx) |
 | Section 5 — 21-Point Checklist | [src/components/Checklist.tsx](src/components/Checklist.tsx) |
@@ -46,7 +47,8 @@ Vite + React + TypeScript, plain CSS (no framework), and
 | Section 6d — Our trusted methods | [src/components/Methods.tsx](src/components/Methods.tsx) |
 | Section 6e — Guidance form | [src/components/Form.tsx](src/components/Form.tsx) |
 | Section 7 — Hair systems | [src/components/Systems.tsx](src/components/Systems.tsx) |
-| The collection surfer | [src/components/ui/collection-surfer.tsx](src/components/ui/collection-surfer.tsx) |
+| The circular gallery | [src/components/ui/circular-gallery.tsx](src/components/ui/circular-gallery.tsx) |
+| The collection surfer (previous, unused) | [src/components/ui/collection-surfer.tsx](src/components/ui/collection-surfer.tsx) |
 | System film posters | `public/systems/system-01…13.png` |
 | Section 8 — This Might Sound Like Your Story | [src/components/Story.tsx](src/components/Story.tsx) |
 | Section 9 — Hair services | [src/components/Services.tsx](src/components/Services.tsx) |
@@ -63,6 +65,69 @@ Vite + React + TypeScript, plain CSS (no framework), and
 | Section 15 — Frequently Asked Questions | [src/components/Faq.tsx](src/components/Faq.tsx) |
 | Footer | [src/components/Footer.tsx](src/components/Footer.tsx) |
 | Shared responsive and motion hooks | [src/hooks.ts](src/hooks.ts) |
+| **Page 2** — Stick-On or Clip-On shell | [src/pages/StickOnClipOn.tsx](src/pages/StickOnClipOn.tsx) |
+| Page 2 hero | [src/components/ChoiceHero.tsx](src/components/ChoiceHero.tsx) |
+| Page 2 hero image | `public/choice/stick-on-clip-on.jpg` |
+| Page 2 — Real Results | [src/components/Transformations.tsx](src/components/Transformations.tsx) |
+| Real Results artwork | `public/transformations/*.jpg` |
+| Shared guide-page hero | [src/components/GuideHero.tsx](src/components/GuideHero.tsx) |
+| **Page 3** — Hair Patch vs Hair System shell | [src/pages/HairPatchVsSystem.tsx](src/pages/HairPatchVsSystem.tsx) |
+| Page 3 hero | [src/components/PatchSystemHero.tsx](src/components/PatchSystemHero.tsx) |
+| Page 3 comparison table | [src/components/PatchSystemComparison.tsx](src/components/PatchSystemComparison.tsx) |
+| Page 3 why patches fail | [src/components/PatchFail.tsx](src/components/PatchFail.tsx) |
+| Patch-fail check | [scripts/verify-patchfail.mjs](scripts/verify-patchfail.mjs) |
+| Page 3 hair-system benefits | [src/components/HairBenefits.tsx](src/components/HairBenefits.tsx) |
+| Benefits photographs | `public/hair-benefits/` — see its README |
+| Benefits check | [scripts/verify-benefits.mjs](scripts/verify-benefits.mjs) |
+| Page 3 checklist | Reuses [src/components/Checklist.tsx](src/components/Checklist.tsx) |
+| Page 3 client stories | Reuses [src/components/ClientStories.tsx](src/components/ClientStories.tsx) |
+| Page 3 clothing analogy panel | [src/components/SimplestWay.tsx](src/components/SimplestWay.tsx) |
+| Page 3 booking close | [src/components/BookConsultation.tsx](src/components/BookConsultation.tsx) |
+| Page 3 booking check | [scripts/verify-bookcall.mjs](scripts/verify-bookcall.mjs) |
+| **Page 4** — Will My Hairline Look Real? shell | [src/pages/WillMyHairlineLookReal.tsx](src/pages/WillMyHairlineLookReal.tsx) |
+| Page 4 hero | [src/components/HairlineRealHero.tsx](src/components/HairlineRealHero.tsx) |
+| Page 4 hero still | `public/hairline-real/thumbnail.png` |
+| Page 4 hero check | [scripts/verify-hairline-hero.mjs](scripts/verify-hairline-hero.mjs) |
+| Page 4 systems gallery | Reuses [src/components/Systems.tsx](src/components/Systems.tsx) |
+| Page 4 hairline-design scrub | [src/components/HairlineDesign.tsx](src/components/HairlineDesign.tsx) |
+| Page 4 client stories | Reuses [src/components/ClientStories.tsx](src/components/ClientStories.tsx) |
+| Missing-photo frame | [src/components/Photo.tsx](src/components/Photo.tsx) |
+| Page 6 (Clip-On) shell | [src/pages/ClipOnLifespan.tsx](src/pages/ClipOnLifespan.tsx) |
+| Page 6 hero | [src/components/ClipOnLifespanHero.tsx](src/components/ClipOnLifespanHero.tsx) |
+| Page 5 balance stage | [src/components/BalanceChoice.tsx](src/components/BalanceChoice.tsx) |
+| Its check | [scripts/verify-balance.mjs](scripts/verify-balance.mjs) |
+| Page 5 base-option cards and overlays | [src/components/BaseOptions.tsx](src/components/BaseOptions.tsx) |
+| Its check | [scripts/verify-base-options.mjs](scripts/verify-base-options.mjs) |
+| Page 5 car analogy | [src/components/CarExample.tsx](src/components/CarExample.tsx) |
+| Its check | [scripts/verify-car-example.mjs](scripts/verify-car-example.mjs) |
+| Page 5 base chooser | [src/components/BaseChoice.tsx](src/components/BaseChoice.tsx) |
+| Its check | [scripts/verify-base-choice.mjs](scripts/verify-base-choice.mjs) |
+| Page 5 form | reuses [src/components/Form.tsx](src/components/Form.tsx) |
+| Page 5 rating table | [src/components/BaseComparison.tsx](src/components/BaseComparison.tsx) |
+| Its check | [scripts/verify-base-compare.mjs](scripts/verify-base-compare.mjs) |
+| Page 5 hero | [src/components/StickOnLifespanHero.tsx](src/components/StickOnLifespanHero.tsx) |
+| Page 5 shell | [src/pages/StickOnLifespan.tsx](src/pages/StickOnLifespan.tsx) |
+| Page 5 systems gallery | Reuses [src/components/Systems.tsx](src/components/Systems.tsx) |
+| Page 5 check | [scripts/verify-stick-on-lifespan.mjs](scripts/verify-stick-on-lifespan.mjs) |
+| **Page 8** — Stick-On Hair System shell | [src/pages/StickOnHairSystem.tsx](src/pages/StickOnHairSystem.tsx) |
+| Page 8 supplied imagery | `public/stick-on-system/` |
+| Page 8 responsive check | [scripts/verify-stick-on-system.mjs](scripts/verify-stick-on-system.mjs) |
+| Page 4 truth claims | [src/components/HairlineTruth.tsx](src/components/HairlineTruth.tsx) |
+| Its check | [scripts/verify-hairline-truth.mjs](scripts/verify-hairline-truth.mjs) |
+| Page 4 hairline benefits | [src/components/HairlineBenefits.tsx](src/components/HairlineBenefits.tsx) |
+| Page 4 closing scrub | [src/components/HairlineConfused.tsx](src/components/HairlineConfused.tsx) |
+| Scroll-built card stack | [src/components/ScrollStack.tsx](src/components/ScrollStack.tsx) |
+| Page 4 natural-hair stack | [src/components/NaturalFront.tsx](src/components/NaturalFront.tsx) |
+| Its check | [scripts/verify-natural-front.mjs](scripts/verify-natural-front.mjs) |
+| Page 4 HD-exposed card rail | [src/components/HdExposed.tsx](src/components/HdExposed.tsx) |
+| Its check | [scripts/verify-hd-exposed.mjs](scripts/verify-hd-exposed.mjs) |
+| Page 4 brush-back decision tree | [src/components/BrushBackFlow.tsx](src/components/BrushBackFlow.tsx) |
+| Its check | [scripts/verify-brushback.mjs](scripts/verify-brushback.mjs) |
+| Its check | [scripts/verify-hairline-confused.mjs](scripts/verify-hairline-confused.mjs) |
+| Its photographs | `public/hairline-benefits/` |
+| Its film still | `public/hairline-real/design-film.png` |
+| Its check | [scripts/verify-hairline-design.mjs](scripts/verify-hairline-design.mjs) |
+| Hash routing | [src/App.tsx](src/App.tsx) |
 
 ## Section 3 — "Our Big Achievements" (pinned horizontal scroll)
 
@@ -132,7 +197,10 @@ direct parent so rotation retains visible depth.
 
 Below 700px, cards become a 2×2 grid with shorter heights.
 `prefers-reduced-motion` removes every entrance transform and renders the final
-layout immediately.
+layout immediately. The section also owns an opaque isolated stacking context.
+That containment matters because the shared Hero/Secret film is sticky: it now
+stops at the Hero/Secret boundary and cannot paint behind this heading or its
+cards.
 
 ## Section 5 — "Our 21-Point Checklist For A Perfect Hair System"
 
@@ -223,80 +291,130 @@ matched to these faces, and no client said any of these quotes. Every
 name/quote pair needs replacing with the real one, with that client's
 permission, before launch.
 
-## Section 7 — "World's Finest Thinnest Hair Systems" (collection surfer)
+## Pages and routing
 
-Built from the supplied `collection-surfer` component, ported into
-[src/components/ui/collection-surfer.tsx](src/components/ui/collection-surfer.tsx).
-Thirteen product films form one diagonal ribbon receding into depth; scroll
-brings each in turn to the front and the pointer pulls whichever card it is
-nearest. [src/components/Systems.tsx](src/components/Systems.tsx) supplies the
-content and the heading.
+The site was one page until 2026-08-18. It now uses a small hash-route switch in
+[src/App.tsx](src/App.tsx) — no router dependency.
 
-Four things changed from the original, all deliberate:
+| Route | Page |
+| --- | --- |
+| `#/` (or anything unmatched) | The homepage |
+| `#/stick-on-or-clip-on` | [Stick-On or Clip-On](src/pages/StickOnClipOn.tsx) |
+| `#/hair-patch-vs-hair-system` | [Hair Patch vs Hair System](src/pages/HairPatchVsSystem.tsx) |
+| `#/will-my-hairline-look-real` | [Will My Hairline Look Real?](src/pages/WillMyHairlineLookReal.tsx) |
+| `#/stick-on-lifespan` | [Stick-On System Lifespan](src/pages/StickOnLifespan.tsx) |
+| `#/clip-on-lifespan` | [Clip-On System Lifespan](src/pages/ClipOnLifespan.tsx) |
+| `#/clip-on-hair-system` | [Clip-On Hair System](src/pages/ClipOnHairSystem.tsx) |
+| `#/stick-on-hair-system` | [Stick-On Hair System](src/pages/StickOnHairSystem.tsx) |
+| `#/smp` | [Scalp Micropigmentation](src/pages/Smp.tsx) |
 
-1. **No loop, as requested.** The original duplicated the list and took scroll
-   position modulo one set's length, so the ribbon ran forever. Progress is now
-   clamped to `[0, 1]`: the track stops on the last card and will not wrap, and
-   scrolling back up runs it in reverse to the first. Verified at 1440×900 —
-   the track travels 0 → 3600 and stays at 3600 when scrolled 400px past the
-   section's end, then unwinds on the way back up.
-2. **Pinned, not fixed.** The original was `position: fixed` over a 50,000px
-   spacer, which would have covered every other section on this page. It is now
-   a sticky child of a section measuring `100vh + travel` (5940px at 1440×900),
-   the same pin the Achievements and Checklist sections use.
-3. **Plain CSS, not Tailwind.** This project has no Tailwind and no shadcn, and
-   `src/components/ui` already exists. The utility classes are rules in
-   `global.css`. No new dependency was installed: `framer-motion` is already on
-   disk as a transitive dependency of `motion`, and importing it directly would
-   ship a second copy of the animation runtime — the import is `motion/react`.
-4. **Light ground, not black,** matching the client's artwork and the light
-   studio posters.
+**Routes match on a leading slash, and that is the whole reason this works.**
+The nav's own links are bare hash anchors — `#home`, `#guide`, `#solutions` — and
+a bare anchor has no slash, so it can never be mistaken for a route.
+`#/stick-on-or-clip-on` is a route; `#guide` scrolls the current page. Hash
+rather than path also means no dev-server or host rewrite rules: every route is
+served by the same `index.html`.
 
-**The ribbon starts at the right edge.** The track's origin — where the card in
-front sits — is parked against the right of the viewport rather than the middle,
-so the chain fills the frame from that corner toward the lower left and scroll
-surfs it across. The step vector runs left, down and back (`-300, 46, -300`).
-Running it up instead would put the small far cards directly behind the heading.
-Verified: the front card measures 378px across, centred at x = 1227 in a 1440px
-viewport, at both the first card and the last.
+This is deliberately the smallest thing that makes a second page reachable. The
+brand has around thirteen pages; when the site passes a handful, replace this
+with a real router rather than extending the map.
 
-**Card turn direction is not cosmetic.** The cards sit to the right of the
-perspective origin, so turning the *right* edge toward the viewer throws it
-further right and the card reads wide. Turning the left edge forward throws that
-edge right as well, which folds the card up — at `+50deg` the front card
-measured 116px across instead of its 364px width. The angle is `-42deg`.
+## Page 2 — "Real Results That Showcase True Transformations"
 
-Posters are shown at full opacity. An earlier version faded cards with distance
-for aerial perspective; these are product shots, and a washed-out one
-misrepresents the product, so depth is carried by scale and perspective alone.
+The homepage's client-stories mechanism, reused: the section pins, vertical
+scroll drives a horizontal track through intro panel → eight client cards →
+closing panel, and the section's height is `100vh + trackOverflow` measured
+after paint by a `ResizeObserver`. Below 901px and for reduced motion the pin is
+dropped for a snap rail — **the same markup**, with CSS making the pin the
+scroll container.
 
-One behaviour worth knowing: a card that has been surfed past keeps travelling
-toward the camera. It dissolves within roughly one step, and once past the
-camera plane it projects to tens of thousands of pixels wide — measured 65,982px
-before the fix — so it is set to `visibility: hidden` rather than left as a
-zero-opacity layer the compositor still handles every frame.
+It replaced a hover-to-expand deck that kept a *second, duplicated markup tree*
+for mobile, so this was a simplification rather than a restyle.
 
-The heading is two lines set straight onto the ground at the top left, with no
-card behind it; the ribbon recedes toward the lower left, so that corner stays
-clear. There are no arrows and no counter: scroll is the only control.
+The artwork is 1921×1080 before/after splits with no labels — the same shape and
+the same problem as the homepage's posters, so the `Before` / `After` tags carry
+over for the same reason: without them the frame reads as one photograph of two
+different men.
 
-Below 901px and for `prefers-reduced-motion` the 3D scene is dropped for a
-scroll-snapped rail.
+**The one way the card differs from the homepage's** is the per-client method
+link — "Stick-On Hair System" or "Clip-On Hair System". On a page about choosing
+between the two, which one a man actually wore is part of the evidence. The
+homepage has no such choice to make, which is why its cards carry no CTA.
 
-**The films are not supplied yet.** Every `hairSystems[].src` in
-[src/site.ts](src/site.ts) is empty, so the play mark is a mark rather than a
-control.
+**The images were converted.** The supplied PNGs were ~2 MB each, 16.0 MB for
+the eight. At a 1920px `.jpg` plus a 1200px `-small.jpg` they come to **1.86 MB
+for all sixteen, an 88% reduction**, served through `srcSet`/`sizes`. The PNGs
+remain beside them in `public/transformations/`, so it is reversible.
 
-⚠ **The supplied posters carry small printed numbers** in their top-right
-corners (visible as 1–9 on the mannequin shots). They are baked into the
-client's image files, not added by the markup, and will need removing at source
-if they are not wanted on the live site.
+Measured at 1440×900: section 6,984px, track 7,524px, travel `0 → −6,084`, and
+the closing panel finishes at 832–1,380px inside the viewport. All eight CTAs
+are 44px tall, clearing the tap-target floor the mobile pass set.
 
-> A "motion arc" variant of this section was built on 2026-08-07 from TRIONN's
-> "Design in Motion" (`reference/Recording 2026-08-07 112815.mp4`), replacing
-> the ribbon with a wheel. The client preferred this ribbon version, so it was
-> restored the same day and the arc removed. Do not rebuild the arc without
-> being asked.
+## Section 7 — "World's Finest Thinnest Hair Systems" (circular gallery)
+
+Built from the supplied `circular-gallery` component, ported into
+[src/components/ui/circular-gallery.tsx](src/components/ui/circular-gallery.tsx).
+The thirteen product posters stand on a circle and the ring turns about its
+axis as the section scrolls, so the range reads as one object being walked
+around rather than as a row being pushed past.
+[src/components/Systems.tsx](src/components/Systems.tsx) supplies the content,
+the heading and the scroll.
+
+### What the port changed, and why
+
+The component arrived as Next + Tailwind + shadcn. Beyond the usual translation
+— Tailwind utilities became rules in the `.cgal` block of `global.css`, `cn()`
+went, and `NodeJS.Timeout` became `ReturnType<typeof setTimeout>` because this
+runs in a browser and the project builds with `tsc -b` — three changes were
+substantive:
+
+1. **The scroll listener is gone; rotation is a prop.** The original read
+   `window.scrollY` against the whole document. That works on its demo page,
+   where the gallery *is* the page. Here the document is around 30,000px tall,
+   so the gallery would already have been part-rotated before it came into view
+   and a full scroll through its own section would have turned it only a
+   fraction of a revolution. `Systems.tsx` now owns the scroll with `useScroll`
+   against the section — the same as every other scrubbed section here — and
+   hands the gallery `progress`.
+2. **Rotation is a motion value, not React state.** The original called
+   `setRotation` inside a `requestAnimationFrame` loop, re-rendering the whole
+   gallery every frame for the life of the page, on screen or not. The angle
+   and each card's opacity are motion values now, which motion writes straight
+   to the DOM — no re-render at all.
+3. **`still` renders a snap rail.** Every animation in this project respects
+   `prefers-reduced-motion`, and a 3D carousel is not something a phone should
+   be asked to spin.
+
+### Two things worth knowing about the geometry
+
+**Backfaces are hidden.** Every card faces outward from the axis, so the far
+half of the ring shows card *backs* — and a poster seen from behind is
+mirrored, which rendered the brand wordmark in reverse and read as a bug rather
+than as depth. Hiding backfaces drops the far half; the near half always faces
+the camera, so the ring is never empty, it just shows a different set as it
+turns. It also removes the edge-on slivers, which measured 5px wide at half a
+turn.
+
+**Radius stays well under perspective** — 700 against 2,200. The front card
+sits at `translateZ(radius)`, so it is that much nearer the camera and is
+magnified by `perspective / (perspective − radius)`, about 1.47× here. At
+parity the card would be *on* the camera plane and project infinitely, which is
+the trap the previous implementation of this same section hit; it is recorded
+in [PROJECT-CONTEXT.md](PROJECT-CONTEXT.md) §5.
+
+Measured at 1440×900: the section is 1,710px (`100vh + 90vh`), the ring turns a
+full revolution across it — 1.7° at the start, 93.5° at a quarter, −175° at a
+half, back to 8.4° at the end — and the front card measures 440px across.
+
+### The previous implementation is still on disk
+
+This section was a **collection surfer** until 2026-08-08 — a diagonal ribbon
+receding into depth — and before that, briefly, a motion arc. Neither
+`ui/collection-surfer.tsx` nor its `.surf` CSS block has been deleted, so both
+are dead weight in the bundle until someone decides this direction is final.
+Say the word and they go; `git checkout homepage-v1 -- src/components/ui/collection-surfer.tsx`
+brings the surfer back if this one is not wanted.
+
 
 ## Section 8 — "This Might Sound Like Your Story"
 
@@ -333,9 +451,12 @@ and `[92, 92, 92, 92, 92, 249]` at the end, copy opacity ramping in step, and
 the stack finishing at y = 823 inside a 900px viewport. Scrolling back up
 closes the rows again.
 
-Below 901px and for `prefers-reduced-motion` the pin is dropped and every card
-is simply open — five short lines and an offer, none of which depends on the
-animation to make sense.
+Below 901px the pin is dropped and every card stays open, but the section no
+longer lands as a static block: the heading resolves from a short blur and the
+six cards rise in on a 70ms stagger. The CTA compresses slightly on touch so
+its press is acknowledged. This phone-only entrance runs once when the stack
+enters the viewport. For `prefers-reduced-motion`, all content renders already
+settled with no stagger or press transform.
 
 ## Section 9 — "Explore Our Trusted Range Of Hair Services"
 
@@ -381,11 +502,11 @@ Only the first service's copy came with the design. The other two are written
 to the brand's candour rule: the SMP line says on a sales page that SMP does
 not regrow hair, because that is what the brand's other pages already say.
 
-For `prefers-reduced-motion` the pin is dropped and the rows take their height
-from the photograph (`aspect-ratio: 4 / 3`) while keeping the two-column
-layout; it answers clicks instead of scroll. Below 901px the row stacks as
-well — photograph above, copy below — because a 31% media column leaves the
-name nowhere to sit on a phone.
+For `prefers-reduced-motion` at desktop widths the pin is dropped and the rows
+take their height from the photograph (`aspect-ratio: 4 / 3`) while keeping the
+two-column click accordion. Below 901px every service stays open and each row
+stacks photograph above copy. The headings remain visible but are disabled as
+controls because there is nothing left to expand or collapse.
 
 ## Section 10 — "The Step-By-Step Process To Natural Hair"
 
@@ -490,8 +611,11 @@ only fires on a change, so a page that loads with the section already in view
 would otherwise never hear one — the deck opened flat on first paint until the
 value was read once directly.
 
-There are no dots, no follow line and no social links under the deck: the
-section is the heading and the cards.
+There are no dots, follow line or social links under the deck. Phones instead
+get one compact, centred gesture cue immediately below the fan: “Swipe to see
+more transformations” with a double horizontal chevron. The icon drifts gently
+left and right so the interaction is discoverable without competing with the
+cards; it stays still when reduced motion is requested. Desktop hides the cue.
 
 **What the port changed, and why.** The component arrived as Next + Tailwind +
 shadcn; this project is Vite + plain CSS. `next/link` became a plain `<a>`
@@ -537,18 +661,26 @@ the section a scroll container.
 
 Built to the move in `reference/Recording 2026-08-07 180443.mp4`: a dark stage
 that pins, a headline that holds still, and the picture set **inline within the
-headline** growing out of its own slot until it covers the viewport, dimming
-the type it passes over. The heading breaks as `Uses Advanced [picture] 3D` /
+headline** growing out of its own slot until it fills the stage, dimming the
+type it passes over. The heading breaks as `Uses Advanced [picture] 3D` /
 `Scan Technology`.
 
 **The picture is not scaled.** It is an absolutely positioned panel whose
 `left/top/width/height` are interpolated between two measured rects — the
-slot's and the stage's. That is what a scale transform cannot give: the panel
-changes aspect as it grows, so `object-fit: cover` re-crops the photograph on
-the way out, and the corner radius stays a real radius instead of being
-magnified by the same factor as everything else. Measured at 1440×900, the
-panel runs `163×103` at the slot to `1440×900` covering the stage, radius 14px
-to 0.
+slot's and the pin's padding box. That is what a scale transform cannot give:
+the panel changes aspect as it grows, so `object-fit: cover` re-crops the
+photograph on the way out, and the corner radius stays a real radius instead of
+being magnified by the same factor as everything else.
+
+**It stops short of the edges.** The grown panel keeps air on all four sides
+rather than running full-bleed, and the inset is `.scan__pin`'s own padding,
+read back by the component — one number, living in the stylesheet, with nothing
+in the JavaScript to keep in step with it. Measured at 1440×900: the panel runs
+`163×103` at the slot to `1342×842`, leaving 49px left and right and 29px top
+and bottom, against a stated padding of `48.96px / 28.8px`. The radius grows
+12px → 20px rather than running to 0; a squared-off rectangle made sense when
+the panel finished flush with the viewport and its corners were cut off anyway,
+but inset it would just look unfinished.
 
 **The slot is an empty inline-block that is never painted.** It reserves the
 picture's place in the sentence, and measuring it is how the panel knows where
@@ -568,9 +700,12 @@ The photograph is the file already installed for the Big Achievements card, so
 it is referenced at `/achievements/advanced-3d-scan.png` rather than copied a
 second time.
 
-Below 901px and for reduced motion the pin is dropped, the slot collapses so
-the heading reads as two plain lines, and the picture sits under it as an
-ordinary block.
+Below 901px the pin is dropped and the slot collapses so the heading reads as
+two plain lines. The formerly static fallback now echoes the desktop idea once:
+the title resolves from a short blur, the picture rises and opens from a soft
+inset crop, then one restrained white scan beam crosses it. For reduced motion,
+the picture sits under the heading as an ordinary settled block and the beam
+is never rendered.
 
 ## Section 14 — "Walk Into Any Of Our Premium Salons"
 
@@ -652,6 +787,11 @@ an accident: measured 1,540px of wordmark inside a 1,440px viewport, and 527px
 inside 390px. The outline is what keeps it a watermark rather than a heading
 competing with the page, so it is `aria-hidden` — the same words are already
 the logo, the legal line and the page title.
+
+Desktop uses the original `clamp(4rem, 13vw, 15rem)` scale. A later inline
+`3.1rem` override had shortened it; that override is removed. Widths through
+900px deliberately keep `3.1rem`, so restoring the desktop wordmark does not
+change the current phone composition.
 
 Directly beneath it runs the **looping marquee**. The reference loops one
 phrase; this loops five, separated by an asterisk — the 100% claim plus the
@@ -765,21 +905,34 @@ reason.
 
 ## Section 6c — "Real Hair Or Illusion? Watch & Decide"
 
-One card, given depth rather than decoration. The poster is oversized inside
-its frame and moves against it, so the card reads as having a front and a back
-instead of a flat plane being rotated. Measured at 1440×900: the card sits at
-980×735 at rest with no transform, and at `2.5deg / -3deg` under the pointer.
+One 16:9 card, given depth rather than decoration. The poster is oversized
+inside its frame and moves against it, so the card reads as having a front and
+a back instead of a flat plane being rotated. The card is 980×551 at its
+desktop maximum and keeps the same 16:9 frame on phones.
 
 The film has not been supplied. `decideVideo.src` in
 [src/site.ts](src/site.ts) is empty, so this is a `<figure>` rather than a dead
 button; set a path and it becomes a real play control with an inline `<video>`.
-The poster is the client's own before/after photograph.
+The poster is the supplied 992×558 `image png 2.png`, installed as
+`public/decide/from-bald-to-bold.png` without resizing.
 
 ## Section 6d — "Our Trusted Methods For A Natural Look"
 
-The client's artwork: heading top-left, accordion bottom-left, one photograph
-filling the right column. Depth is on the photograph only — type that rotates
-is type that is harder to read.
+The client's artwork: heading top-left, accordion bottom-left, a photograph
+filling the right column. **Each method has its own photograph** and the panel
+cross-fades to whichever row is open. Depth is on the photograph only — type
+that rotates is type that is harder to read.
+
+Closing every row is a legal state, so the picture **holds on the last method
+that was open** rather than blanking. An empty panel would leave the right-hand
+column as a grey rectangle, which reads as a broken image rather than as a
+closed accordion. Only the visible photograph carries `alt`; the hidden one is
+`aria-hidden` with an empty `alt`, so nobody is read a description of a picture
+that is not on screen.
+
+Both files are the panel's own aspect ratio — 1088:1422 and 1632:2133 both
+resolve to 0.765 — so neither is cropped to fit. Worth keeping to when a third
+method arrives.
 
 **The photograph's proportions set the row's height.** `.methods__media`
 carries `aspect-ratio: 1088 / 1422` and `align-self: start`, which is what lets
@@ -789,10 +942,11 @@ and the portrait became a 528×392 landscape crop — measured before the fix,
 528×690 after.
 
 Two methods, because two is what the artwork shows. Zycon™ is a third method
-the brand sells and would slot straight in.
+the brand sells and would slot straight in — it would need a photograph of its
+own.
 
-The photograph is shared with the Services section. A photograph per method
-would be better when the client has one.
+Clip-On has its own photograph. Stick-On still borrows the Services section's,
+and would be better with one of its own.
 
 ## Section 6e — "Fill This Form To Get The Right Guidance"
 
@@ -814,57 +968,73 @@ the spaces, dashes and `+91` people actually type and counts what is left —
 
 ## Section 2 — "The Secret Behind Our Natural Hairline"
 
-Uses `public/video/secret-hair-system.mp4` (1940×1068, 10.04s, ~13.9 MB) as a
-full-bleed muted one-shot film. The section is one viewport tall, not pinned and
-not scroll-scrubbed. An `IntersectionObserver` starts playback when at least 35%
-of the section first enters, pauses it off-screen, and resumes from the same
-time if the user returns. It never restarts after ending and holds the final
-frame. Removing repeated `currentTime` seeks fixes the decoder/frame-jump
-glitch.
+Hero and Secret now use one 1940×1068, 15.04-second Higgsfield film. The served
+file is `public/video/hair-system-unified-clean.mp4`, a locally graded and
+seek-optimized copy of `reference/v3.mp4`. Its background-selective correction
+neutralizes only cool, bright studio-panel pixels; mannequin and hair keep the
+previous grade. A keyframe every six frames keeps seeking responsive.
 
-Copy follows video time:
+`HeroSecret.tsx` owns the only video element. It remains paused while two damped
+scroll ranges map Hero to 0–7 seconds and Secret to 7 seconds through the last
+complete frame. Seeking is serialized, so a scroll burst retains only the
+newest target while a previous seek is active. Scrolling upward runs the same
+film backward without a source switch.
 
-1. `0–3s` — title centred at the top.
-2. `3–4.25s` — no copy; model-only close-up.
-3. `4.25–8.65s` — three benefit pairs form one restrained editorial row in the
-   clean upper white space.
-4. `8.65s–end` — benefits leave and the closing claim enters beside the final
-   profile, then remains with the held last frame.
+Copy follows the film's verified composition:
 
-Copy sits directly in the source film's white space. There are no cards, glass
-surfaces, guide lines, separators, extra background layers, masks, filters or
-outer model transforms. Desktop benefits use three equal columns over the
-macro-detail sequence; the closing crop shifts the model left to reserve the
-right side for the final claim. Mobile changes the benefits to one compact left
-stack, keeps the hair system on the right, then places the final claim above the
-profile in the source film's open space.
+1. `0–16%` — title reveals word by word from a 12px blur and 16px rise, holds
+   sharp, then fades during `22–30%` over the wide mannequin view.
+2. `30–82%` — one near-opaque editorial panel enters in the right-side negative
+   space while the film moves through the macro hairline detail; its three rows
+   arrive in sequence and then remain readable together.
+3. `79–100%` — the proof panel crossfades to "No Line. No Shine. Just Real"
+   beside the final profile.
 
-Content stays centralized in [src/site.ts](src/site.ts), while
-[src/components/Secret.tsx](src/components/Secret.tsx) owns playback and phase
-logic. With `prefers-reduced-motion`, automatic playback stops; the section
-renders the title, a contained static film, benefits and closing claim in a
-readable vertical sequence.
+A two-pixel progress rail gives the long pin a quiet sense of distance. Phones
+do not use desktop's full-height `cover` crop: a landscape film in a portrait
+viewport magnified the product roughly four times and reduced it to a narrow
+slice. Mobile now renders one 158.4%-wide 16:9 window (618×340 at 390px), exactly
+20% larger than the former 132%-wide treatment. It fades in only after the Hero
+copy and client cards have cleared. During the final 18% of Secret, a dedicated
+motion wrapper moves the source's left-biased final profile back to centre on
+both desktop and mobile without overwriting the video's scale transform. The
+100% badge scales as one SVG group to about 33px instead of the former 17px.
+With `prefers-reduced-motion`, seeking and the Secret pin are removed; on phones
+the decorative film is hidden and all Secret copy renders sharp in normal
+reading order.
 
-## The hero background video
+Content stays centralized in [src/site.ts](src/site.ts), shared seeking lives
+in [src/components/HeroSecret.tsx](src/components/HeroSecret.tsx), copy motion
+lives in [src/components/Secret.tsx](src/components/Secret.tsx), and
+`scripts/verify-secret-scroll.mjs` checks forward/reverse timeline tracking,
+scene visibility, mobile layout, reduced motion and page overflow.
 
-`public/video/hero-bg.mp4` (1928×1072, 10s, ~8.7 MB) loops behind the whole stage
-— wordmark *and* hero — with the mannequin rising up into the letters. It
-autoplays because it is `muted` + `playsInline`, which browsers require for
-unattended playback. **There is no overlay over it**, by request — the headline
-column relies on its own contrast against the footage.
+### Continuous handoff from the Hero
 
-Two tricks make the composite work, both on `.hero__bg` itself:
+`HeroSecret.tsx` groups both semantic sections around one persistent sticky
+film. Hero keeps the page's `h1`; Secret keeps its own `h2`. The opening orbit
+runs through Hero, then the same decoder continues into the close hairline move
+and pullback while Secret copy enters. There is no clone, crossfade, wash,
+matched-frame trick or ownership change.
 
-- `mix-blend-mode: darken` keeps whichever pixel is darker, video or page. The
-  footage's white ground disappears into the page, while dark hair stays solid
-  and reads as standing *in front of* the chrome wordmark.
-- `filter: brightness(1.14)` lifts the footage's grey studio ground to pure white
-  so the video rectangle has no visible edges.
+`scripts/verify-hero-secret-transition.mjs` checks that one paused film spans
+both ranges, progresses forward and backward, starts Secret near 7 seconds,
+retains copy phases, respects reduced motion and causes no overflow.
 
-Because of the darken blend, this composite depends on the page behind the stage
-staying white. Below 1080px the tall crop is also nudged to
-`object-position: 18% center` so the mannequin clears the left-aligned copy
-instead of sitting behind it.
+## The unified Hero-to-Secret product film
+
+`public/video/hair-system-unified-clean.mp4` is the single served film. It is
+silent, fast-started and encoded at 24fps with a seek point every six frames.
+The original Higgsfield file remains untouched in `reference/v3.mp4`.
+
+The source's white set contained visible vertical room panels and a wall-floor
+horizon. The served copy keys only cool, bright upper-background pixels to
+white; warm mannequin tones, dark hair and the lower pedestal remain on the
+previous grade. The transparent `.heroSecret__filmFrame` uses
+`mix-blend-mode: darken` while the video receives a small brightness lift. Dark
+hair stays solid and still reads in front of the chrome wordmark. Hero copy and
+the entire Secret scene stack sit above that film layer; the chrome wordmark
+stays beneath it so white pixels reveal the letters instead of covering them.
 
 If you swap the file, keep it landscape and dark-free on the left third, or the
 copy will fight it.
@@ -946,3 +1116,1017 @@ failing WCAG AA, so the eyebrow and active nav link use `--accent-ink`
   card row capped at 560px so thumbnails stay thumbnails.
 - **≤640px** — arrows move below the track, next to the page dots.
 - **≤520px** — two cards per page instead of three.
+
+## Page 3 — "Book Your 1:1 Consultation Online Or In Person"
+
+The closing block of the Hair Patch vs Hair System page: a dark panel carrying
+an eyebrow, a headline lit word by word on scroll, three proof cards, and the
+booking CTA.
+
+**It is built on `Backed`'s structure**, on request — a white section holding
+one dark panel (`linear-gradient(152deg, #17191d, #0c0d10, #08090b)` plus two
+soft white radial highlights), lit by a single wide blurred band via
+`::before`, with the glassmorphism moved inward to translucent white cards
+(`rgb(255 255 255 / 0.07)`, `blur(14px)`, `1px` white border at 12%).
+
+**There are deliberately no background orbs.** The first version of this section
+was light, and floated the glass over three blurred colour circles — glass needs
+something behind it worth blurring, and the page ground is a flat near-white.
+The dark panel solves that problem better: white translucency over a near-black
+gradient reads as glass on its own. So when the section went dark the orbs were
+removed outright rather than recoloured.
+
+**The word reveal is the same idiom as `StillConfused`** on the Stick-On or
+Clip-On page — now literally the same direction too, both lifting white type out
+of a faint white on a near-black ground. `LitWord` runs each word from
+`rgba(255,255,255,0.22)` to full white over an overlapping scrub window, so the
+line reads as a sweep rather than as separate words switching on. Measured
+across the eight words as the section enters: `0.22 ×8` → `0.91 0.55 0.22…` →
+`1.00 1.00 1.00 0.85 0.48 0.22…` → `1.00 ×8`.
+
+The scrub is driven by the section entering the viewport
+(`offset: ['start 88%', 'center 40%']`), **not** by a tall pinned stage.
+`StillConfused` reserves 220vh for its reveal, which suits a full-viewport
+immersive close; this is a compact panel directly above the footer, where two
+extra viewports of scroll would cost more than the effect is worth.
+
+One consequence of that offset is worth knowing before retuning the timings:
+progress only reaches 1 once the panel's centre passes 40% of the viewport,
+which is slightly *past* where the panel sits nicely in frame. The points and
+CTA therefore finish at 0.68 and 0.8 rather than at 0.94 — at 0.94 the CTA was
+still half-faded at exactly the moment someone was looking at it.
+
+Contrast was sampled from rendered pixels. Against the lightest ground measured
+inside the panel (`#323335`): headline and card titles 12.65:1, card notes
+6.79:1, the CTA note 5.64:1, the eyebrow 9.77:1.
+
+The CTA uses `--grad-ink`, not `--grad`. Neither ink colour clears AA on the
+full `--grad` sweep at this size — white measures 3.44:1 on the `#4686fe` stop
+and near-black measures 4.17:1 on the `#1769ff` stop, and a 16px/650 label is
+not large text either way. `--grad-ink` runs `#1769ff → #0f55d8`, where white
+measures 4.67:1 and 6.34:1.
+
+Under `prefers-reduced-motion` the section renders static and fully lit: no word
+sweep, no panel arrival, nothing showing up late.
+
+Check it with `node scripts/verify-bookcall.mjs [outDir]`.
+
+## Page 3 — "Benefits of a Natural Looking Hair System"
+
+A teaser card, and a separate overlay that opens above it. Built to
+`reference/Recording 2026-08-21 125404.mp4` — Apple's "Get to know Mac" rail —
+and then deliberately diverged from it on one point.
+
+**The card does not morph into the sheet, by request.** It used to: card and
+sheet shared a `layoutId`, so motion interpolated the real geometry between them
+and the card read as opening into the sheet. The card was also hidden while the
+sheet was up, which left a hole behind the blur where it had been. What was
+asked for instead is a distinct panel arriving over a card that stays put, so
+the `layoutId` is gone and the sheet has its own scale-and-fade entrance. If the
+Apple morph is ever wanted back, it is those two `layoutId`s plus hiding the
+card again — nothing else depends on it.
+
+What is kept from the reference: **the page behind blurs**, via `backdrop-filter`
+on the scrim, so no other section has to know this component exists.
+
+**The card's crop line is set by its `aspect-ratio`, never by a `max-height`.**
+`object-fit: cover` scales the photograph to the card's *width*, so a pixel cap
+shows a different amount of the man at every viewport — the first attempt,
+`max-height: min(520px, 56vh)`, cut him at the chin on a 1920 screen while
+clearing his collar on a 1366. `aspect-ratio: 1600 / 790` keeps rows 0–790 of
+the 832-tall file at every width, which ends just below the collar. Measured:
+95.0% of the photograph shown at 1920, 1600, 1440, 1366 and 1280 alike.
+
+`max-height: 82vh` remains only as a guard for genuinely short screens. It was
+72vh briefly, which was low enough to clamp on 1920, 1366 and 1280 and take the
+framing back over — if you tighten it, check the percentage again rather than
+just the height.
+
+The photograph is anchored `center top`, so what the ratio crops is his chest,
+not the top of the frame where the dashed hairline, the arrow and the scalp
+inset live.
+
+**The sheet is sized to fit one screen too.** It is `max-height: min(880px, 92vh)`
+with every vertical measure inside tuned to land under that, plus a
+**height-keyed** media query at `max-height: 820px` for laptops — a 1366×768 or
+1280×720 screen is a vertical-space problem, and solving it with a width query
+would shrink the layout on a tall monitor for no reason. Measured: section and
+sheet both fit at 1920×1080, 1440×900, 1366×768, 1280×720 and 768×1024.
+
+On a phone the sheet still scrolls, by about 180px. Fitting it would mean either
+dropping content or taking body copy under 14px, and the 14px floor holds across
+this site.
+
+**Lock `document.documentElement`, not `document.body`.** The usual
+`body.style.overflow = 'hidden'` idiom does nothing on this site: `body` already
+carries `overflow: hidden auto` from `global.css`, but `document.scrollingElement`
+here is `html`. The lock looks right in devtools while the page scrolls freely
+behind the sheet. Note also that `window.scrollBy()` will report a lock as
+working either way — `overflow: hidden` blocks user scrolling, not scripted
+scrolling — so test it with a real wheel event. Measured: 600px of wheel moves
+the page 600px closed and 0px open.
+
+**Never put the card headline's size back as an inline `style`.** It lived
+there as `fontSize: '4rem'`, which is why the headline could not be made smaller
+on a phone — an inline declaration beats every media query, so the card rendered
+at 64px at 390px wide as well as at 1440, three lines tall and straight over the
+subject's face. The 4rem is right on a desktop and is kept exactly; it now lives
+in `.benefits__cardTitle` where the `max-width: 900px` block can override it to
+`clamp(1.3rem, 5.2vw, 1.85rem)`.
+
+**Both photographs are installed, and `card.png` carries its own annotation.**
+The dashed hairline ellipse, the curved arrow and the circular scalp inset are
+baked into the picture, so the component draws none of them. An earlier version
+drew all three in CSS and SVG while the photograph was outstanding; they were
+deleted when it arrived, because keeping them would have put a second ellipse on
+top of the first.
+
+The card image's **left third is transparent on purpose** — that is where the
+headline sits, which is why the CSS lets the picture bleed edge to edge instead
+of reserving a column for the copy. The file is 1600×832 and the card is set to
+the same ratio, so a full-bleed `cover` crops nothing.
+
+`Photo` still falls back to a labelled dashed frame on `onError`, so a renamed
+or missing file shows something readable rather than a broken-image glyph.
+`public/hair-benefits/README.md` has both filenames, their sizes, and the two
+constraints above.
+
+In one column — below 901px — the sheet's photograph needs `contain` sized to
+its box's **height**, not its width. Sized to width it resolved to 366x363
+inside a 170px-tall box and clipped 193px, everything below the sunglasses. The
+box is also taller there now, because a box that cannot hold a head will crop
+one however the image is fitted.
+
+**Neither `contain` nor `cover` is free in the sheet's right column.** The
+overlay file is near square (1100×1090) and the column is tall and narrow:
+`contain` bottom-anchored left 246px of dead grey above his head, and `cover`
+cropped the side of his head off. Top-anchored `contain` costs nothing — the
+whole face is intact and the leftover space falls below him, where a mask fade
+turns it into deliberate whitespace and also hides the file's own hard bottom
+edge through his shirt.
+
+Keyboard contract: `Escape` closes, focus moves to the close button on open and
+returns to the card on close, `Tab` cycles inside the sheet, and the page behind
+cannot scroll. Under `prefers-reduced-motion` the sheet still opens — it is the
+content, not decoration — but without the morph.
+
+Check it with `node scripts/verify-benefits.mjs [outDir]`.
+
+## Page 3 — "Why Hair Patches Often Fail The Confidence Test"
+
+The case against patches. **It sits second-to-last, by request** — between
+`SimplestWay` and `BookConsultation` — where it reads as a closing argument
+before the ask rather than as the problem the page is solving.
+
+It was built to sit immediately before `HairBenefits`: problem stated, then
+answered, which is what the page's own logic wants and what the
+`hero-testimonials-cta` and `funnel-3-step` landing patterns both order. Nothing
+in the component depends on its neighbours either way, so moving it back is one
+line in `HairPatchVsSystem.tsx`.
+
+**The orange breaks the one-blue rule on purpose.** `tokens.css` says the page
+"carries no colour of its own, so the single blue gradient does all the
+pointing" — and this section adds `#ea580c`. It earns it the same way
+`.faq__stars` and `.backed__stars` earn their amber: a warning rendered in the
+brand blue reads as decoration rather than as a warning. Colour is never the
+only signal, so nothing is lost to a reader who cannot separate the hues — the
+heading, the label and the exclamation mark all say it independently.
+
+The section sits on `#f4f5f8`, the same recessed grey `.compare` uses, so the
+two argument sections on this page share a ground. Everything was re-measured
+against it: title 17.82:1, body copy 5.64:1, warning mark 3.27:1. That mark
+clears the 3:1 a meaningful graphic owes but has the least head room of anything
+on the page — darken it rather than lighten it if the orange is ever retuned.
+
+**The closing panel's blue is deeper than the other card gradients on this page,
+and has to be.** White on `#4a86fe` measures 3.42:1, so "That's the standard we
+live by" — 15px, normal weight — missed AA. `#1f6bfb` is the lightest stop that
+clears 4.5:1 for white, at 4.61:1. Don't brighten it without re-measuring.
+
+The panel itself is built from the site's own recipe — a gradient with two soft
+white radial highlights over it, the same construction `.backed__panel` and
+`.simplest__panel` use. The supplied design has a photographic sky there; this
+reads as the same family as every other panel on the page and needs no new
+asset.
+
+The warning diamond is drawn rather than taken from lucide, whose alert icons
+are triangles and octagons. The exclamation is two shapes inside the same
+viewBox rather than a counter-rotated child, so it cannot drift as the diamond
+scales.
+
+Entrance is `useReveal`, the idiom every other section here uses, already
+reduced-motion aware. Emphasis in the body copy is marked with `**` in
+`site.ts`, the same convention `choiceHeroLede` uses.
+
+**The trailing space after each headline line is load-bearing.** Below 620px
+the two `<span>`s go inline so the lines reflow as one paragraph, and without a
+separator they render — and are announced — as "Often FailThe Confidence Test".
+It is a real text node in `PatchFail.tsx`, deliberately not a CSS `::before`:
+generated content never reaches `textContent`, so the visual would have looked
+fixed while a screen reader still heard the run-on. On desktop the spans are
+blocks and the space collapses away.
+
+The mobile CTA is full-width and **centred**, not `space-between`. Pushed to the
+two ends it read as two controls rather than one button.
+
+Check it with `node scripts/verify-patchfail.mjs [outDir]`.
+
+## Page 4 — "Will My Hairline Look Real?"
+
+At `#/will-my-hairline-look-real`. **Hero and the systems gallery so far** — the
+rest of the page is still to come. The "Free eBook" section in the supplied design is excluded by
+request.
+
+**The hero is shared, not copied.** Both guide pages open the same way — eyebrow
+badge, headline, lede, one wide rounded still with a play mark — so they are one
+component, [GuideHero](src/components/GuideHero.tsx), with a thin per-page
+wrapper binding its content. That extraction happened when this page was built:
+before it, the markup and its 188 lines of CSS existed only as
+`PatchSystemHero`, and duplicating them would have meant every later fix had to
+be made twice. The CSS block was renamed `.patchHero` → `.guideHero` at the same
+time and for the same reason.
+
+**The eyebrow mark is a CSS mask, so the supplied SVG needed no editing.** Only
+its shape is used; the black `fill` it ships with is discarded and the brand blue
+is painted through it. Each page sets its own file via the `--guideHero-icon`
+custom property, with `burst.svg` as the fallback so a page that forgets still
+renders something.
+
+`ClientStories` is the homepage's own component, reused unchanged — self-contained,
+no props. It closes the argument the page makes: the hero claims the hairline is
+undetectable, `Systems` shows the range, `HairlineDesign` shows the craft, and
+this shows men it worked for. Page 3 orders its equivalent run the same way. Its
+pin scrubs the rail sideways above 900px and falls back to a swipe rail below
+that and under reduced motion.
+
+`Systems` is the Stick-On or Clip-On page's own component, reused unchanged — it
+is self-contained and takes no props. It follows the hero because the hero claims
+the hairline is undetectable and the range is the evidence: thirteen systems the
+claim has to hold across. Its pin drives a rotating ring above 900px and falls
+back to a snap rail below that and under reduced motion; measured on this page,
+the ring passes through seven distinct angles across the pin and the rail is
+static in all three fallback cases.
+
+The play mark is decorative — no film has been supplied for either guide page,
+and a button that does nothing is worse than a picture of one. It becomes a real
+trigger the day a file lands, the same convention `checklistVideo` and
+`processVideo` already use.
+
+Check it with `node scripts/verify-hairline-hero.mjs [outDir]` — it probes the
+new page *and* re-probes the Page 3 hero, since the two now share a component.
+
+### "How We Design The World's Most Natural Hairline"
+
+**This is `Checklist`, with different content.** It was first built as its own
+light-themed card to match a supplied design, then asked to look like the
+homepage's 21-point checklist instead — at which point it stopped being a
+section that borrowed the checklist's mechanism and simply *was* the checklist.
+Rather than restyle 348 lines of CSS to converge on `.checklist`, `Checklist`
+gained optional props defaulting to the homepage's own data, so both sections
+are literally the same component and every bare `<Checklist />` call site works
+untouched. The `.hlDesign` block was deleted.
+
+Seven points instead of twenty-one. `--checklist-count` is now set inline from
+`points.length` rather than left at the 21 the stylesheet defaults to — the
+progress rail divides by it.
+
+**The supplied `Images/nh.png` had the quote, its scrim and rounded corners
+painted into the picture.** The still shipped here is cropped above that band —
+`crop=2176:1090:0:0` if you re-cut it from the original — so nothing is drawn
+twice.
+
+Two defects fixed in the shared component while doing this, both of which also
+affected the homepage and Page 3:
+
+- The tally printed `01 / 7` for a seven-point list. The denominator is now
+  padded like the numerator: `01 / 07`.
+- The title's two lines concatenated in `textContent` — a screen reader heard
+  "Our 21-Point ChecklistFor A Perfect Hair System". The spans are blocks, so a
+  real trailing space collapses visually and fixes the announced text.
+
+Check it with `node scripts/verify-hairline-design.mjs [outDir]` — it probes the
+new section *and* re-probes the homepage and Page 3 instances.
+
+### "Benefits of a Natural Looking Hairline"
+
+**This is `HairBenefits`, with different content.** Cloning it would have meant
+cloning a modal — the focus trap, the scroll lock, the Escape handling, the
+scrim blur — so instead it gained an optional `data` prop defaulting to Page 3's
+own, and Page 3's bare `<HairBenefits />` call site is untouched.
+
+Three things the component now allows for, each driven by the data rather than
+by a second copy of the markup:
+
+- **No philosophy callout.** Without it the CTA has nothing to sit inside, so it
+  stands full width under the list. It uses `--grad-ink`, not `--grad`: white on
+  the lighter `#4686fe` stop measures 3.44:1 and misses AA — the same trap the
+  booking button hit.
+- **An intro that ends in a link.** No film is supplied, so "Watch the video"
+  renders as a dotted-underlined `<span>` rather than an anchor that goes
+  nowhere. Give `introLink` an `href` and it becomes a real link with no other
+  change.
+- **`cardArt: 'right'`.** Page 3's card photograph is a wide annotated scene at
+  nearly the card's own ratio, so it bleeds full width. This one is a portrait
+  cut-out — `cover` scaled a 1400×1152 file into a 2.03-ratio card and cropped
+  it to a face filling the frame. `'right'` stands it on the card's floor at
+  `contain`, anchored bottom right, keeping its own proportions.
+
+  **Its `right` and `bottom` are `0`, and that matters.** The supplied file is
+  itself a crop: the subject's shoulders run off its left and right edges and
+  his chest off the bottom. Inset even 2% and those cut edges float in the
+  middle of the blue, which reads as a clipped rectangle rather than as framing.
+  Sitting them on the card's own edges makes the same crop read as the card
+  cropping him. Below 620px the photograph is sized to the card's full width for
+  the same reason — centred at 93% it sat 23px short on one side, putting a cut
+  edge back in open blue.
+
+**The overlay photograph is art-directed, not resolution-switched.** The desktop
+cut-out is framed for a tall column and its head and shoulders ran off the short
+box the phone layout gives it. A `mobileSrc` on the slot renders a `<picture>`
+with a `<source media="(max-width: 900px)">`, so narrow screens get a different
+crop of the same man — one with margin on every side, which `contain` can fit
+whole. `<picture>` rather than two images toggled by CSS: the browser downloads
+only the source it picks. The breakpoint matches the stylesheet's own 900px,
+where the sheet's layout changes. Page 3's slot has no `mobileSrc`, so it
+renders a plain `<img>` and is untouched.
+
+Declare the data shape with the exported `BenefitsData` type, not
+`typeof hairBenefitsData`: both objects are `as const`, so deriving from one
+makes every string a literal and the other fails to assign.
+
+### "We Understand This Is Not A Small Decision."
+
+**This is `StillConfused`, with a different headline** — the same dark stage,
+capsule, glow and word-by-word illumination scrub the Stick-On or Clip-On page
+closes with. It gained an optional `data` prop defaulting to page 2's own, so
+page 2's bare `<StillConfused />` call site is untouched.
+
+Two things had to move out of module scope for that to work:
+
+- **`totalWords`.** The sweep divides by it, and it was computed once from page
+  2's headline. Page 4's is shorter, so a fixed total would have left the last
+  words unlit. It is now derived per instance and passed down.
+- **`titleId`.** Both headings would otherwise claim `still-confused-title`, and
+  nothing guarantees the two sections never share a page.
+
+**The headings carry an `aria-label`, and it is load-bearing.** Each word is its
+own span so it can be lit individually, and they are spaced by a flex
+`column-gap` (`StillConfused`) or a `margin-right` (`BookConsultation`) rather
+than by whitespace — so the accessible name came out as
+`"WeUnderstandThisIsNotASmallDecision."` and
+`"BookYour1:1ConsultationOnlineOrInPerson"`. Text nodes are not the fix inside a
+flex row: they become anonymous flex items and gain their own gaps. Naming the
+heading is, and it leaves the layout alone. If you add a word-lit headline
+anywhere else, label it the same way.
+
+The CTA points at `#consult`, which does not resolve — it is already dead on
+page 2 and is listed with the other dead anchors in PROJECT-CONTEXT §7.
+
+### "The Truth Behind Ultra Natural Hairline"
+
+Five short claims in the 2-2-1 grid the design draws, directly above the
+benefits card: the claims state the position, the card expands on it.
+
+**The heading wipes word by word out of a mask** rather than fading — each word
+sits in an `overflow: hidden` span and rises into it. Driven by entry, not
+scroll: this is a compact band, and a scrub would need a tall pinned stage to be
+legible, which is more scroll than five one-line claims are worth. The cards
+stagger in behind it. `useReveal` already handles reduced motion, and the
+transitions are cancelled there too so nothing can be caught mid-rise.
+
+The word masks carry `padding-block` with matching negative margins. Without it
+`overflow: hidden` shaves the tails off g, y and p.
+
+**The spaces are real text nodes — between the words *and* between the two
+lines.** Seven components in this codebase have now shipped a split headline
+that announced as one run-on word. Two fixes apply: a real space where the words
+are inline (this one, `Checklist`, `PatchFail`, `ClientStories`, `HairBenefits`)
+or an `aria-label` where they sit in a flex row (`StillConfused`,
+`BookConsultation`). Check `textContent`, not the render — every one of these
+looked correct on screen.
+
+Measured on the white card: bold half 19.43:1, light half 6.15:1, white check on
+brand blue 4.67:1. Two columns down to 760px, then one — two columns of a
+one-line claim at phone width wraps every card to three lines and the grid stops
+reading as a list.
+
+Check it with `node scripts/verify-hairline-truth.mjs [outDir]`.
+
+### "Can You Use Your Own Front Hair For A Brush-Back Style?"
+
+A six-node decision tree with one branch, below the closing scrub.
+
+**Every connector is CSS, not SVG.** Each line is a positioned bar and each
+arrowhead two rotated borders, laid out on the same two-column grid as the
+nodes. An SVG overlay would need measured coordinates at every breakpoint, and
+this diagram reflows continuously between 360px and 1440px — grid-placed bars
+follow the layout for free.
+
+That choice is also what makes the reveal cheap: a line draws itself by going
+`scaleY(0)` to `scaleY(1)` from its top edge, which is compositor-only. Ordering
+matters and is encoded in the delays — the split bar finishes before the legs
+hanging off it start, or a leg appears in mid-air, and each head fades in behind
+the line that carries it so a head never arrives before its line. `will-change`
+is deliberately absent: these animate once on entry and never again, so pinning
+a layer for the life of the page costs more than it saves.
+
+**The design's branch pill colours miss AA.** `#16a34a` on its own tint measures
+3.00:1 and `#dc2626` measures 3.95:1. Shipped as `#15803d` (4.57:1) and
+`#b91c1c` (5.30:1) — the nearest shades that clear it.
+
+The structure does not change between breakpoints: the design keeps the two
+branches side by side on a phone, so only the measurements move. Verified
+side-by-side at 1440, 768, 390 and 360.
+
+Check it with `node scripts/verify-brushback.mjs [outDir]` — it asserts all
+eleven lines drawn, five heads visible, eleven heading words risen, six nodes at
+full opacity, and the branch pair sharing a row.
+
+### "HD Exposed Hairline — Brush Back Hairstyle"
+
+Four cards on a rail, immediately before the brush-back decision tree: this
+describes the style, the tree then asks whether the reader qualifies for it.
+
+**Above 900px it is not a rail at all — it is a three-column grid**, with the
+three positive cards on the first row and the fourth spanning the full width
+underneath. Four cards on one desktop row left most of the section empty to the
+right. The fourth spans rather than sitting in column one, which would put the
+same dead space back a row lower, and its own list splits into two columns so
+the lines do not run the width of the section. The component needs no flag for
+any of this: it reads overflow from the element, finds none, and drops the
+controls and the tab stop by itself.
+
+Below 900px it is a rail — four cards cannot share a phone row, and a scroll
+rail beats a four-storey stack.
+
+That fourth card centres its heading and its points block at grid width, and
+every point sits on one line across the whole desktop range. The block is sized
+to its content with `max-content` columns and centred with `justify-content`,
+not stretched across the card — a block spanning edge to edge is not centred,
+it is merely full width — and `max-content` is also what keeps the one-line
+promise, since a column that measures its longest item never wraps it. It is
+`minmax(0, max-content)` rather than bare `max-content` so that if the copy ever
+outgrows the card the column shrinks and wraps instead of overflowing. The longest is 68
+characters and needs about 520px of measure: two columns clear that from 1280px
+up (538px per column, measured), and below it a single full-width column does.
+Four rows is the cost of the one-line promise, and it is worth paying — the
+alternative is every point wrapping. The text *inside* each point stays left-aligned against its mark:
+centring a line that begins with an icon leaves the icon floating and puts the
+ragged edge down the middle of the card, which is harder to read rather than
+easier.
+
+**The rail is a native scrolling element, not a transform carousel.** That is
+the whole design of the component. `overflow-x: auto` with `scroll-snap` gives
+touch momentum, trackpad gestures, a real scrollbar, keyboard arrow scrolling
+and the browser's own overscroll behaviour — none of which a `translateX`
+carousel gets without reimplementing them, usually badly. The buttons only call
+`scrollBy`; the rail is fully usable if they are never touched.
+
+What that costs is bookkeeping, and all of it is deliberate:
+
+- **The rail takes `tabindex="0"` and a label, but only while it scrolls.**
+  Browsers only make an overflow container keyboard-scrollable automatically
+  when it has no focusable children, and a keyboard user who cannot reach the
+  rail cannot read cards two to four. Above 900px there is nothing to scroll, so
+  the attributes come off — a focus stop that scrolls nothing is worse than no
+  focus stop.
+- **The buttons disable from real scroll position**, not from an index — a touch
+  drag moves the rail without the buttons knowing. The edge threshold is 8px,
+  not 1: the rail carries padding and `scroll-snap-align: start` settles a few
+  pixels in, which left Prev live while the reader was still on card one.
+- **A polite live region announces "Card *n* of 4"**, since scrolling gives a
+  screen-reader user no other signal that the content changed.
+- **The controls hide when nothing overflows.** At 1440 all four cards fit; two
+  permanently disabled buttons read as broken where no buttons reads as "nothing
+  to page through".
+
+**`[hidden]` needs spelling out here.** The UA stylesheet sets `display: none`
+for it, but the author `display: flex` on the same element wins — the attribute
+alone left the controls on screen.
+
+Two things a checker gets wrong if it is not careful, both of which happened
+while building this: **`Home` and `End` do not scroll a horizontal container**
+(arrows do), so testing them reports the rail as keyboard-unreachable; and
+asserting `element.hidden` rather than computed `display` reports controls as
+hidden while they are still visible.
+
+Cards carry one neutral hairline and deepen it on hover. They used to tint it
+brand blue, which read as a selected state on a card that cannot be selected.
+The one blue outline still in this section is the rail's `:focus-visible` ring —
+that is a keyboard indicator, not decoration, and it only ever appears on the
+narrow layout where the rail is focusable at all.
+
+The section head wipes word by word out of a mask, the same idiom
+`HairlineTruth` and `BrushBackFlow` use — it was the one head on this page that
+simply appeared — and it sits at `clamp(1.5rem, 3vw, 2.4rem)`, matching
+`.truth__title`. Three section heads on this page were at three different scales
+with nothing to justify it. **`.flow__title` is still the outlier at 1.75rem**
+and should be brought to the same rank.
+
+**The cards have no hover state, deliberately.** They are not links or buttons,
+and a surface that lights up under the cursor invites a click that does nothing.
+
+Three tick cards and one cross card. Card two was briefly `care` — an amber info
+mark — on the grounds that its three points are maintenance costs rather than
+benefits, and a green tick beside "glue attracts dust over time" reads as an
+endorsement of the dust. The client prefers the green tick, which is their call
+about their own copy; the heading, "What You Should Know", carries the framing
+instead.
+
+**The `care` tone is still wired up** in the component and the stylesheet — an
+amber `#b45309` info glyph, chosen over the site's warning `#ea580c` because
+white on that measures 3.56:1 and an 11px glyph wants more headroom than the
+3:1 floor (`#b45309` measures 5.02:1). Setting card two's `tone` back to `care`
+in `site.ts` is the only change needed to reinstate it.
+
+Tone is never colour alone: the glyphs differ and every card's heading states
+which list it is.
+
+Marks: white measures 3.30:1 on the green and 4.83:1 on the red, both past the
+3:1 a meaningful graphic owes — the green not by much, so darken rather than
+lighten it if retuned. Colour is never the only signal: each card's heading says
+which list it is, and the glyphs differ.
+
+Check it with `node scripts/verify-hd-exposed.mjs [outDir]`.
+
+### "If You Want To Use Your Natural Hair In The Front…"
+
+The last section before the footer, and the companion to `BrushBackFlow` — the
+tree answers yes or no, this grades the middle ground into three density
+scenarios.
+
+**It is the homepage `Story` stack.** The heading holds still on the left while
+cards stack in on the right one at a time, each preceded by a narrower slab of
+itself peeking from under the card above. That mechanism now lives in
+[ScrollStack.tsx](src/components/ScrollStack.tsx), extracted from `Story` when
+this section needed it, so the move exists once rather than twice.
+
+**What is shared is the mechanism, not the appearance.** `ScrollStack` publishes
+two ramps as CSS custom properties — `--open` and `--peek-amt` — and each
+section's own stylesheet decides what a row looks like. That is why those
+properties are generically named while the class names are not. `StackRow` takes
+`className` and `innerClassName` separately rather than deriving the second from
+the first: `Story`'s CTA row carries a modifier, so a derived inner class would
+have been built from the modifier instead of the base.
+
+**Three rows, so the step is 48vh against `Story`'s 30vh.** Three rows means
+only two steps of scroll after the first card lands; at 30vh the whole stack
+built in barely half a screen and was over before it read as a move. A longer
+step gives each card the dwell a six-row stack gets for free.
+
+The blue cap on each card rides `--open`, so it arrives with the card rather
+than sitting on the closed slab — a bright edge on a grey sliver reads as a
+seam, not as a design.
+
+**The pin is top-aligned and takes its height from the stack, not the
+viewport.** Both matter:
+
+- *Top-aligned*, like `.story`. Centring was tried, to soak up the slack a short
+  stack leaves, and rejected: at rest the stack is still collapsed, so centring
+  put the heading 366px below the section's top edge where every neighbouring
+  section puts it at 94px, and slid it upward as the cards opened.
+- *Height from the content.* A pin taller than its content leaves the difference
+  as blank between the last card and the footer for as long as it stays stuck.
+  Letting the stack decide means that blank settles to nothing once the pin
+  releases, leaving only the section's own padding.
+
+Section padding is the site standard, `clamp(44px, 6.5vw, 96px)`, in the pinned
+layout *and* in the static fallback — the fallback had its own larger value,
+which measured 56px against the siblings' 44px on a phone and 115px against
+their 94px under reduced motion. Verified identical to `.truth`, `.hd` and
+`.flow` at 1440, 1600, 1280, 1100, 390, 360 and under reduced motion.
+
+The cards are roomier than `.story`'s (20px gaps, larger padding and type):
+every pixel the stack does not fill becomes slack, and three cards read less
+cramped for it. Content went from 596px to 708px at a 900px window.
+
+Below 901px and under reduced motion the pin is dropped and every card is simply
+open. Check both this and the homepage with
+`node scripts/verify-natural-front.mjs [outDir]`.
+
+### "Stick-On System Lifespan" — `#/stick-on-lifespan`
+
+The third guide page. Current order: shared guide hero, dark balance stage,
+two base-option cards and their detail overlays, car analogy,
+thin-versus-thick rating table, base chooser, the shared "World's Finest
+Thinnest Hair Systems" gallery, and guidance form. The gallery is reused through
+`Systems`, so its thirteen products, desktop scroll rotation, phone snap rail,
+and reduced-motion fallback stay consistent everywhere.
+
+**The route was already in the nav before the page existed.** `site.ts` has
+linked `#/stick-on-lifespan` since the navigation was written, so the path is
+fixed by that link — picking a different one would have left a menu item
+pointing at nothing. `#/clip-on-lifespan` is still in the same position and
+still has no page behind it.
+
+`StickOnLifespanHero` is the third wrapper around `GuideHero`, alongside
+`PatchSystemHero` and `HairlineRealHero` — content and eyebrow mark only. **The
+eyebrow icon needed no recolouring:** the mark is painted as a CSS mask, so the
+supplied file's own fill is discarded and the brand blue is painted through its
+shape. Verified as `rgb(23, 105, 255)` masked by `calendar.svg`.
+
+### "Two Base Options For Your Stick-On Hair System"
+
+`BaseOptions` sits between the dark balance stage and the car analogy. It uses
+the supplied first- and second-option artwork for two equal white cards, with a
+full-card button and a 44px black plus control. The layout follows the page 4
+`HairlineBenefits` pattern: two columns above 760px, one column below it, then a
+large detail sheet over a dimmed, blurred page when either card is opened.
+
+The card and overlay artwork is served from `public/base-options/`. The four
+files are web-sized PNG derivatives of the supplied transparent sources, so the
+hair-system cutouts remain clean while the page avoids decoding the original
+multi-megapixel files. Card and sheet copy, artwork dimensions, and accessible
+labels live centrally in `site.ts`.
+
+The sheet follows the same accessible dialog contract as `HairBenefits`: focus
+moves to Close, Tab stays inside the dialog, Escape and the scrim close it,
+focus returns to the exact card that opened it, and document scrolling locks
+without a scrollbar jump. The existing `motion` runtime supplies the one-shot
+card reveal and sheet transition; reduced motion settles both immediately.
+
+Check it with `node scripts/verify-base-options.mjs [outDir]` (set `VERIFY_URL`
+for another server). It verifies section order, copy, loaded images, responsive
+columns, 44px controls, both dialogs, focus trap and return, Escape and scrim
+closing, scroll lock, fine-pointer hover behavior, reduced motion, overflow,
+console errors, and failed requests.
+
+### "Car Example: Think Of It Like This Before Choosing"
+
+The two-card analogy sits immediately before "Thin Base Vs. Thick Base": a
+sports car represents thin base + low density, while a Fortuner SUV represents
+thick base + high density. Copy lives in `site.ts`; the supplied 2K PNGs are
+served as quality-90 JPEG derivatives at about 305–314 KB each from
+`public/car-example/`.
+
+The visual follows the supplied reference: rounded studio image, separate white
+information panel, semantic pros/cons lists, and a divided recommendation
+footer. Both recommendations use two deliberate visual lines inside matching
+81px footer blocks, reproducing the reference's muted lead-in, bold conclusion,
+and aligned divider. Their responsive type scales from 14px on phones to 16px
+on desktop, giving the closing recommendation the stronger rank shown in the
+reference. The whole sentence remains one accessible name. On wide
+screens the cards share one row; below 760px they stack. Motion
+uses the existing `motion` runtime for the one-shot stagger, while nested CSS
+transforms provide a 4px surface lift and 2.5% image zoom on fine pointers. That
+nesting is intentional: entrance, lift, and zoom have separate transform owners.
+Reduced motion settles immediately and disables both hover transforms.
+
+Check it with `node scripts/verify-car-example.mjs [outDir]` (set `VERIFY_URL`
+when testing a production preview). It verifies the insertion order, copy,
+assets, list counts, responsive columns, aligned desktop/tablet recommendation
+dividers, hover/reduced-motion behavior, overflow, console errors, and failed
+requests.
+
+### "Thin Base Vs. Thick Base"
+
+The rating table below page 5's hero.
+
+**It is the `.compare` table page 3 uses**, with a `rateCompare` variant for the
+cells — same card, same dark header row, same scroller and breakpoints. **The section's ground is a prop**, because both the Stick-On and Clip-On pages
+render this one component and each asked for a different one: Stick-On is white,
+Clip-On is the `#f4f5f8` its neighbouring sections carry. A global change would
+have moved whichever page was not asking. On white the card still reads on its
+border and dark header row rather than on a colour difference. Only the
+contents differ: a rating out of five instead of a sentence. The two comparison
+sections stay one piece of table CSS rather than two that drift apart.
+
+**Each rating is one labelled image, not five decorative ones.** A row of shapes
+is the only thing carrying the score, so the group takes `role="img"` with the
+score written out (`"5 out of 5"`) and the individual stars are hidden from the
+accessible tree. Without that a screen reader announces either nothing for the
+cell or five meaningless graphics. The design draws only the earned stars rather
+than five with some greyed out, which is why the name has to state the
+denominator.
+
+**The stars are solid gold with no outline, by request, and it is worth knowing
+what that trades.** This gold measures **1.67:1** against the white card, under
+the 3:1 a graphic owes when it is the only thing carrying information. It is not
+the only thing here — each rating is a `role="img"` named "n out of 5" — so the
+score survives for a screen reader either way. What is lost is the low-vision
+reader who can see the cell but cannot separate the gold from the white behind
+it. An earlier `#b45309` outline solved that at 5.02:1; reinstating it is one
+line.
+
+**`flex: 0 0 auto` on the star is load-bearing.** Five stars plus their gaps do
+not fit the rating column on a phone, and without it the flex row shrank them on
+the width axis only — measured 18×22 at 390px and 16×22 at 360px, visibly
+squashed. The size floor is set to something five of them can actually sit in.
+
+Check it with `node scripts/verify-base-compare.mjs [outDir]` — it asserts the
+star counts per row, what each cell announces, the header colour, and re-probes
+page 3's table.
+
+### The form heading is top-aligned
+
+`.form__in` was `align-items: center`, which floated the heading against the
+middle of the card. That reads as an accident of the card's height rather than a
+decision — and the taller the card grows, the further down the heading drifts.
+It is `start` now, on the homepage and on the Stick-On System Lifespan page,
+which are the same component and the same rule.
+
+`Form` is reused unchanged on page 5. It is self-contained and takes no props,
+so nothing was parameterised to place it there.
+
+⚠ Still no backend — see §7 of PROJECT-CONTEXT. Submitting shows the success
+state and sends nothing, on both pages.
+
+### "Still Confused Between Bases?"
+
+Two option cards above the range gallery. The rating table higher up shows the
+trade-off in the abstract; this states which reader each side of it suits.
+
+**The questions are a plain bulleted list.** They were briefly real checkboxes
+with a running tally, so the reader could answer the five things the copy tells
+them to ask themselves and the card would say whether that option was theirs.
+That was removed by request in favour of the static list the design draws.
+
+What went with it is worth knowing rather than rediscovering: the `fieldset`,
+the `legend` and the polite live region all existed to serve form controls, and
+without controls they would be markup describing nothing — so the prompt is an
+ordinary paragraph and the questions an ordinary `<ul>`. Reinstating the
+interaction means bringing all of that back together, not just the inputs.
+
+The bullet is a drawn `<span>` rather than `list-style`, so it can be sized and
+coloured against the text beside it; the list is still a real `<ul>` and is
+still announced as a list of five.
+
+**The card has no blue top cap.** It had one, matching the supplied design, and
+it was removed by request. The card's `overflow: hidden` went with it — that
+rule existed only to clip the cap to the corner radius, and a clip with nothing
+left to clip is a trap for whatever gets added here next.
+
+One column below 900px: two cards side by side on a tablet put five questions
+each into about 330px and wrapped most of them to three lines.
+
+Check it with `node scripts/verify-base-choice.mjs [outDir]` — it asserts the
+list structure, the cap's radius and clipping, and that no inputs, legends, live
+regions or tally elements survive from the interactive version.
+
+### "Choose Your Perfect Balance: Look, Comfort, Or Lifespan?"
+
+The dark stage directly below page 5's hero. The constraint line reads "You can
+choose only 1 of these 2 options": the title names three qualities and the cards
+show two options, and the design's original "1 out of 2" arrived with no noun —
+the reader had to work out it counted options, not qualities. It frames everything under it:
+three things are on offer, no system delivers all of them, and the reader has to
+pick a side. Option A carries two of the three and Option B the remaining one —
+which is why the closing line reads "only 1 out of 2": one *option*, not one
+quality.
+
+**The orbs are not decoration — delete them and the glass stops being glass.**
+`backdrop-filter` over a flat ground is an invisible effect at a real paint
+cost: with one colour behind the panel there is nothing for a blur to blur. The
+three drifting colour orbs are what the panels frost. Same reasoning as
+`BookConsultation`'s ambient field on page 3.
+
+Both large corner orbs use the brand primary `#1769ff`; the bottom-right one is
+held at 42% alpha so it stays softer than the upper-left light source.
+
+An `@supports` fallback drops the panels to a solid dark ground where
+`backdrop-filter` is unavailable, so they stop being glass rather than losing
+their contrast floor.
+
+**The headline is two lines at both breakpoints but broken in different places,
+and the two groupings do not nest** — the phone keeps "Look," with "Comfort,"
+while the wide layout splits them. So the words are one flat list in `site.ts`
+with the break positions declared per breakpoint beside them, and the heading is
+a single wrapping flex row.
+
+The break itself is a zero-height, full-width flex item placed *before* the
+word, `display: none` outside its breakpoint. Flagging the word with
+`flex-basis: 100%` instead gives it the whole row to itself, which produces one
+line per word rather than a break.
+
+Below 420px the type steps down as well: the grouping only holds if the longest
+line fits, and these lines need about 18px of this weight inside a 320px screen.
+At the 22.4px floor the heading wrapped to an extra line at 360 and 320.
+
+The headline is scrubbed word by word — the dark-stage idiom `StillConfused`
+uses. **Its accessible name comes from an `aria-label`**, because the words are
+flex items spaced by a `column-gap`: text nodes are not the fix inside a flex
+row, since they become anonymous flex items and gain their own gaps. Ninth
+component here to need one of the two fixes for that; check `textContent`, not
+the render.
+
+Panels are equal height. Option B carries one trait against A's two, and letting
+them size to content left the shorter one floating against the taller, which
+reads as a mistake rather than as less content.
+
+**The panels tilt toward the pointer, and entrance and tilt share one owner.**
+The entrance used to be a CSS `transform`; adding a pointer rotation would have
+meant two rules writing `transform`, and an inline one always wins — the card
+would have snapped to its final position the moment the pointer arrived. Both now
+run through motion, which composes individual transform properties instead of
+overwriting a shorthand. `transformPerspective` is per-card rather than a shared
+`perspective` on the grid, or the card furthest from centre looks sheared rather
+than tilted.
+
+**Tilt is not armed at all without a hover-capable pointer**, rather than merely
+going unused: on a touchscreen `pointermove` fires during a scroll-drag, so a
+card would tip as the reader scrolls past and stay tipped. Verified it moves on
+hover at 1440 and 1100, does not at 390 or under reduced motion, and returns to
+rest in every case.
+
+Note for anyone testing this: `transformPerspective` produces a `matrix3d` even
+at zero rotation, so "is the transform 3D" proves nothing. Compare the matrix at
+rest against the matrix while hovering.
+
+Measured on the dark ground: headline and panel titles 19.43:1, trait text
+10.19:1, the note's dim half 7.57:1. The CTA uses `--grad-ink`, not `--grad` —
+white on the lighter stop measures 3.44:1 and this label is not large text.
+
+### "Clip-On System Lifespan" — `#/clip-on-lifespan`
+
+The sibling of the Stick-On page, and the fourth entry under "Confused? We'll
+Guide You". The nav has linked this route since the navigation was written, so
+the path was fixed before the page existed.
+
+**Almost none of this page is new code.** `BaseComparison` and `BaseChoice`
+carry identical content on both pages and are rendered bare. `BaseOptions` was
+given optional `title`/`options` props defaulting to the Stick-On page's own, so
+the two pages are one component with different copy rather than two modals to
+keep in step — the same consolidation `Checklist`, `HairBenefits`,
+`StillConfused` and `GuideHero` have already had. Only the hero is a new file,
+and it is a wrapper.
+
+The Stick-On page's `BalanceChoice` and `CarExample` are deliberately absent —
+they are not in this page's designs.
+
+**`BaseChoice` takes its questions as a prop here.** Two of the questions state
+lifespans in months, and the honest numbers differ by attachment: stick-on thin
+lasts 3–4 months and thick 6–8, clip-on thin 6–8 and thick 12. The shared set
+carried the stick-on figures, so this page told the reader "6–8 months" in the
+thin-base overlay and asked "am I okay changing it every 3 to 4 months?" two
+sections later. `clipOnBaseChoiceOptions` differs from the shared set in exactly
+those two figures, taken from this page's own overlays.
+
+The photography is installed. **Each declared `width`/`height` is the shipped
+file's own, measured after resizing** rather than carried over from the Stick-On
+page: the supplied cut-outs do not share its aspect ratios, and a declared size
+that disagrees with the file reserves the wrong space and shifts the layout as
+the image loads. The two card images are even 6px apart in height (948 and 942),
+which the grid equalises — verified equal at every width.
+
+| file | shipped |
+| --- | --- |
+| `/clip-on-lifespan/thumbnail.png` | 2240×1260 |
+| `/clip-on-base-options/first-option.png` | 1088×948 |
+| `/clip-on-base-options/first-option-overlay.png` | 1077×984 |
+| `/clip-on-base-options/second-option.png` | 1088×942 |
+| `/clip-on-base-options/second-option-overlay.png` | 1077×956 |
+
+[Photo](src/components/Photo.tsx) — extracted from `HairBenefits`, which had
+carried it alone — still backs `GuideHero` and `BaseOptions`. It renders a
+labelled frame naming any file that is not served, so a future missing asset
+reads as a gap rather than as a broken page.
+
+### Clip-On Hair System: Stick-On cross-link card
+
+The Clip-On product page carries page-scoped section surfaces: “Backed By
+Thousands Of Confident Men” and “Zycon Range • Pro Series” use the soft grey
+ground, while “Stick-On Vs. Clip-On Hair Systems” uses the white page ground.
+The shared components keep their original surfaces on every other route.
+
+The final section on `#/clip-on-hair-system` is a real full-card link to the
+Stick-On comparison route. Desktop keeps copy and a transparent cut-out in one
+blue panel; below 820px they stack.
+
+The supplied `Images/Clip-on page/stick onn 1.png` is shipped unchanged as
+`public/clip-on-system/learn-stick-on.png` at 2808×2332. Its wider crop replaces
+the former 1120×1068 derivative. The card tops out at 390px, the artwork at
+380px, and the paragraph at 28px on wide desktop so both sides occupy more of
+the panel without changing phone composition.
+
+Check it with `node scripts/verify-clip-learn.mjs [outDir]`. It verifies the
+replacement image's natural dimensions, responsive card/art/text sizing,
+horizontal overflow, console errors, and failed requests, and saves desktop
+and phone screenshots.
+
+### Clip-On Hair System: three things cards
+
+`ClipPillars` follows "The Real Fears Men Have" on
+`#/clip-on-hair-system`. Its desktop row is capped at 1000px so the three cards
+use more of a wide screen without stretching across the site's full wrap.
+
+The transparent images use `object-fit: contain`; the hairline, anti-bacterial
+scalp illustration, and hand-held clips therefore remain fully visible. Their
+shipped dimensions are 2232x1396, 880x870, and 1604x1396 respectively. The
+desktop floor is capped at 260px so widening the cards does not also enlarge
+the approved image scale. The row stays three columns through tablet widths and
+becomes a centred, maximum-420px single column below 720px, where the image
+floor is capped at 270px to keep the stacked cards shorter.
+
+Check it with `node scripts/verify-clip-pillars.mjs [outDir]`. It verifies the
+desktop card proportions, full-image fitting, responsive column count, source
+dimensions, accessible heading, horizontal overflow, console errors, and
+failed requests, and saves desktop, tablet, and phone screenshots.
+
+### Clip-On Hair System: Zycon range card and overlay
+
+`ClipZyconRange` sits directly between `HairlineTruth` and `Comparison` on
+`#/clip-on-hair-system`. Its full surface is one button; the blue plus is a
+48px desktop/46px phone affordance rather than the only hit target. Desktop
+uses the supplied wide gradient and right-side portrait; below 760px the card
+becomes a portrait composition with copy above the photograph.
+
+The desktop card portrait is bottom-anchored at 98% of the card height to keep
+the small top gap shown in the reference. The gradient derivative is cropped
+to the source artwork's fully opaque colour field, avoiding a fallback-colour
+strip at the rounded right edge.
+
+The detail view is a real modal dialog. It uses the site's established focus
+contract: Close receives focus, Tab stays inside, Escape and the scrim close,
+focus returns to the card, and document scrolling locks without a horizontal
+jump. Reduced-motion users receive the same content without spring movement.
+The desktop sheet uses two columns, while the portrait is positioned against
+the full sheet so its shoulders overlap the column boundary like the supplied
+reference. Phone becomes a full-viewport white sheet: close stays in the top
+right, copy and CTA lead at the top, and the enlarged gradient-outline portrait
+fills the remaining lower area in that reading order.
+
+Three web-sized transparent PNG derivatives ship under
+`public/clip-on-system/`: `zycon-gradient.png` at 1800×918, `zycon-card.png` at
+1200×1233, and `zycon-overlay.png` at 1400×1517. Their source originals remain
+under `Images/Clip-on page/`.
+
+Check it with `node scripts/verify-clip-zycon.mjs [outDir]`. It checks section
+order, natural image sizes, full-card button geometry, 44px minimum controls,
+dialog labelling, focus trap/return, Escape and scrim closing, scroll lock,
+overflow, console errors, and failed requests, then saves desktop and phone
+card/overlay screenshots.
+
+### Stick-On Hair System — `#/stick-on-hair-system`
+
+The standalone Stick-On product page follows the supplied sixteen-section
+design and mirrors the Clip-On page's reuse strategy. `Achievements`,
+`Checklist`, `Backed`, `HairlineTruth`, `ClientStories`, and the accessible
+Zycon dialog are shared; the remaining product-specific sections live together
+in the page shell. On this route only, “Our Big Achievements” and “Why
+Thousands Of Men Choose American Hairline” use the soft grey section ground.
+
+The nav's “Stick-On Hair system” entry and the Clip-On page's final cross-link
+both point directly to this route. Consultation cards use a desktop arrow rail
+and native scroll snapping on touch screens. The FAQ uses real buttons with
+`aria-expanded`; the local-patch comparison remains a semantic table and gains
+horizontal scrolling rather than compressing unreadably on phones.
+The four transparent consultation cut-outs render directly on each card's white
+surface; no separate grey image floor is painted behind them.
+
+The “Why Most Local Hair Systems Fail” photograph preserves its source 4:3
+frame with `height: auto` and `object-fit: contain`. Its desktop column is equal
+to the copy column, and the same full-frame ratio remains after mobile stacking.
+“Our Ultra-Signature Natural Hairline” deliberately reuses that section's
+1060px grid, heading scale, section padding, card padding, gaps, type scale, and
+complete 4:3 image treatment so the two proof sections carry equal visual weight.
+On desktop, its left content card plus CTA stretch to the same top and bottom
+edges as the right image. Below 800px, the image moves directly beneath the
+section heading, followed by the content card and CTA.
+
+Eleven web-sized PNGs ship under `public/stick-on-system/`. The Zycon gradient
+is cropped to the inner 1.92:1 colour card before resizing, so the black texture
+outside the supplied export cannot appear as a right-edge seam. The shipped
+sizes are 2240×1260 hero, 1320×990 local-patch, four 880×1010 consultation
+cut-outs, 1320×990 before/after, 1800×934 gradient, 1200×1206 card portrait,
+1400×1486 overlay portrait, and 1200×1247 Clip-On cross-link portrait.
+
+Run `node scripts/verify-stick-on-system.mjs [outDir]`. It checks the complete
+sixteen-section route at 1440×900 and 390×844, all supplied image dimensions,
+one semantic `h1`, 44px controls, zero horizontal overflow, FAQ expansion,
+Zycon focus/scroll-lock behavior, console errors, and failed requests, and
+saves desktop/mobile screenshots.
+
+Run `node scripts/verify-product-section-backgrounds.mjs` to check the requested
+grey/white page-scoped section surfaces on both product routes at desktop and
+mobile sizes.
+
+### Scalp Micropigmentation — `#/smp`
+
+The SMP route is a complete ten-section page in `src/pages/Smp.tsx`. It uses
+the shared Nav, Footer, and `GuideHero`, plus the supplied syringe eyebrow icon, hero photograph,
+seven transformation cards, two About cut-outs, four process cut-outs, and five
+concern photographs. Web-sized derivatives live in `public/smp/`.
+
+Above 900px, the results section pins while vertical page scroll moves its 4:5
+card track horizontally. Below that breakpoint, and under reduced motion, it
+becomes a native snap/swipe rail. Results arrows are intentionally absent at
+every size. Process arrows are also absent; its rail stays natively swipeable
+and keyboard-scrollable. The desktop results pin uses its measured content
+height rather than a full viewport, leaving 58px after the cards and allowing
+the following section to enter without a blank viewport tail.
+Each process image renders at its native aspect ratio across the full card
+width, so the transparent cut-outs meet both card edges without side cropping.
+The About card opens a keyboard-contained modal with Escape/scrim close, scroll
+lock, and focus return. The treatment finder is a semantic five-tab panel; the
+FAQ uses the homepage's dark ambient/glass language with real accordion state.
+The page-local guidance form includes Name, Phone, City, and Treatment Area,
+but has no lead backend and says so after validation.
+
+Run `node scripts/verify-smp.mjs [outDir]`. It checks 1440×900 desktop, the
+1024×900 supplied-reference size, 390×844 phone, 844×390 phone landscape, and
+reduced motion. It asserts content counts, active navigation, image loading,
+results-card ratio/alignment/background, desktop scroll-to-horizontal mapping,
+absent results/process arrows, process-image width/source ratio, focusable
+process rail, 48px phone bottom gap, 44px control height, zero page overflow,
+modal focus/scroll-lock behavior, tab and FAQ interaction, console errors, and
+failed requests; it also saves desktop/mobile inspection images.

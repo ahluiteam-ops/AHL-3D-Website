@@ -75,6 +75,10 @@ function StoryCard({ story }: { story: ClientStory }) {
  * swipe rail — the same trade the Achievements section makes, for the same
  * reason: hijacking vertical scroll on a phone fights the gesture the user
  * already has.
+ *
+ * Used on the homepage and on the Hair Patch vs Hair System page. It takes no
+ * props and reads its own content from `site.ts`, so a change here changes both
+ * pages — including the six names and quotes, which are real clients'.
  */
 export function ClientStories() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -127,8 +131,12 @@ export function ClientStories() {
         >
           <div className="voices__intro">
             <h2 className="voices__title" id="voices-title">
+              {/* Trailing space is a real text node. These spans are blocks so
+                  it collapses visually, but without it the lines concatenate in
+                  `textContent` — a screen reader heard "Some Of Our Clients
+                  WithThe Most Natural Hairline". */}
               {clientStoriesTitle.map((line) => (
-                <span key={line}>{line}</span>
+                <span key={line}>{line} </span>
               ))}
             </h2>
             <a className="voices__link" href="#results">

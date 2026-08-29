@@ -1,125 +1,147 @@
-import { useEffect, useRef, useState } from 'react'
+import type { RefObject } from 'react'
+import { motion, useTransform, type MotionValue } from 'motion/react'
 import { usePrefersReducedMotion } from '../hooks'
-import {
-  secretBenefits,
-  secretClosingLines,
-  secretTitleLines,
-  secretVideo,
-} from '../site'
+import { secretBenefits, secretClosingLines, secretTitleLines } from '../site'
 
-type SecretPhase = 'intro' | 'model' | 'benefits' | 'closing'
+const secretTitleWordLines = secretTitleLines.map((line) => line.split(/\s+/))
 
-function phaseAt(time: number): SecretPhase {
-  if (time < 3) return 'intro'
-  if (time < 4.25) return 'model'
-  if (time < 8.65) return 'benefits'
-  return 'closing'
+function SecretTitleWord({
+  word,
+  index,
+  progress,
+  still,
+}: {
+  word: string
+  index: number
+  progress: MotionValue<number>
+  still: boolean
+}) {
+  const start = index * 0.018
+  const end = start + 0.06
+  const opacity = useTransform(progress, [start, end], [0, 1])
+  const filter = useTransform(progress, [start, end], ['blur(12px)', 'blur(0px)'])
+  const y = useTransform(progress, [start, end], [16, 0])
+
+  return (
+    <motion.span
+      className="secret__titleWord"
+      style={still ? undefined : { opacity, filter, y }}
+    >
+      {word}
+    </motion.span>
+  )
 }
 
-/**
- * One-shot product film. Playback begins when the section first enters view,
- * pauses off-screen, resumes on return, and holds its final frame when done.
- */
-export function Secret() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const visibleRef = useRef(false)
-  const startedRef = useRef(false)
-  const still = usePrefersReducedMotion()
-  const [phase, setPhase] = useState<SecretPhase>('intro')
+function SecretBenefit({
+  benefit,
+  index,
+  progress,
+  still,
+}: {
+  benefit: (typeof secretBenefits)[number]
+  index: number
+  progress: MotionValue<number>
+  still: boolean
+}) {
+  const start = 0.3 + index * 0.075
+  const opacity = useTransform(progress, [start, start + 0.055], [0, 1])
+  const y = useTransform(progress, [start, start + 0.055], [18, 0])
 
-  useEffect(() => {
-    const section = sectionRef.current
-    const video = videoRef.current
-    if (!section || !video || still) return
+  return (
+    <motion.li
+      className="secret__benefit"
+      style={still ? undefined : { opacity, y }}
+    >
+      <span className="secret__benefitNumber" aria-hidden="true">
+        0{index + 1}
+      </span>
+      <div>
+        <h3>{benefit.title}</h3>
+        <p>{benefit.note}</p>
+      </div>
+    </motion.li>
+  )
+}
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const visible = entry.isIntersecting && entry.intersectionRatio >= 0.35
+type SecretProps = {
+  sectionRef: RefObject<HTMLElement>
+  progress: MotionValue<number>
+}
 
-        if (visible && !visibleRef.current) {
-          if (!startedRef.current) {
-            video.currentTime = 0
-            setPhase('intro')
-            startedRef.current = true
-          }
+/** Copy timeline for the close-up and pullback portion of the shared film. */
+export function Secret({ sectionRef, progress }: SecretProps) {
+  const reduced = usePrefersReducedMotion()
 
-          if (!video.ended) void video.play()
-        } else if (!visible) {
-          video.pause()
-        }
-
-        visibleRef.current = visible
-      },
-      { threshold: [0, 0.35] },
-    )
-
-    observer.observe(section)
-    return () => observer.disconnect()
-  }, [still])
-
-  const updatePhase = (time: number) => {
-    const next = phaseAt(time)
-    setPhase((current) => (current === next ? current : next))
-  }
-
-  const introVisible = still || phase === 'intro'
-  const benefitsVisible = still || phase === 'benefits'
-  const closingVisible = still || phase === 'closing'
+  const titleOpacity = useTransform(progress, [0, 0.22, 0.3], [1, 1, 0])
+  const benefitsOpacity = useTransform(progress, [0.27, 0.35, 0.7, 0.78], [0, 1, 1, 0])
+  const benefitsX = useTransform(progress, [0.27, 0.35], [30, 0])
+  const closingOpacity = useTransform(progress, [0.72, 0.82, 1, 1], [0, 1, 1, 1])
+  const closingX = useTransform(progress, [0.72, 0.82], [30, 0])
 
   return (
     <section
-      className={`secret secret--autoplay secret--phase-${phase}${still ? ' is-static' : ''}`}
+      className={`secret${reduced ? ' secret--still' : ''}`}
       ref={sectionRef}
       aria-labelledby="secret-title"
     >
       <div className="secret__pin">
-        <div className="secret__stage" aria-hidden="true">
-          <video
-            className="secret__model"
-            ref={videoRef}
-            src={secretVideo}
-            muted
-            playsInline
-            preload="auto"
-            tabIndex={-1}
-            onTimeUpdate={(event) => updatePhase(event.currentTarget.currentTime)}
-            onSeeked={(event) => updatePhase(event.currentTarget.currentTime)}
-            onEnded={() => setPhase('closing')}
-          />
-        </div>
+        <div className="secret__scenes wrap">
+          <motion.h2
+            className="secret__title"
+            id="secret-title"
+            aria-label={secretTitleLines.join(' ')}
+            style={reduced ? undefined : { opacity: titleOpacity }}
+          >
+            {secretTitleWordLines.map((words, lineIndex) => {
+              const priorWordCount = secretTitleWordLines
+                .slice(0, lineIndex)
+                .reduce((total, line) => total + line.length, 0)
 
-        <div
-          className={`secret__scene secret__scene--intro${introVisible ? ' is-visible' : ''}`}
-        >
-          <h2 className="secret__title" id="secret-title">
-            {secretTitleLines.map((line) => (
-              <span key={line}>{line}</span>
+              return (
+                <span className="secret__titleLine" aria-hidden="true" key={secretTitleLines[lineIndex]}>
+                  {words.map((word, wordIndex) => (
+                    <span key={word}>
+                      <SecretTitleWord
+                        word={word}
+                        index={priorWordCount + wordIndex}
+                        progress={progress}
+                        still={reduced}
+                      />
+                      {wordIndex < words.length - 1 ? ' ' : null}
+                    </span>
+                  ))}
+                </span>
+              )
+            })}
+          </motion.h2>
+
+          <motion.ul
+            className="secret__benefits"
+            style={reduced ? undefined : { opacity: benefitsOpacity, x: benefitsX }}
+          >
+            {secretBenefits.map((benefit, index) => (
+              <SecretBenefit
+                benefit={benefit}
+                index={index}
+                progress={progress}
+                still={reduced}
+                key={benefit.title}
+              />
             ))}
-          </h2>
-        </div>
+          </motion.ul>
 
-        <div
-          className={`secret__scene secret__scene--benefits${benefitsVisible ? ' is-visible' : ''}`}
-        >
-          <div className="secret__benefitList">
-            {secretBenefits.map((benefit) => (
-              <div className="secret__benefit" key={benefit.title}>
-                <h3>{benefit.title}</h3>
-                <p>{benefit.note}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div
-          className={`secret__scene secret__scene--closing${closingVisible ? ' is-visible' : ''}`}
-        >
-          <p className="secret__title secret__title--closing">
+          <motion.p
+            className="secret__closing"
+            style={reduced ? undefined : { opacity: closingOpacity, x: closingX }}
+          >
             {secretClosingLines.map((line) => (
               <span key={line}>{line}</span>
             ))}
-          </p>
+          </motion.p>
+
+          <div className="secret__progress" aria-hidden="true">
+            <motion.span style={reduced ? undefined : { scaleX: progress }} />
+          </div>
         </div>
       </div>
     </section>

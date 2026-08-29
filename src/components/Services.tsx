@@ -6,7 +6,7 @@ import {
   useSpring,
   useTransform,
 } from 'motion/react'
-import { usePrefersReducedMotion } from '../hooks'
+import { useMediaQuery, usePrefersReducedMotion } from '../hooks'
 import { services, servicesAction, servicesTitle } from '../site'
 
 const LAST = services.length - 1
@@ -40,12 +40,14 @@ const clamp01 = (value: number) => Math.min(1, Math.max(0, value))
  * service's position rather than setting a second piece of state that would
  * then disagree with the scroll position.
  *
- * Below 901px and for reduced motion the pin is dropped and it is an ordinary
- * click-to-open accordion with each photograph stacked above its copy.
+ * Below 901px the pin is dropped, every service is open, and each photograph
+ * stacks above its copy. Reduced motion at desktop widths keeps the ordinary
+ * click-to-open accordion and its two-column rows.
  */
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null)
   const reduced = usePrefersReducedMotion()
+  const mobile = useMediaQuery('(max-width: 900px)')
   const [still, setStill] = useState(true)
   const [active, setActive] = useState(0)
 
@@ -120,7 +122,10 @@ export function Services() {
 
           <ol className="services__list">
             {services.map((service, i) => {
-              const expanded = i === active
+              /* Phone content is short enough to show in full. Keeping every
+                 row open removes needless accordion taps; desktop continues
+                 to take its single active row from scroll or click. */
+              const expanded = mobile || i === active
 
               return (
                 <li
@@ -144,6 +149,7 @@ export function Services() {
                         className="services__head"
                         onClick={() => onOpen(i)}
                         aria-expanded={expanded}
+                        disabled={mobile}
                       >
                         <span className="services__name">{service.title}</span>
                         <span className="services__index" aria-hidden="true">

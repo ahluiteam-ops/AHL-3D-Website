@@ -26,11 +26,15 @@ const probe = () => {
   const mq = getComputedStyle(marquee)
   const m = new DOMMatrix(mq.transform)
   return {
-    /* Outline, not fill: transparent text with a stroke. */
+    /* Stroked, then filled in the footer's own ground on top. The fill is
+       what hides Inter's overlapping contours in A and e; without it those two
+       letters draw extra rectangles that no other letter has. */
     wordmark: [
       mark.textContent.trim(),
       ms.color,
       ms.webkitTextStrokeWidth || ms.getPropertyValue('-webkit-text-stroke-width'),
+      ms.paintOrder,
+      getComputedStyle(foot).backgroundColor,
     ],
     /* It has to be wider than the viewport — the crop is the effect. */
     wordmarkWidth: round(mark.getBoundingClientRect().width),

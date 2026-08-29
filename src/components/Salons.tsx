@@ -83,7 +83,10 @@ export function Salons() {
           </div>
 
           {salons.map((salon) => (
-            <article className="salons__item" key={salon.city}>
+            <article
+              className={`salons__item salons__item--${salon.city.toLowerCase()}`}
+              key={salon.city}
+            >
               {/* The city is the card's heading and is set over the
                   photograph, as the reference sets each project's own type
                   over its shot. One element, so it is not announced twice. */}

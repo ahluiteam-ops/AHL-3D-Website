@@ -1,13 +1,7 @@
 import { useState } from 'react'
 import { ArrowUpRight, ChevronDown, Layers, Sticker } from 'lucide-react'
 import { useReveal, useTilt } from '../hooks'
-import {
-  methods,
-  methodsAction,
-  methodsMedia,
-  methodsTitle,
-  type Method,
-} from '../site'
+import { methods, methodsAction, methodsTitle, type Method } from '../site'
 
 const icons: Record<Method['icon'], typeof Layers> = {
   sticker: Sticker,
@@ -23,18 +17,30 @@ const icons: Record<Method['icon'], typeof Layers> = {
  * used before it was rebuilt as full-width rows, which is why the two no
  * longer collide.
  *
+ * Each method has its own photograph, and the panel cross-fades to whichever
+ * one is open. Note `shownMedia`: closing every row is a legal state, so the
+ * picture holds on the last method that was open rather than blanking. An
+ * empty panel would leave the right-hand column as a grey rectangle, which
+ * reads as a broken image rather than as a closed accordion.
+ *
  * Depth is on the photograph and nowhere else. The panel takes a small
  * pointer tilt and the picture inside it moves against its own frame, so the
  * media has a front and a back; the copy beside it stays flat, because type
  * that rotates is type that is harder to read.
  *
  * Answers open with the `grid-template-rows: 0fr → 1fr` transition used
- * elsewhere. Closing the open one is a legal state.
+ * elsewhere.
  */
 export function Methods() {
   const { ref: revealRef, shown } = useReveal<HTMLDivElement>()
   const { ref: tiltRef, onMove, onLeave } = useTilt<HTMLDivElement>(4)
   const [open, setOpen] = useState(0)
+  const [shownMedia, setShownMedia] = useState(0)
+
+  const toggle = (index: number) => {
+    setOpen((current) => (current === index ? -1 : index))
+    setShownMedia(index)
+  }
 
   return (
     <section className="methods" aria-labelledby="methods-title">
@@ -65,7 +71,7 @@ export function Methods() {
                     <button
                       type="button"
                       className="methods__head"
-                      onClick={() => setOpen(expanded ? -1 : i)}
+                      onClick={() => toggle(i)}
                       aria-expanded={expanded}
                     >
                       <Icon size={19} strokeWidth={2} aria-hidden="true" />
@@ -100,12 +106,23 @@ export function Methods() {
           onPointerMove={onMove}
           onPointerLeave={onLeave}
         >
-          <img
-            src={methodsMedia.image}
-            alt={methodsMedia.alt}
-            loading="lazy"
-            decoding="async"
-          />
+          {methods.map((method, i) => {
+            const current = i === shownMedia
+            return (
+              <img
+                key={method.image}
+                src={method.image}
+                /* Only the visible photograph is described. The other is
+                   decorative while it is hidden, and announcing both would
+                   describe a picture nobody is looking at. */
+                alt={current ? method.alt : ''}
+                data-current={current ? 'true' : 'false'}
+                aria-hidden={current ? undefined : true}
+                loading="lazy"
+                decoding="async"
+              />
+            )
+          })}
         </div>
       </div>
     </section>

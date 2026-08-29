@@ -28,10 +28,21 @@ const probe = () => {
   const b = panel.getBoundingClientRect()
   return {
     still: section.classList.contains('scan--still'),
-    /* The panel grows from the slot's rect to the stage's. */
+    /* The panel grows from the slot's rect to the pin's padding box. */
     panelBox: [round(b.left - p.left), round(b.top - p.top), round(b.width), round(b.height)],
     stage: [round(p.width), round(p.height)],
-    coversStage: round(b.width) >= round(p.width) && round(b.height) >= round(p.height),
+    /* Air on all four sides at the end, not a flush full-bleed panel. The four
+       gaps must match the padding the stylesheet sets. */
+    gaps: [
+      round(b.left - p.left),
+      round(p.right - b.right),
+      round(b.top - p.top),
+      round(p.bottom - b.bottom),
+    ],
+    pinPadding: (() => {
+      const cs = getComputedStyle(pin)
+      return [cs.paddingLeft, cs.paddingTop]
+    })(),
     radius: getComputedStyle(panel).borderTopLeftRadius,
     /* The type holds still and dims; it must not move. */
     titleTop: round(title.getBoundingClientRect().top),
