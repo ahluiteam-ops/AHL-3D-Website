@@ -167,8 +167,9 @@ Two settings that matter and are already configured:
   encoding damage recorded in §5. Leave it off.
 - `reference/` is **not** tracked — 205 MB of screen recordings that are inputs
   to the work, not part of it. `Images/` and both PDF folders **are** tracked,
-  on the client's instruction, which is why the repo is ~580 MB. It has no
-  remote; pushing it anywhere would need Git LFS first.
+  on the client's instruction. The `origin` remote is
+  `https://github.com/ahluiteam-ops/AHL-3D-Website.git`; new PNG, JPG, JPEG,
+  WebP, MP4 and PDF assets are stored through Git LFS.
 - `versions/` is ignored. Git already holds those bytes at their tags, so
   tracking the folders too would store everything twice.
 
@@ -7902,3 +7903,29 @@ tool-internal transcripts are intentionally not stored.
   read-only inventory of routes, Git state, skill count, lockfile sources, and
   upstream repository availability; no build was necessary for documentation-
   only changes.
+
+### 2026-08-29 - Publish version 2 to GitHub
+
+- Request: upload the complete current American Hairline project to
+  `https://github.com/ahluiteam-ops/AHL-3D-Website.git` without losing the
+  intentional version-2 work or project-local assets.
+- Verified the destination repository was empty, scanned the non-ignored tree
+  for common credential/private-key patterns, and found no matching secret
+  files or tokens. No individual project file exceeded GitHub's 100 MB limit.
+- Added `.gitattributes` so new PNG, JPG, JPEG, WebP, MP4 and PDF assets use Git
+  LFS. The version-2 commit contains 180 LFS paths representing 161 unique
+  objects; 336 MB of LFS objects uploaded successfully.
+- Extended `.gitignore` for local Vite logs, `crv-out/` analysis output, the
+  duplicate `agent/` skill copy, and `.claude/` junctions. These remain on disk
+  and were not deleted. The canonical 40-skill snapshot under `.agents/skills/`,
+  source PDFs, `Images/`, shipped `public/` assets, scripts, and all page source
+  were included.
+- Created commit `b841d17` (`feat: add multi-page website version 2`) with 762
+  changed files, then pushed `master` and the existing `homepage-v1` tag to the
+  new `origin` remote. Local `master` now tracks `origin/master`.
+- Verification: `npm.cmd run build` passed with 2,054 modules transformed. The
+  existing warning remains: the main minified JS chunk is 504.03 kB (149.41 kB
+  gzip). Git reported a successful branch and tag upload.
+- Remaining launch blockers in section 7 are unchanged. The ignored
+  `reference/` recordings and `versions/` plain-folder snapshot are not present
+  in a Git clone and must be copied separately if needed.

@@ -14,11 +14,13 @@ there is nothing to reinstall. Open:
 The 40 project-local skills under `.agents/skills/` are discovered from the
 folder, not from the Codex login.
 
-If the project is moving to another computer, copy the entire folder, including
-hidden `.agents/`, `.git/`, `Images/`, both PDF folders, and `public/`. A Git
-clone is not currently enough: this repository has no remote, and the current
-version-2 work plus `.agents/skills/` are uncommitted/untracked. Do not run
-`git clean`, `git reset --hard`, or discard the dirty worktree.
+If the project is moving to another computer, clone
+`https://github.com/ahluiteam-ops/AHL-3D-Website.git` and ensure Git LFS is
+installed so the source and web assets are fetched. The repository now includes
+hidden `.agents/`, `Images/`, both PDF folders, and `public/`. The ignored
+`reference/` recordings and `versions/` plain-folder snapshot remain local-only;
+copy those separately if they are needed. Do not run `git clean`,
+`git reset --hard`, or discard future worktree changes.
 
 ## First prompt for the other Codex account
 
@@ -27,7 +29,8 @@ Paste this after opening the folder:
 > Continue the American Hairline website in this folder. Read `AGENTS.md` and
 > then read `PROJECT-CONTEXT.md` completely before changing anything. Read the
 > relevant part of `README.md` and the relevant source files for my task. The
-> dirty worktree is intentional version-2 work; preserve it. After every
+> current filesystem and Git history are authoritative; preserve any existing
+> worktree changes. After every
 > meaningful task, update `PROJECT-CONTEXT.md` exactly as `AGENTS.md` requires.
 > Project-local skills are in `.agents/skills/`; use the relevant skill when it
 > matches the task.
@@ -51,10 +54,9 @@ Paste this after opening the folder:
   - `#/clip-on-hair-system`
   - `#/stick-on-hair-system`
   - `#/smp`
-- Current state: the last commit is the `homepage-v1` baseline. The working tree
-  contains substantial, intentional version-2 work through 2026-08-29,
-  including all routes above. It is not committed. Preserve every unrelated
-  edit and asset.
+- Current state: version 2, including all routes above, is committed on
+  `master` and published to GitHub. Preserve every unrelated future edit and
+  asset.
 - Content: shared strings and asset paths live in `src/site.ts`; design tokens
   are in `src/styles/tokens.css`; most presentation rules are in
   `src/styles/global.css`, with SMP rules in `src/styles/smp.css`.
@@ -79,8 +81,9 @@ Paste this after opening the folder:
   real social URLs are missing; client publication consent needs confirmation;
   most white-on-blue gradient buttons miss AA contrast. Full details and exact
   paths are in `PROJECT-CONTEXT.md` section 7.
-- Repository facts: branch `master`; tag `homepage-v1`; no Git remote; large
-  source assets mean a future remote should use Git LFS.
+- Repository facts: branch `master`; tag `homepage-v1`; remote `origin` is
+  `https://github.com/ahluiteam-ops/AHL-3D-Website.git`; new PNG, JPG, JPEG,
+  WebP, MP4, and PDF assets are tracked with Git LFS.
 
 ## Skills: no-install option (recommended)
 
