@@ -9264,3 +9264,9 @@ tool-internal transcripts are intentionally not stored.
 - Behaviour matches the AHL build (steps are history entries, draft in sessionStorage, Close returns to the origin page, preview thank-you, same slot rules). Differences: modes are `online` / `studio` ("In person at our Khar West studio"), contact is +91 99671 23333, phone check is a 10-digit Indian mobile, storage keys are `alchemane-founder-*`.
 - Decision flagged to the user: the fee was carried over as ₹5,000, but Alchemane's existing consultation is ₹299 (`consultation.html`). Must be confirmed; it is one constant (`founderBooking.fee`).
 - Verification: the new check passed at 1440, 390, 320, 844x390 and reduced motion; `vite build` (to a temp folder) passed with both new pages; screenshots of the teaser, booking steps and thank-you were inspected. The Alchemane dev server was started on port 5173 for review. That project's git tree was not committed; its unrelated untracked files (`src/collections/*`, `tmp/`) were left alone.
+
+### 2026-11-14 (late) - Pushed to GitHub
+- Request: push the updated project to the GitHub repo. The user chose to push everything (about 9.5 GB of new files) after being warned about the Git LFS quota.
+- Committed all 324 pending files as `ace9d18` ("feat: founder booking as a full page, story reels, new pages and assets") and pushed `master` to `https://github.com/ahluiteam-ops/AHL-3D-Website.git` (`24257a4..ace9d18`). LFS uploaded 140 objects, 5.4 GB (duplicates between `videos/` and `public/` are stored once). Local `master` and `origin/master` match.
+- Includes the untracked `videos/` source folder, which `.gitignore` did not exclude. If the LFS quota becomes an issue, `videos/` is the duplicate to drop from tracking.
+- Not pushed: the separate `Founder Booking Page` folder and the Alchemane project (different repos).
