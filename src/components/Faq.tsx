@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ArrowUpRight, Plus, Star, X } from 'lucide-react'
 import { useReveal } from '../hooks'
-import { faqCta, faqGroups, faqRating, faqTitle } from '../site'
+import { faqCta, faqGroups, faqRating, faqTitle, type FaqGroup } from '../site'
 
 /**
  * "Frequently Asked Questions".
@@ -20,12 +20,12 @@ import { faqCta, faqGroups, faqRating, faqTitle } from '../site'
  * Each tab keeps its own open row, so switching back to a tab returns it as
  * you left it rather than resetting to the first answer.
  */
-export function Faq() {
+export function Faq({ groups = faqGroups, title = faqTitle }: { groups?: FaqGroup[]; title?: string }) {
   const { ref, shown } = useReveal<HTMLDivElement>()
   const [tab, setTab] = useState(0)
-  const [open, setOpen] = useState<number[]>(() => faqGroups.map(() => 0))
+  const [open, setOpen] = useState<number[]>(() => groups.map(() => 0))
 
-  const group = faqGroups[tab]
+  const group = groups[tab]
   const openRow = open[tab]
 
   const toggle = (index: number) => {
@@ -39,7 +39,7 @@ export function Faq() {
       <div className="faq__in wrap" data-shown={shown ? 'true' : 'false'} ref={ref}>
         <header className="faq__head">
           <h2 className="faq__title" id="faq-title">
-            {faqTitle}
+            {title}
           </h2>
 
           {/* A rating is a claim marker, not decoration — the same reason the
@@ -54,8 +54,8 @@ export function Faq() {
             <span className="faq__reviews">{faqRating.label}</span>
           </p>
 
-          <div className="faq__tabs" role="tablist" aria-label="Question topics">
-            {faqGroups.map((g, i) => (
+          {groups.length > 1 ? <div className="faq__tabs" role="tablist" aria-label="Question topics">
+            {groups.map((g, i) => (
               <button
                 key={g.id}
                 type="button"
@@ -70,7 +70,7 @@ export function Faq() {
                 {g.label}
               </button>
             ))}
-          </div>
+          </div> : null}
         </header>
 
         <div
@@ -80,13 +80,13 @@ export function Faq() {
           aria-labelledby={`faq-tab-${group.id}`}
         >
           <ul className="faq__list">
-            {group.items.map((item, i) => {
+            {group.items.filter((item) => !item.hidden).map((item, i) => {
               const expanded = i === openRow
               return (
                 <li
                   className="faq__row"
                   data-open={expanded ? 'true' : 'false'}
-                  key={item.q}
+                  key={item.question ?? item.q}
                   style={{ '--i': i } as React.CSSProperties}
                 >
                   <h3>
@@ -96,7 +96,7 @@ export function Faq() {
                       onClick={() => toggle(i)}
                       aria-expanded={expanded}
                     >
-                      <span>{item.q}</span>
+                      <span>{item.question ?? item.q}</span>
                       {expanded ? (
                         <X size={17} strokeWidth={2} aria-hidden="true" />
                       ) : (
@@ -110,7 +110,7 @@ export function Faq() {
                       the trap in PROJECT-CONTEXT §5. */}
                   <div className="faq__a">
                     <div className="faq__aIn">
-                      <p>{item.a}</p>
+                      <p>{item.answer ?? item.a}</p>
                     </div>
                   </div>
                 </li>

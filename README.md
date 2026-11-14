@@ -17,8 +17,9 @@ npm run build    # typecheck + production bundle into dist/
 
 ## Stack
 
-Vite + React + TypeScript, plain CSS (no framework), and
-[lucide-react](https://lucide.dev) for chevron, arrow, grid, and close icons.
+Vite + React + TypeScript, plain CSS (no framework),
+[lucide-react](https://lucide.dev) for interface icons, and GSAP with
+ScrollTrigger for the founder-consultation page's staged entrance effects.
 
 ## Where things live
 
@@ -39,12 +40,16 @@ Vite + React + TypeScript, plain CSS (no framework), and
 | Section 4 — Why Men Choose Us / Key Facts | [src/components/KeyFacts.tsx](src/components/KeyFacts.tsx) |
 | Section 5 — 21-Point Checklist | [src/components/Checklist.tsx](src/components/Checklist.tsx) |
 | Checklist film poster | `public/checklist/21-point-checklist.png` |
+| Checklist film | `public/checklist/21-point-checklist.mp4` |
 | Section 6 — Client stories | [src/components/ClientStories.tsx](src/components/ClientStories.tsx) |
 | Client film posters | `public/clients/client-story-1…6.png` |
+| Client films | `public/clients/client-story-1…6.mp4` |
 | Section 6b — Backed by thousands | [src/components/Backed.tsx](src/components/Backed.tsx) |
 | Proof icons | `public/backed/*.png` |
 | Section 6c — Real hair or illusion? | [src/components/Decide.tsx](src/components/Decide.tsx) |
+| Real hair or illusion film | `public/decide/client-before-after.mp4` |
 | Section 6d — Our trusted methods | [src/components/Methods.tsx](src/components/Methods.tsx) |
+| Homepage founder booking | [src/components/FounderBooking.tsx](src/components/FounderBooking.tsx), [src/styles/founder-booking.css](src/styles/founder-booking.css) |
 | Section 6e — Guidance form | [src/components/Form.tsx](src/components/Form.tsx) |
 | Section 7 — Hair systems | [src/components/Systems.tsx](src/components/Systems.tsx) |
 | The circular gallery | [src/components/ui/circular-gallery.tsx](src/components/ui/circular-gallery.tsx) |
@@ -55,15 +60,18 @@ Vite + React + TypeScript, plain CSS (no framework), and
 | Service photographs | `public/services/*.png` |
 | Section 10 — Step-by-step process | [src/components/Process.tsx](src/components/Process.tsx) |
 | Process film poster | `public/process/steps.png` |
+| Process film | `public/process/step-by-step.mp4` |
 | Section 11 — Why thousands of men choose us | [src/components/Pillars.tsx](src/components/Pillars.tsx) |
 | Section 12 — Before and after deck | [src/components/Deck.tsx](src/components/Deck.tsx) |
 | The card stack | [src/components/ui/card-stack.tsx](src/components/ui/card-stack.tsx) |
 | Testimonial card artwork | `public/social/*.png` |
 | Section 13 — Advanced 3D Scan | [src/components/Scan.tsx](src/components/Scan.tsx) |
 | Section 14 — Premium salons | [src/components/Salons.tsx](src/components/Salons.tsx) |
-| Salon photographs (stand-ins) | `public/salons/*.jpg` |
+| Salon photo carousels | `public/salons/mumbai/`, `public/salons/delhi/`, `public/salons/bangalore/` |
 | Section 15 — Frequently Asked Questions | [src/components/Faq.tsx](src/components/Faq.tsx) |
 | Footer | [src/components/Footer.tsx](src/components/Footer.tsx) |
+| Floating call + WhatsApp controls | [src/components/FloatingContact.tsx](src/components/FloatingContact.tsx), `public/contact/` |
+| Story reels — circular client videos that open into a 9:16 reel | [src/components/StoryReels.tsx](src/components/StoryReels.tsx), [src/styles/story-reels.css](src/styles/story-reels.css), `storyReels` in `src/site.ts`, `public/story-reels/` (placeholders) |
 | Shared responsive and motion hooks | [src/hooks.ts](src/hooks.ts) |
 | **Page 2** — Stick-On or Clip-On shell | [src/pages/StickOnClipOn.tsx](src/pages/StickOnClipOn.tsx) |
 | Page 2 hero | [src/components/ChoiceHero.tsx](src/components/ChoiceHero.tsx) |
@@ -73,6 +81,7 @@ Vite + React + TypeScript, plain CSS (no framework), and
 | Shared guide-page hero | [src/components/GuideHero.tsx](src/components/GuideHero.tsx) |
 | **Page 3** — Hair Patch vs Hair System shell | [src/pages/HairPatchVsSystem.tsx](src/pages/HairPatchVsSystem.tsx) |
 | Page 3 hero | [src/components/PatchSystemHero.tsx](src/components/PatchSystemHero.tsx) |
+| Page 3 hero film | `public/patch-vs-system/patch-vs-system.mp4` |
 | Page 3 comparison table | [src/components/PatchSystemComparison.tsx](src/components/PatchSystemComparison.tsx) |
 | Page 3 why patches fail | [src/components/PatchFail.tsx](src/components/PatchFail.tsx) |
 | Patch-fail check | [scripts/verify-patchfail.mjs](scripts/verify-patchfail.mjs) |
@@ -87,6 +96,7 @@ Vite + React + TypeScript, plain CSS (no framework), and
 | **Page 4** — Will My Hairline Look Real? shell | [src/pages/WillMyHairlineLookReal.tsx](src/pages/WillMyHairlineLookReal.tsx) |
 | Page 4 hero | [src/components/HairlineRealHero.tsx](src/components/HairlineRealHero.tsx) |
 | Page 4 hero still | `public/hairline-real/thumbnail.png` |
+| Page 4 hero film | `public/hairline-real/natural-hairline.mp4` |
 | Page 4 hero check | [scripts/verify-hairline-hero.mjs](scripts/verify-hairline-hero.mjs) |
 | Page 4 systems gallery | Reuses [src/components/Systems.tsx](src/components/Systems.tsx) |
 | Page 4 hairline-design scrub | [src/components/HairlineDesign.tsx](src/components/HairlineDesign.tsx) |
@@ -94,6 +104,7 @@ Vite + React + TypeScript, plain CSS (no framework), and
 | Missing-photo frame | [src/components/Photo.tsx](src/components/Photo.tsx) |
 | Page 6 (Clip-On) shell | [src/pages/ClipOnLifespan.tsx](src/pages/ClipOnLifespan.tsx) |
 | Page 6 hero | [src/components/ClipOnLifespanHero.tsx](src/components/ClipOnLifespanHero.tsx) |
+| Lifespan hero film (shared with Page 5) | `public/guide-media/stick-on-vs-clip-on.mp4` |
 | Page 5 balance stage | [src/components/BalanceChoice.tsx](src/components/BalanceChoice.tsx) |
 | Its check | [scripts/verify-balance.mjs](scripts/verify-balance.mjs) |
 | Page 5 base-option cards and overlays | [src/components/BaseOptions.tsx](src/components/BaseOptions.tsx) |
@@ -126,6 +137,7 @@ Vite + React + TypeScript, plain CSS (no framework), and
 | Its check | [scripts/verify-hairline-confused.mjs](scripts/verify-hairline-confused.mjs) |
 | Its photographs | `public/hairline-benefits/` |
 | Its film still | `public/hairline-real/design-film.png` |
+| Its 4:3 film | `public/hairline-real/design-film.mp4` |
 | Its check | [scripts/verify-hairline-design.mjs](scripts/verify-hairline-design.mjs) |
 | Hash routing | [src/App.tsx](src/App.tsx) |
 
@@ -253,10 +265,8 @@ Verified at 1440×900 and 390×844: the glyph centred in each column reads 01, 0
 plain static list, with the index restored as a CSS counter and the scrub rail
 hidden.
 
-**The film itself is not supplied yet.** `checklistVideo.src` in
-[src/site.ts](src/site.ts) is deliberately empty, so the block renders as a
-still figure. Set a path there and it becomes a real play control with an
-inline `<video>`; no other change is needed.
+The supplied 4:3 checklist film is installed. The original image remains its
+poster and the inline controlled video appears only after Play is selected.
 
 ## Section 6 — "Some Of Our Clients With The Most Natural Hairline"
 
@@ -279,17 +289,10 @@ The quote sits on the poster over a gradient, matching the design. The gradient
 belongs to the quote element rather than the card, so it leaves with the poster
 when a film starts playing.
 
-**The films are not supplied yet.** Every `clientStories[].src` in
-[src/site.ts](src/site.ts) is empty, so each card renders as a `<figure>` with a
-decorative play mark rather than a dead button. Set a path and that card becomes
-a real play control with an inline `<video>` — the same arrangement as the
-checklist film.
-
-⚠ **Names and quotes are placeholders on photographs of identifiable real
-people.** Three names come from the client's own design artwork but are not
-matched to these faces, and no client said any of these quotes. Every
-name/quote pair needs replacing with the real one, with that client's
-permission, before launch.
+All six supplied client films are installed and mapped by client name. Each
+1920×1080 video plays inside the existing 16:9 card, while its original image
+remains the poster until playback begins. Names and quotes are client-supplied;
+consent to publish identifiable clients still needs confirmation before launch.
 
 ## Pages and routing
 
@@ -307,6 +310,10 @@ The site was one page until 2026-08-18. It now uses a small hash-route switch in
 | `#/clip-on-hair-system` | [Clip-On Hair System](src/pages/ClipOnHairSystem.tsx) |
 | `#/stick-on-hair-system` | [Stick-On Hair System](src/pages/StickOnHairSystem.tsx) |
 | `#/smp` | [Scalp Micropigmentation](src/pages/Smp.tsx) |
+| `#/hair-transplant` | [Front Hairline Transplant + Hair System](src/pages/HairTransplant.tsx) |
+| `#/consult-with-founder` | [Consult with Founder](src/pages/ConsultFounder.tsx) |
+| `#/about-us` | [About Us](src/pages/AboutUs.tsx) |
+| `#/team` | [Team](src/pages/Team.tsx) |
 
 **Routes match on a leading slash, and that is the whole reason this works.**
 The nav's own links are bare hash anchors — `#home`, `#guide`, `#solutions` — and
@@ -318,6 +325,119 @@ served by the same `index.html`.
 This is deliberately the smallest thing that makes a second page reachable. The
 brand has around thirteen pages; when the site passes a handful, replace this
 with a real router rather than extending the map.
+
+## Consult with Founder page
+
+`#/consult-with-founder` is the complete eight-section paid-consultation page
+from the supplied references. It covers the hero, decision risks, audience
+qualification, consultation outcomes, founder introduction, value comparison,
+four-step process, and closing CTA. Both booking CTAs are working telephone
+links to the shared American Hairline number.
+
+The page uses its own stylesheet at
+[src/styles/consult-founder.css](src/styles/consult-founder.css). GSAP and
+ScrollTrigger provide one-time reveal/stagger motion and the process-line draw;
+hover, focus, and press states provide smaller card and CTA interactions.
+`prefers-reduced-motion` removes the animated transitions while keeping all
+  content visible. The “Why This Consultation Is Different” media panel uses
+  the supplied founder portrait via the optimized `public/consult-founder.png`
+  asset. Its baked-in name treatment remains visible without duplicate HTML text.
+
+Run `node scripts/verify-consult-founder.mjs` while the Vite server is running
+to check section structure, CTA targets, image integrity, animation completion,
+responsive grids/timeline, reduced motion, and horizontal overflow at desktop,
+tablet, phone, and landscape-phone widths.
+
+## About Us page
+
+`#/about-us` is the eleven-section company page built from the supplied
+references. Its page-local sections are the team hero, proof-stat grid, Our
+Story card and long-form dialog, mission, founder, blue journey CTA, and careers
+close. Existing `Achievements`, `Backed`, `Services`, and `Salons` components
+are reused for the repeated sections, so their content and behavior stay in
+sync with the homepage.
+
+Supplied About PNGs are preserved under `Images/About us/`; lightweight WebP
+derivatives live under `public/about/`. Run
+`node scripts/optimize-about-assets.mjs` to recreate them, or pass one output
+filename to rebuild only that asset. The Our Story derivative crops the source's
+baked outer frame so artwork fills its card edge to edge. Page styling is in
+`src/styles/about.css`. GSAP provides restrained hero and section reveals;
+CSS adds button shimmer, card lift, and press feedback. Reduced motion keeps
+all content static and visible. The Story overlay uses the native dialog API,
+supports Escape, restores page scroll when closed, and provides a 44px+ close
+control. Explicit fixed positioning plus auto margins keeps it centered in both
+axes at desktop, tablet, portrait-phone, and landscape-phone sizes.
+
+Mission and Founder use responsive `<picture>` sources. At `700px` and below,
+Mission swaps to the portrait 900x1124 `public/about/mission-mobile.webp` and
+Founder swaps to the portrait 900x1858 `public/about/founder-mobile.webp`, made
+from the supplied `Frame 2085665212.png` and `Frame 20856651921.png`. Above that
+breakpoint the original desktop `mission.webp` and `founder.webp` remain in use.
+
+The About-only surfaces behind Our Big Achievements, Backed By Thousands Of
+Confident Men, and Transform Your Life With Hair Again use the shared soft-grey
+page tone. Careers reuses the existing dark `StillConfused` stage with Careers
+copy: pinned word-by-word illumination, ambient capsule, delayed supporting copy
+and a `#/team` route CTA, responsive wrapping, plus a fully visible
+reduced-motion state.
+
+Run `node scripts/verify-about.mjs` while Vite is running to validate routes,
+section/card counts, assets, working phone/email CTAs, dialog behavior,
+responsive layout, animation completion, reduced motion, failed requests, and
+horizontal overflow at desktop, tablet, phone, and landscape-phone widths.
+
+## Team page
+
+`#/team` is reached from the Careers “Join The Team” CTA on `#/about-us`. It
+keeps the shared Header and Footer and currently carries four sections: the
+supplied “Life At American Hairline” hero, “Why You Will Love Working Here”,
+“P.S. - Check Out Our Office”, and “Apply Now”. The hero uses the supplied Join Us and
+Instagram icons and links both the primary CTA and all four exact 9:16 reel
+cards to the supplied Instagram URL in a new tab. On phones (below 700px),
+the hero reels become a larger 77vw swipeable, center-snapping rail with
+neighbouring cards peeking into view; desktop keeps the four-column grid.
+
+The office section uses four supplied 2960×1672 team photographs. Desktop pins
+a compact white stage while GSAP ScrollTrigger maps vertical page scroll to the
+horizontal photo track. The track moves only with transforms and holds the title
+in place. At 900px and below it becomes a two-column grid; at 620px it becomes
+one column. Reduced motion also uses a static two-column grid, so every
+photograph remains available without scrubbed movement or a nested horizontal
+gesture.
+
+All ten Team assets are optimized WebPs under `public/team/`, have declared
+dimensions, and are reproducible with `node scripts/optimize-team-assets.mjs`.
+Run `node scripts/verify-team.mjs [outDir]` while Vite is running to check the
+hero, exact office image order and dimensions, desktop pin/track travel,
+responsive grids, reduced motion, failed requests, and horizontal overflow.
+
+“Apply Now” contains six open-role cards matching the supplied reference:
+Social Media Executive (three cards), Senior Video Editor, AI Developer Intern,
+and Talent Acquisition Executive. Each card shows Mumbai / Full-Time metadata
+and a 44px+ `mailto:info@americanhairline.com` CTA with the role in the subject.
+The grid is two columns on desktop and one column below 700px; cards reveal with
+a staggered ScrollTrigger entrance and remain visible under reduced motion.
+
+`#/results` is linked from the header Results item. Its responsive hero uses
+the supplied camera eyebrow icon and bald-to-bold transformation artwork, with
+accessible copy and a centered play affordance. After the Results filter rail,
+it reuses the homepage Backed, client-video, and achievements sections in that
+order. It then adds responsive common-mistakes versus approach cards, a
+problem/typical-solution/American-Hairline comparison, and a consultation CTA
+linked to `#/consult-with-founder`.
+
+The Results client rail uses the supplied wide desktop images at 701px and
+above and supplied portrait mobile images below 701px, while preserving the
+same category filters, testimonials, and product links.
+
+On `#/clip-on-hair-system`, the FAQ uses an eleven-item Zycon/Clip-On question
+set with no Consultation/Hair System topic tabs. The shared “Still have
+questions?” card remains below it.
+
+On `#/stick-on-hair-system`, the supplied six-item Zycon/Stick-On FAQ also
+uses the shared dark glass FAQ treatment and keeps the same closing questions
+card.
 
 ## Page 2 — "Real Results That Showcase True Transformations"
 
@@ -535,10 +655,9 @@ a 0.22 rule window, all as fractions of the pinned scroll. Nothing in the
 component knows the pin's length — `useScroll` reports it as 0 → 1 whatever
 `--process-step` (32vh) measures.
 
-The film itself has not been supplied. `processVideo.src` in
-[src/site.ts](src/site.ts) is empty, so the block renders as a `<figure>`
-carrying the client's poster rather than a dead button; set a path there and
-nothing else needs changing.
+The supplied 4:3 film plays inline after the poster control is selected. The
+existing `steps.png` remains the pre-play poster and the video uses
+`object-fit: contain` so no frame content is cropped.
 
 Below 901px and for `prefers-reduced-motion` the pin is dropped and masthead,
 film and all three steps stack as a plain list with every rule already drawn.
@@ -731,10 +850,10 @@ Below 901px and for reduced motion the pin is dropped for a plain swipeable
 snap rail — the same fallback, and for the same reason: hijacking vertical
 scroll on a phone fights the gesture the user already has.
 
-> **The three photographs are stand-ins.** They are Unsplash salon interiors,
-> not American Hairline's studios, and shipping them live would be showing
-> someone else's salon as ours. Replace all three in `public/salons/` before
-> launch — the paths are the only thing that needs to change.
+Each city card uses supplied branch photography. Mumbai has three slides;
+Delhi and Bangalore have two each. They advance every five seconds, with dot
+selection and pause/play controls; auto-rotation pauses for focus/hover and is
+disabled for reduced-motion users.
 
 ## Section 15 — "Frequently Asked Questions"
 
@@ -812,6 +931,10 @@ socials, Quick Links, Solution, Contact Us, then the legal line — because "the
 same, with more content" is what was asked for. Phone and email are real `tel:`
 and `mailto:` links. The back-to-top button honours reduced motion too, jumping
 instead of smooth-scrolling.
+
+Quick Links places “Consult with Founder” directly below “About us”, matching
+the supplied footer reference. It opens the dedicated
+`#/consult-with-founder` consultation page.
 
 > **The four social links are placeholders.** Every `footerSocials[].href` in
 > [src/site.ts](src/site.ts) is `'#'` — the brand's real handles have not been
@@ -910,9 +1033,8 @@ inside its frame and moves against it, so the card reads as having a front and
 a back instead of a flat plane being rotated. The card is 980×551 at its
 desktop maximum and keeps the same 16:9 frame on phones.
 
-The film has not been supplied. `decideVideo.src` in
-[src/site.ts](src/site.ts) is empty, so this is a `<figure>` rather than a dead
-button; set a path and it becomes a real play control with an inline `<video>`.
+The supplied 16:9 film plays inline after the poster control is selected. The
+existing thumbnail remains visible before play and as the video poster.
 The poster is the supplied 992×558 `image png 2.png`, installed as
 `public/decide/from-bald-to-bold.png` without resizing.
 
@@ -947,6 +1069,103 @@ own.
 
 Clip-On has its own photograph. Stick-On still borrows the Services section's,
 and would be better with one of its own.
+
+## Homepage — "Looking for Expert Advice from the Founder?"
+
+The paid founder-consultation block sits directly before the homepage guidance
+form, after FAQ. That is the page's highest-intent decision point: visitors can
+first resolve common objections, then choose the private paid route or continue
+to the general guidance form. The section is intentionally one focused,
+single-column message; the redundant four-step preview was removed.
+
+The section is mounted on four pages: the homepage (`App.tsx`), **Stick-On or
+Clip-On** (before `StillConfused`), **Will My Hairline Look Real?** (before
+`HairlineConfused`) and **Front Hairline Transplant + Hair System** (before the
+free form). On the transplant page it sits outside the `.hairTransplantPage`
+wrapper, because that wrapper zeroes heading and paragraph margins and squashed
+the section. The section itself is only the dark teaser panel: its button is a
+link to the full-page booking below. The page-level check is
+`node scripts/verify-founder-booking-pages.mjs`.
+
+### Book a consultation — `#/book-consultation`
+
+[src/pages/BookConsultation.tsx](src/pages/BookConsultation.tsx),
+[src/styles/book-consultation.css](src/styles/book-consultation.css),
+[src/bookingPayment.ts](src/bookingPayment.ts) (fee, Razorpay loader, validators)
+and [src/bookingDraft.ts](src/bookingDraft.ts). "Consult with the Founder" is a
+link to this full page; it used to open a popup. The page has a slim top bar
+(logo and Close, no site nav or footer, and the floating WhatsApp/call buttons
+are hidden on this route), then three steps: online/in-person plus a tentative
+date and time, visitor details, then a review and Razorpay handoff. From 900px a
+sticky summary card (founder photo, format, date, time, fee) fills in as the
+visitor chooses; on phones the main button is pinned to the bottom edge and
+clears the home-indicator area.
+
+Each step is its own history entry, so the browser and phone Back buttons walk
+Step 3, Step 2, Step 1 and then leave. Choices and details are kept in
+`sessionStorage` (`ah-booking-draft`), so a refresh or a return keeps them; the
+draft is cleared once a booking is handed over. **Close** steps back onto the page
+the CTA was clicked on (the flow leaves a one-shot flag, and the history entry
+records how deep the visitor is); a direct visit falls back to the homepage.
+
+The date is a month calendar (Sunday-first, previous/next month
+arrows) covering the next 30 days from tomorrow; open days are pale blue discs,
+Mondays (closed) and out-of-range days are grey and cannot be pressed, and a line
+under it reads "Open 11 AM – 8 PM · Closed on Mondays". Beside it (below on
+phones) the time list shows hourly slots 12 PM–7 PM after a date is picked.
+Dates and times come from [src/bookingSlots.ts](src/bookingSlots.ts): 12 PM, 6 PM
+and 7 PM are always shown as **Booked** (greyed, struck through, disabled), and
+each date also holds back up to two of the 1–5 PM slots, so 3–5 stay open. The
+booked state is presentational only; there is no calendar behind it. Replace
+`isSlotBooked` when real availability exists. The step carries the copy "These
+are tentative dates. One of our team will call you back and give you a final
+confirmation." The selected date and time are described as tentative throughout; the
+verified-payment state says that a team member will call to confirm the final
+appointment.
+
+The browser never creates or verifies a payment by itself. Live payment requires
+two server endpoints supplied through Vite environment variables:
+
+```text
+VITE_RAZORPAY_CREATE_ORDER_URL=https://example.com/api/razorpay/order
+VITE_RAZORPAY_VERIFY_PAYMENT_URL=https://example.com/api/razorpay/verify
+```
+
+The order endpoint receives `{ mode, date (YYYY-MM-DD), slot, name, phone, email }` and returns
+`{ keyId, orderId, amount, currency }`. The verification endpoint receives the
+Razorpay payment IDs/signature plus the booking details and must return
+`{ verified: true, bookingReference? }` only after server-side signature
+verification. Until both endpoints are configured, **Pay ₹5,000 securely**
+does not open checkout: it takes the visitor to the thank-you page below as a
+visual preview, and that page carries a "Preview only — no payment was taken"
+banner. A verified payment goes to the same page without the banner.
+
+### Consultation booked — `#/consultation-booked`
+
+[src/pages/ConsultationBooked.tsx](src/pages/ConsultationBooked.tsx),
+[src/styles/consultation-booked.css](src/styles/consultation-booked.css) and
+[src/bookingConfirmation.ts](src/bookingConfirmation.ts). The thank-you page for
+the founder booking only; the general guidance form's own success state is
+separate. It shows "Thank you, {first name}.", a ticket-style **booking pass**
+(online/in-person, the preferred time, name, phone, email, fee, and a booking
+reference once the server issues one), a three-step "What happens next"
+(booking received → team calls to confirm → session with Vinitt), a
+"keep photos ready" tip, and Back to home / Call / WhatsApp actions. The time is
+always called a *preferred* time, matching the booking page.
+
+The booking page hands the booking over through `sessionStorage` key
+`ah-booking-confirmation` (not the URL, so a phone number never reaches history
+or referrers). Opened directly, with nothing stored, the page drops the pass and
+the banner and shows generic wording.
+
+Run `node scripts/verify-founder-booking.mjs` against the Vite server to check
+the teaser, the full-page flow (no dialog, no site nav, no floating buttons, all
+three steps, every open day's slots, closed Mondays, tentative wording, the
+pinned mobile bar, the browser Back and Forward buttons, refresh, Close, kept
+draft), the Pay → thank-you hand-off (route, content, banner, zero overflow) and
+overflow. Run
+`node scripts/verify-consultation-booked.mjs [baseUrl]` for the direct-visit
+case at 1440, 390 and 320 px.
 
 ## Section 6e — "Fill This Form To Get The Right Guidance"
 
@@ -2100,6 +2319,51 @@ Run `node scripts/verify-product-section-backgrounds.mjs` to check the requested
 grey/white page-scoped section surfaces on both product routes at desktop and
 mobile sizes.
 
+### Front Hairline Transplant + Hair System — `#/hair-transplant`
+
+The Hair Transplant solution route is a complete eight-chapter page in
+`src/pages/HairTransplant.tsx`: contained dark hero, three-card Combination
+Method benefit rail, semantic comparison, suitability checklist, privacy-blurred
+Bollywood proof, three-step design process, surgeon team, and the shared guidance
+form. It uses the shared Nav and Footer. All route copy and asset paths live in
+`src/site.ts`; supplied web assets are installed under `public/hair-transplant/`.
+The hero trust proof uses five dedicated 98x98 client portraits, rendered at
+38x38 with an overlapping white-ring treatment, and reads "Trusted by 6,000+
+men around the world."
+
+Desktop keeps benefits, process steps, and surgeon profiles side by side. The
+benefit wrapper caps at 1200px so its three portrait cards remain narrow enough
+for the complete `object-fit: contain` images to read cleanly. On phones the
+benefits become a native snap/swipe rail capped at 290px per card. At 700px and
+below, the comparison becomes one compact bordered three-column table with its
+visible dark header, matching the supplied mobile reference. Remaining layouts
+stack without page overflow. Viewport-entry motion uses `motion/react`, animates only opacity
+and transform, and renders settled immediately under `prefers-reduced-motion`.
+Below 900px only, benefit cards narrow responsively from 290px to a 250px floor
+using `clamp(250px, 72vw, 290px)`. Card height follows its copy plus the
+portrait's natural height instead of squeezing the image into a fixed frame.
+Each portrait fills the card's inner width edge to edge at its native ratio,
+eliminating mismatched side space and distortion. Desktop stays unchanged.
+The Bollywood proof image keeps its native 4:3 ratio with `height: auto` and
+`object-fit: contain` at every breakpoint, so its faces and embedded caption are
+never cropped. Above 900px the complete left content-plus-action column uses the
+same 4:3 footprint, giving both sides identical top and bottom edges. At 900px
+and below, the image and copy stack at equal width instead of forcing dense copy
+into a short side-by-side card.
+The Process result band keeps its summary in the first line and renders
+"Watch the video." as a separate underlined 44px-high text link to the supplied
+YouTube video. It opens in a new tab with `noopener noreferrer`; the existing
+consultation button still scrolls to the on-page form.
+
+Run `node scripts/verify-hair-transplant.mjs [outDir]`. It checks 1440×900,
+1024×900, 820×900, 390×844, and 1440×900 reduced motion; asserts active navigation,
+content counts, 44px targets, image loading, exact hero trust copy and five
+portrait sources, benefit card width/image fitting, responsive benefit behavior,
+uncropped 4:3 Bollywood media, matched side-by-side heights and stacked widths,
+the exact external Process video link and its second-line/underline treatment,
+form CTA scrolling, zero horizontal overflow, console errors, and failed
+requests; and saves full-page plus focused section inspection screenshots.
+
 ### Scalp Micropigmentation — `#/smp`
 
 The SMP route is a complete ten-section page in `src/pages/Smp.tsx`. It uses
@@ -2130,3 +2394,46 @@ absent results/process arrows, process-image width/source ratio, focusable
 process rail, 48px phone bottom gap, 44px control height, zero page overflow,
 modal focus/scroll-lock behavior, tab and FAQ interaction, console errors, and
 failed requests; it also saves desktop/mobile inspection images.
+
+### Story reels — circular client videos on eight pages
+
+`StoryReels` renders one row of up to four circular video thumbnails, each
+titled with the visitor's own question ("Wind test", "Is it a tattoo?"), and
+opens a native modal `<dialog>` reel viewer on tap. It is modelled on the
+circles beside Add to Cart on 1hairstop.in product pages and, like those, sits
+directly **below** each page's consultation CTA (button block or form), so a
+visitor who hesitates at the CTA meets proof straight away:
+
+| Page | Set | Placed directly after | Ground |
+|---|---|---|---|
+| Will My Hairline Look Real | `storyReels.hairline` | `HairlineConfused` ("Need Guidance") | white |
+| Stick-On Hair System | `storyReels.stickOn` | `ReadyCta` ("Discuss With A Consultant") | white |
+| Clip-On Hair System | `storyReels.clipOn` | `ClipZyconCta` ("Discuss With A Consultant") | white |
+| Consult with Founder | `storyReels.founder` | `.cfFinal` ("Book Consultation With Founder") | white |
+| SMP | `storyReels.smp` (3 circles) | `SmpForm` | tint |
+| Hair Transplant | `storyReels.transplant` | the page form | white |
+| Stick-On Lifespan | `storyReels.stickOnLifespan` | `Form` | tint |
+| Clip-On Lifespan | `storyReels.clipOnLifespan` | `Form` | tint |
+
+Homepage, Results, Team and the other guide pages deliberately have none.
+
+Viewer behaviour: full screen on phones (video `contain`, so burned-in captions
+are never cropped), a centred 9:16 frame on desktop with arrows outside it;
+segmented progress bars; sound on with a muted fallback; tap to pause, swipe
+sideways to change clip, swipe down / Esc / backdrop click / phone back button
+to close (the viewer owns one history entry); arrow keys; a WhatsApp
+"Discuss With a Consultant" CTA on every clip and an end card after the last.
+Opened circles turn their ring grey (localStorage, per browser). Posters are
+~10 KB WebP; a clip is fetched only on tap.
+
+**Placeholder media.** The six `public/story-reels/placeholder-N.mp4` clips are
+540×960 cuts of `public/clients/client-story-N.mp4` (whose real content is a
+4:5 panel at x=528 inside a 1920×1080 frame), set on a blurred fill. Titles
+describe what each page *should* show; replace each item's `src`, `poster` and
+`name` in `storyReels` when real vertical clips arrive.
+
+Run `node scripts/verify-story-reels.mjs [baseUrl] [outDir]` (default base
+`http://127.0.0.1:5173/`). At 1440×900 and 390×844 on all eight routes it
+checks circle count and size, zero overflow, the viewer opening and playing,
+wheel scroll lock, ArrowRight advance, Esc close, watched rings, back-button
+close without leaving the route, and console errors.

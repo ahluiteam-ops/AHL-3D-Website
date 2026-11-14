@@ -1,4 +1,4 @@
-import { useRef, type ReactNode } from 'react'
+import { useRef, useState, type ReactNode } from 'react'
 import { motion, useScroll, useSpring, useTransform } from 'motion/react'
 import { Photo } from './Photo'
 import { usePrefersReducedMotion, useReveal } from '../hooks'
@@ -30,7 +30,14 @@ export type GuideHeroProps = {
   title: ReactNode
   /** `**bold**` is honoured. */
   lede: string
-  media: { poster: string; alt: string; width: number; height: number }
+  media: {
+    poster: string
+    src?: string
+    label?: string
+    alt: string
+    width: number
+    height: number
+  }
   /** Whether the still carries the design's play mark. The Clip-On Hair System
    *  page's image is a photograph rather than a video still, so its design draws
    *  no play mark — one there would promise a film that does not exist. */
@@ -64,6 +71,7 @@ export function GuideHero({
   showPlay = true,
 }: GuideHeroProps) {
   const mediaRef = useRef<HTMLDivElement>(null)
+  const [playing, setPlaying] = useState(false)
   const reduced = usePrefersReducedMotion()
   const { ref: headerRef, shown } = useReveal<HTMLDivElement>()
 
@@ -118,23 +126,39 @@ export function GuideHero({
             <Photo
               slot={{
                 src: media.poster,
-                alt: media.alt,
+                alt: media.src ? '' : media.alt,
                 width: media.width,
                 height: media.height,
               }}
               loading="eager"
             />
-            {/* Decorative. No film has been supplied for either guide page, so
-                this is the design's play mark and not a control — a button that
-                does nothing is worse than a picture of one. It becomes a real
-                trigger the day a file lands, the same way `checklistVideo` and
-                `processVideo` already work. */}
-            {showPlay ? (
+            {media.src && playing ? (
+              /* eslint-disable-next-line jsx-a11y/media-has-caption */
+              <video
+                className="guideHero__video"
+                src={media.src}
+                poster={media.poster}
+                controls
+                autoPlay
+                playsInline
+              />
+            ) : null}
+            {/* The play mark stays decorative for still-only GuideHero uses;
+                supplied films receive the labelled overlay button below. */}
+            {showPlay && !playing ? (
               <span className="guideHero__play" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
                   <path d="M8 5.2v13.6L19 12z" fill="currentColor" />
                 </svg>
               </span>
+            ) : null}
+            {media.src && !playing ? (
+              <button
+                className="guideHero__trigger"
+                type="button"
+                aria-label={media.label ?? 'Play video'}
+                onClick={() => setPlaying(true)}
+              />
             ) : null}
           </motion.figure>
         </div>

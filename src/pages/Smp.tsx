@@ -15,6 +15,8 @@ import { Footer } from '../components/Footer'
 import { GuideHero } from '../components/GuideHero'
 import { Nav } from '../components/Nav'
 import { usePrefersReducedMotion } from '../hooks'
+import { StoryReels } from '../components/StoryReels'
+import { storyReels } from '../site'
 
 const results = [1, 3, 4, 5, 6, 7, 2].map((asset, index) => ({
   src: `/smp/result-${asset}.jpg`,
@@ -147,30 +149,39 @@ const faqItems: { q: string; a?: string }[] = [
   },
   {
     q: 'Can SMP be done in one session?',
+    a: 'Typically, SMP requires 2-3 sessions to achieve the perfect density and natural look. The first session lays the foundation, and subsequent sessions add depth and detail.',
   },
   {
     q: 'Does it fade?',
+    a: 'SMP is semi-permanent and will fade over time (usually 3-5 years) but won’t discolor like a traditional tattoo. Periodic touch-ups maintain the fresh look.',
   },
   {
     q: 'Will my hair continue to grow?',
+    a: 'Yes, SMP does not affect your natural hair growth. You can continue to grow your existing hair, but most clients keep it shaved for the best blend.',
   },
   {
     q: 'Time between each SMP session?',
+    a: 'We recommend a gap of 7-10 days between sessions to allow the scalp to heal and the pigment to settle properly.',
   },
   {
-    q: 'Do i need a touch up?',
+    q: 'Do I need a touch up?',
+    a: 'Yes, touch-ups are recommended every few years to maintain the sharpness and density of the pigmentation as it naturally fades.',
   },
   {
     q: 'Which machine you use for SMP?',
+    a: 'We use the Cheyenne Hawk, a premium German-made machine specifically designed for precision micropigmentation work.',
   },
   {
     q: 'Are there any side effects of Scalp tattooing?',
+    a: 'When performed by certified professionals, side effects are minimal. You might experience slight redness for a day or two, but no long-term adverse effects.',
   },
   {
-    q: 'Scalp micro pigmentation cost in india?',
+    q: 'Scalp micro-pigmentation cost in India?',
+    a: 'Costs vary depending on the area to be covered (hairline, crown, full head). We offer competitive pricing with flexible payment plans.',
   },
   {
     q: 'Which ink you use for scalp micro pigmentation?',
+    a: 'We use high-quality, carbon-based organic pigments from the USA that are specifically formulated for SMP and do not change color over time.',
   },
 ] as const
 
@@ -465,5 +476,5 @@ function SmpForm() {
 }
 
 export function Smp() {
-  return <><Nav /><main className="smpPage"><SmpHero /><SmpResults /><AboutSmp /><PerfectFor /><Situations /><SmpProcess /><TreatmentFinder /><WhyChoose /><SmpFaq /><SmpForm /></main><Footer /></>
+  return <><Nav /><main className="smpPage"><SmpHero /><SmpResults /><AboutSmp /><PerfectFor /><Situations /><SmpProcess /><TreatmentFinder /><WhyChoose /><SmpFaq /><SmpForm /><StoryReels set={storyReels.smp} ground="tint" /></main><Footer /></>
 }

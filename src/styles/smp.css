@@ -455,6 +455,12 @@
   box-shadow: 0 14px 28px -24px rgb(12 13 16 / 0.34);
 }
 
+/* Multi-line proof points keep every check at the first line instead of
+   vertically centring it against the full paragraph. */
+.smpWhy article {
+  align-items: flex-start;
+}
+
 .smpSituations__grid svg,
 .smpWhy article svg {
   flex: 0 0 auto;
@@ -662,18 +668,19 @@
   pointer-events: none;
 }
 
-.smpFaq__in {
+.smpPage .smpFaq__in {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 0.7fr 1.3fr;
-  gap: clamp(46px, 8vw, 120px);
+  display: flex;
+  max-width: 940px;
+  flex-direction: column;
+  gap: 0;
 }
 
 .smpFaq header {
-  position: sticky;
-  top: 44px;
-  align-self: start;
+  align-self: stretch;
+  margin-bottom: clamp(26px, 4vh, 44px);
+  text-align: center;
 }
 
 .smpFaq header > p {
@@ -749,7 +756,6 @@
 }
 
 .smpFaq aside {
-  grid-column: 2;
   margin-top: 10px;
   padding: 26px;
   border: 1px solid rgb(255 255 255 / 0.14);
@@ -837,18 +843,12 @@
 }
 
 @media (max-width: 980px) {
-  .smpPerfect__grid,
-  .smpFaq__in {
+  .smpPerfect__grid {
     grid-template-columns: 1fr;
   }
 
-  .smpPerfect__grid > h2,
-  .smpFaq header {
+  .smpPerfect__grid > h2 {
     position: static;
-  }
-
-  .smpFaq aside {
-    grid-column: 1;
   }
 
   .smpProcess__rail {
@@ -1006,10 +1006,6 @@
 
   .smpTreatments__content > div {
     min-height: 320px;
-  }
-
-  .smpFaq__in {
-    gap: 36px;
   }
 
   .smpForm__grid {

@@ -203,6 +203,7 @@ Built so far, in page order:
 | — | "Uses Advanced 3D Scan Technology" — pinned dark stage, inline picture grows out of the headline; phones use a short reveal and one scan-light pass. **Not in the spine either**; added on request 2026-08-07, and placed directly after Systems on the client's instruction | `Scan.tsx` |
 | 16 | "Walk Into Any Of Our Premium Salons" — pinned horizontal rail, one card per city | `Salons.tsx` |
 | 17 | "Frequently Asked Questions" — tabbed glass accordion on a dark stage | `Faq.tsx` |
+| — | "Looking for Expert Advice from the Founder?" — paid founder-consultation teaser; its CTA opens the full-page booking `#/book-consultation` | `FounderBooking.tsx`, `pages/BookConsultation.tsx` |
 | 18 | "Fill This Form To Get The Right Guidance" — validated guidance form | `Form.tsx` |
 | 20 | Footer — outlined giant wordmark, looping marquee, link columns | `Footer.tsx` |
 
@@ -293,8 +294,78 @@ all supplied SMP photography is installed as web-sized derivatives under
 | 7 | Five-tab concern/treatment finder | page-local `TreatmentFinder` |
 | 8–10 | Why choose, dark FAQ, and guidance form | page-local components |
 
+**Hair Transplant solution page** (`#/hair-transplant`). Complete from the
+supplied desktop/mobile references and source documentation; all thirteen
+supplied images are installed under `public/hair-transplant/`.
+
+| | Section | Component |
+|---|---|---|
+| — | Page shell and eight chapters | `pages/HairTransplant.tsx` |
+| 1 | Contained dark "Front Hairline Transplant + Hair System" hero | page-local `Hero` |
+| 2 | Three-card Combination Method benefits; desktop grid and phone swipe rail | page-local `Benefits` |
+| 3–4 | Seven-row hybrid comparison and ten-point suitability checklist | page-local `Comparison`, `IdealFor` |
+| 5 | Privacy-blurred Bollywood proof with consultation CTA | page-local `Bollywood` |
+| 6 | Three-step design process and result band | page-local `Process` |
+| 7 | Two verified surgeon profiles using supplied artwork | page-local `Surgeons` |
+| 8 | Shared guidance form | `Form.tsx` |
+
+**Consult with Founder page** (`#/consult-with-founder`). Complete from the
+eight supplied desktop section references, with responsive arrangements for
+tablet, phone, and landscape phone. The shared footer link opens this route.
+
+| | Section | Implementation |
+|---|---|---|
+| 1 | Consultation hero and working call CTA | page-local `ConsultFounder` hero |
+| 2–4 | Decision risks, audience qualification, and five outcomes | page-local semantic card grids |
+| 5 | Founder introduction | supplied `Images/founder.png` portrait via optimized `public/consult-founder.png`; no duplicate HTML caption because the name is baked into the image |
+| 6 | ₹5,000 value comparison | page-local cost/value cards |
+| 7 | Video/in-person four-step process | responsive horizontal/vertical timeline |
+| 8 | Closing booking CTA | working `tel:+919222666111` link |
+
+The page uses `src/styles/consult-founder.css`; GSAP, `@gsap/react`, and
+ScrollTrigger provide one-time hero/section reveals and the process-line draw.
+CSS hover/focus/press interactions cover cards and CTAs. Reduced-motion users
+receive the complete static composition with transitions suppressed.
+
+**About Us page** (`#/about-us`). Complete from the supplied references and
+linked from both shared Header and Footer “About us” items.
+
+| | Section | Implementation |
+|---|---|---|
+| 1–3 | Team hero, proof stats, and Our Story card | page-local `AboutUs` sections using supplied media |
+| 3 detail | Long-form Our Story overlay | native accessible dialog with Escape/close/scroll restoration and supplied collage images |
+| 4 | Our Big Achievements | shared `Achievements` component |
+| 5–7 | Mission, social proof, and founder | page-local Mission/Founder media around shared `Backed` |
+| 8–10 | Services, journey CTA, and salons | shared `Services`/`Salons` around page-local CTA |
+| 11 | Careers close | animated `StillConfused` stage linking to `#/team` |
+
+Supplied PNG masters remain under `Images/About us/`; eight optimized WebP
+derivatives under `public/about/` total under 1 MB. Page-local GSAP reveals and
+CSS card/button feedback follow reduced-motion, while reused sections retain
+their existing production interactions.
+
+**Team page** (`#/team`). Reached from the About Careers CTA. It uses the shared
+Header/Footer and currently carries the centered “Life At American Hairline”
+hero, a five-card “Why You Will Love Working Here” section, the supplied
+“P.S. - Check Out Our Office” photo section, and a six-card “Apply Now” jobs
+section. The hero uses the supplied
+badge/Instagram icons, external Instagram CTA, and four exact 9:16 reel cards.
+Below 700px, those reels use a larger 77vw horizontal snap rail with side-card
+peeks; desktop keeps the four-column grid unchanged.
+The office section pins a compact white stage above 900px while GSAP
+ScrollTrigger maps vertical scroll to a four-photo horizontal track;
+tablet/phone and reduced motion use static responsive grids. Ten optimized WebP assets live under `public/team/`
+and are reproducible with `scripts/optimize-team-assets.mjs`. “Apply Now” uses
+two desktop columns, one column below 700px, 44px+ mailto CTAs, Mumbai /
+Full-Time metadata, and staggered ScrollTrigger entrance.
+
 **Not** the full site. Brand has ~13 pages (§3); the requested pages are being
 built section by section. Do not scaffold pages nobody asked for.
+
+**Results page** (`#/results`). Added responsive hero matching the supplied
+reference: camera eyebrow badge, transformation headline/copy, and supplied
+bald-to-bold artwork with centered play affordance. Header Results navigation
+now points to this route; assets live under `public/results/`.
 
 **Stack:** Vite + React 18 + TypeScript + **plain CSS**. All content strings and
 image paths in `src/site.ts`. Design tokens in `src/styles/tokens.css`.
@@ -314,7 +385,7 @@ Product lines: **Stick-On** (glued, shaved, monthly servicing, advanced loss) ·
 **Clip-On** (clips, no glue, no shaving, daily removal, partial thinning) ·
 **Zycon™** (premium medicated sub-range) · **SMP** (pigment, *not a tattoo*,
 does not regrow hair) · **Front Hairline Transplant + Hair System** (hybrid) ·
-**Consult with Founder** (paid ₹25,000 session).
+**Consult with Founder** (paid ₹5,000 session).
 
 **The proof numbers** — keep consistent everywhere: 12+ years · 6,770+ men ·
 100% natural · 12+ nations · 4.9 Google rating with 300+ reviews · 50K+ YouTube
@@ -609,29 +680,41 @@ errors, failed requests, `npm run build`.
   the hero slider, the client stories and the deck identifies a real man by
   name. Confirm each of them agreed to appear on the site before launch. This
   is the last item left from what used to be the placeholder-names problem.
-- **The six client films are not supplied.** Every `clientStories[].src` is
-  empty, so each card renders as a still figure. Set a path per card and it
-  becomes a real play control, same arrangement as the checklist film.
+- **All six client films are supplied and installed.** They are mapped by name
+  in `clientStories`, served from `public/clients/client-story-1…6.mp4`, and
+  play inside the existing 16:9 cards while retaining their original posters.
 - **The thirteen hair-system films are not supplied either.** Every
   `hairSystems[].src` is empty, so the play mark on each surfer card is a mark
   rather than a control.
+- **The Hair Transplant hero film is supplied and installed.** It plays inline
+  in the existing 16:9 hero card while retaining the Combination Method still
+  as its poster.
 - ~~The 100% badge is ~17px across at 390px~~ **— resolved 2026-08-14.** The
   full SVG badge group scales to about 33px on phones, keeping the circle,
   label and shadow locked together.
 - **"Trusted by 6k+ men"** in slider heading is a factual claim — confirm it
   matches the real number (brand's own figure is 6,770+).
-- **The 21-Point Checklist film is not supplied.** `checklistVideo.src` in
-  `src/site.ts` is empty, so the block renders as a still figure carrying the
-  client's poster. Set a path there — nothing else needs changing — and it
-  becomes a real play control with an inline `<video>`.
+- **The 21-Point Checklist film is supplied and installed.** Every shared
+  instance uses the same 4:3 inline video and retains the original poster.
 - **The guidance forms have no backend, and this is a launch blocker.**
   Homepage `Form.tsx` validates and shows a success state, while the SMP page's
   local form explicitly says online lead delivery is not connected. Neither
   sends data anywhere. Wire both to whatever the brand already uses for leads
   before launch.
-- **The "Real Hair Or Illusion?" film is not supplied.** `decideVideo.src` in
-  `src/site.ts` is empty, so the block is a still figure carrying the client's
-  own before/after photograph. Same fix as the other two films: set a path.
+- **The homepage founder-booking UI is complete, but live Razorpay is not
+  connected.** `FounderBooking.tsx` collects online/in-person preference, a
+  tentative date (month calendar, next 30 days from tomorrow, Mondays closed) and
+  time (8 hourly slots 12–7 PM, some always shown as Booked — see
+  `src/bookingSlots.ts`), and contact details, then reviews the ₹5,000 fee. It
+  intentionally refuses to open checkout until server-side create-order and
+  verify-payment endpoints are configured (until then Pay leads to the
+  `#/consultation-booked` thank-you page as a flagged preview) through
+  `VITE_RAZORPAY_CREATE_ORDER_URL` and
+  `VITE_RAZORPAY_VERIFY_PAYMENT_URL`. Never put a Razorpay secret in Vite or
+  mark a booking paid from the browser callback alone.
+- **The "Real Hair Or Illusion?" film is supplied and installed.** Homepage
+  section and Results hero reuse the same 16:9 MP4 while keeping their own
+  existing thumbnails.
 - **Stick-On still borrows the Services photograph.** The client supplied a
   clip-on photograph on 2026-08-08, so Clip-On now has its own and the panel
   cross-fades between them; Stick-On is the remaining one pointing at
@@ -663,16 +746,11 @@ errors, failed requests, `npm run build`.
   is a one-token swap per button, but it is a visible darkening across every
   page, so it wants the client's eye before it ships rather than being done
   quietly.
-- **The three salon photographs are stand-ins, and this one is a launch
-  blocker.** `public/salons/mumbai.jpg`, `delhi.jpg` and `bangalore.jpg` are
-  Unsplash interiors (photo IDs `1560066984-138dadb4c035`,
-  `1585747860715-2ba37e788b70`, `1600948836101-f9ffda59d250`; Unsplash License,
-  free for commercial use). They are somebody else's salons. Under a heading
-  that says "Walk Into Any Of Our Premium Salons", beside the brand's real
-  addresses, they read as a claim about premises the brand does not have —
-  which is exactly the kind of thing §3's candour rule exists to prevent.
-  Replace all three with real photography of the Khar, Hudson Lane and
-  Indiranagar studios; only the three file paths change.
+- **Salon photography is now supplied branch photography.** Homepage and About
+  Us share the seven images in `public/salons/mumbai/`, `delhi/`, and
+  `bangalore/` through `Salons.tsx`. Each city card rotates every five seconds,
+  exposes photo dots plus a pause/play control, pauses for focus or hover, and
+  remains static for reduced-motion users.
 - **The deck's names and quotes are baked into the client's artwork**, not into
   our copy — the five PNGs in `public/social/` carry the name chip and the
   testimonial as pixels. One of them, *Advik Sharma*, is also a placeholder
@@ -680,9 +758,8 @@ errors, failed requests, `npm run build`.
   names are real and consented or the same placeholders. Settle this with the
   client before launch; the same consent question as the note above applies,
   and here it cannot be fixed by editing a string.
-- **The step-by-step process film is not supplied either.** `processVideo.src`
-  in `src/site.ts` is empty, so that block is also a still figure carrying the
-  client's `steps.png` poster; same fix, set a path.
+- **The step-by-step process film is supplied and installed.** It plays in an
+  exact 4:3 frame with `steps.png` retained as the poster.
 - Wordmark band reads `NATURAL`, slider heading reads "Trusted by 6k+…"; an
   earlier round considered `TRUSTED` for the band and rejected it for that
   collision. Know this before proposing it again.
@@ -7929,3 +8006,1261 @@ tool-internal transcripts are intentionally not stored.
 - Remaining launch blockers in section 7 are unchanged. The ignored
   `reference/` recordings and `versions/` plain-folder snapshot are not present
   in a Git clone and must be copied separately if needed.
+
+### 2026-08-29 - Align SMP proof checks and centre the FAQ
+
+- Request: in the SMP page's "Why Thousands Of Men Choose American Hairline"
+  cards, align every checkmark with the top of its point; centre the FAQ like
+  the homepage FAQ; and close the excessive gap before the final "Can’t find
+  your answer?" card. The requested `ui-ux-pro-max` and `caveman` skills were
+  followed. The UI/UX search helper could not run because no Python launcher or
+  recorded Python executable was available, so the skill's verified layout,
+  responsive, accessibility, and spacing defaults plus the homepage FAQ were
+  used directly.
+- Root causes: `.smpWhy article` vertically centred its check against the full
+  multi-line paragraph, and `.smpFaq__in` used the same large grid `gap` for
+  both its columns and rows. That row gap sat between the question list and the
+  closing card.
+- Set only the SMP Why cards to `align-items: flex-start`, leaving the separate
+  situations grid unchanged. All ten checkmark and paragraph top edges now
+  match exactly.
+- Rebuilt the SMP FAQ wrapper as a centred, single-column 940px content measure,
+  matching the homepage FAQ's desktop width and centred heading. Question rows
+  and the closing card now share identical left/right edges, and the closing
+  gap is 10px, equal to the gap between questions, at every tested size.
+- Extended `scripts/verify-smp.mjs` with numeric assertions for all ten icon
+  alignments, FAQ width/centering/edge alignment, closing-card spacing, and
+  dedicated Why/FAQ-closing screenshots.
+- Verification: the SMP script passed at 1440x900, 1024x900, 390x844,
+  844x390 landscape, and 390x844 reduced motion. Checkmark offsets were 0px;
+  FAQ centre and edge deltas were 0px; closing and question gaps were both
+  10px; controls stayed at least 45.59px; and every run had zero horizontal
+  overflow, console errors, failed requests, or broken images. Desktop/mobile
+  Why and FAQ-closing screenshots were inspected. `npm.cmd run build` passed
+  with 2,054 modules; the existing 504.03 kB chunk warning remains.
+- Files changed: `src/styles/smp.css`, `scripts/verify-smp.mjs`, and
+  `PROJECT-CONTEXT.md`. No remaining issue in these requested alignments.
+
+### 2026-08-29 - Build the Hair Transplant solution page
+
+- Request: start the new Hair Transplant page from the supplied desktop/mobile
+  references, navigation image, eight original image files, and the project's
+  established responsive section language. The requested `ui-ux-pro-max`,
+  `ui-styling`, `modern-web-design`, `gsap-scrolltrigger`,
+  `animated-component-libraries`, and `caveman` skills were followed. The
+  source PDF was also read and its complete desktop/mobile designs rendered for
+  visual reference.
+- Added `#/hair-transplant` to the existing hash route map. The existing
+  Solutions dropdown already pointed at that route, so it now opens a real page
+  and shows the Hair transplant entry as active. No router or dependency was
+  added.
+- Built eight chapters in `src/pages/HairTransplant.tsx`: contained dark hybrid
+  hero, three Combination Method benefits, seven-row transplant-versus-hybrid
+  comparison, ten-point suitability checklist, privacy-blurred Bollywood proof,
+  three-step design process and result band, two surgeon profiles, and the
+  shared guidance form. Nav and Footer are reused unchanged.
+- Centralized all route copy and media metadata in `src/site.ts`. Proof uses the
+  canonical 6,770+ figure rather than the older 6,000+ reference. No new
+  medical claim, testimonial, address, or scarcity statement was introduced.
+  Consultation CTAs scroll to the form without replacing the hash route.
+- Copied the eight supplied originals into `public/hair-transplant/` with
+  semantic web paths. The hero's centre play mark is decorative because only a
+  still was supplied; the missing playable hero/process films are now recorded
+  in section 7.
+- Added `src/styles/hair-transplant.css`. Desktop uses three-across benefits and
+  process cards plus two-across surgeon profiles. Phones use a native
+  snap/swipe benefit rail, readable comparison cards, reordered Bollywood
+  image, and stacked process/surgeon layouts. Motion uses the existing
+  `motion/react` dependency, short opacity/transform reveals, and settled
+  reduced-motion output. No Tailwind, shadcn, GSAP package, or animated library
+  package was introduced; the named skills' performance, stagger, semantic,
+  keyboard, and reduced-motion patterns were adapted to the existing stack.
+- Added `scripts/verify-hair-transplant.mjs` and documented the route in
+  `README.md` and `CODEX-HANDOFF.md`. Headless Chrome passed at 1440x900,
+  390x844, and 1440x900 reduced motion: one h1, active Hair transplant nav,
+  expected 3/7/10/3/2 content counts, minimum 48px controls, correct desktop
+  grid and phone swipe behavior, working form scroll, zero horizontal overflow,
+  zero broken images, zero console errors, and zero failed requests. Desktop
+  and phone full-page screenshots were inspected.
+- `npm.cmd run build` passed with 2,056 modules transformed. Existing bundle
+  warning remains: main minified JavaScript is 516.43 kB (152.36 kB gzip).
+- Files/assets changed: `src/App.tsx`, `src/main.tsx`, `src/site.ts`, new
+  `src/pages/HairTransplant.tsx`, new `src/styles/hair-transplant.css`, new
+  `scripts/verify-hair-transplant.mjs`, new `public/hair-transplant/`,
+  `README.md`, `CODEX-HANDOFF.md`, and `PROJECT-CONTEXT.md`.
+- Remaining issue: approved Combination Method and process video files are not
+  supplied. The page is otherwise complete for the supplied references. Work
+  remains uncommitted and preserves the pre-existing SMP edits.
+
+### 2026-08-31 - Update Hair Transplant hero trust proof
+
+- Request: change the Hair Transplant hero trust line to "Trusted by 6,000+ men
+  around the world" and replace its five small client images with the supplied
+  `Images/Hair transplant/Ellipse 1.png` through `Ellipse 5.png` files. The
+  requested `caveman` and `ui-ux-pro-max` skills were followed.
+- Copied the five supplied 98x98 transparent PNGs to semantic web paths
+  `public/hair-transplant/trusted-client-1.png` through
+  `trusted-client-5.png`, then updated the centralized hero content in
+  `src/site.ts`. Avatar overlap and decorative semantics remain unchanged; a
+  follow-up request increased rendered avatar size from 34x34 to 38x38.
+- Extended `scripts/verify-hair-transplant.mjs` to assert the exact trust copy,
+  five expected portrait paths, each image's 98x98 natural dimensions, and its
+  38x38 rendered size at every tested viewport.
+- Verification: `npm.cmd run build` passed with 2,056 modules transformed; the
+  existing 516.53 kB chunk warning remains. The Hair Transplant verifier passed
+  at 1440x900 desktop, 390x844 mobile, and 1440x900 reduced motion. Every run
+  found the exact new copy, all five 98x98 portraits, zero broken images, zero
+  horizontal overflow, zero console errors, and zero failed requests. Desktop
+  and mobile full-page screenshots were inspected. After the size follow-up,
+  the build and all three route checks passed again with every portrait measured
+  at 38x38. No remaining issue in this request.
+
+### 2026-08-31 - Narrow Hair Transplant benefit cards
+
+- Request: reduce width of all three cards in "Why Combination Method Is The
+  Best Solution" so their supplied portrait images no longer feel cut off, and
+  keep the layout responsive. The requested `ui-ux-pro-max` and `caveman`
+  skills were followed. The UI/UX search helper was unavailable because no
+  Python executable was on PATH, so the skill's built-in responsive defaults
+  and the verified existing React/CSS structure were used.
+- Capped the section wrapper at 1200px. This reduces the three desktop cards
+  while preserving one equal-width row and their existing complete
+  `object-fit: contain` image treatment. The swipe layout below 900px now caps
+  each card at 330px; 390px phones retain their natural 82vw card width.
+- Extended `scripts/verify-hair-transplant.mjs` with card-width, single-row, and
+  image-fit assertions, added a 1024x900 tablet pass, and added focused benefit
+  section screenshots.
+- Verification: `npm.cmd run build` passed with 2,056 modules transformed; the
+  existing 516.53 kB chunk warning remains. Route checks passed at 1440x900,
+  1024x900, 390x844, and 1440x900 reduced motion. Card widths measured 339.69px,
+  297.66px, and 319.8px respectively; desktop/tablet cards shared one row, all
+  images retained `object-fit: contain`, phone rail remained swipeable, and all
+  runs had zero overflow, broken images, console errors, or failed requests.
+  Focused desktop, tablet, and phone section screenshots were inspected. No
+  remaining issue in this request.
+
+### 2026-08-31 - Preserve full Bollywood proof image
+
+- Request: fix cropping in "The Secret Behind Most Bollywood Actors’ Hair",
+  keep the image responsive, and provide the phone-accessible link. The
+  requested `ui-ux-pro-max` and `caveman` skills were followed. The UI/UX search
+  helper remained unavailable because no Python executable was on PATH, so the
+  skill's built-in responsive image defaults were used.
+- Root cause: desktop stretched the media frame to the taller adjacent content
+  column and filled it with `object-fit: cover`; the phone override also kept
+  `cover`. That could remove outer image content and the embedded bottom caption.
+- Changed the frame to its source-native 4:3 ratio at every breakpoint, removed
+  forced full-height stretching, and render the 2176x1632 image at `height: auto`
+  with `object-fit: contain`. Desktop columns now align at the top; below 700px
+  the same complete frame moves above the copy without crop or distortion.
+- Extended `scripts/verify-hair-transplant.mjs` to assert source dimensions,
+  4:3 frame/rendered ratios, `contain` fitting, and focused Bollywood section
+  screenshots at each non-reduced viewport.
+- Verification: `npm.cmd run build` passed with 2,056 modules transformed; the
+  existing 516.53 kB chunk warning remains. Route checks passed at 1440x900,
+  1024x900, 390x844, and 1440x900 reduced motion. Every run measured matching
+  4:3 frame and image ratios, the expected 2176x1632 source, and `contain`
+  fitting, with zero overflow, broken images, console errors, or failed
+  requests. Desktop and phone section screenshots show both faces and the full
+  embedded caption. `http://192.168.5.138:5173/` returned HTTP 200 and loaded
+  the app root. No remaining issue in this request.
+
+### 2026-08-31 - Match Bollywood proof column lengths
+
+- Request: make the left and right sides of the Bollywood proof section end at
+  the same height, based on the supplied screenshot. The requested
+  `ui-ux-pro-max` and `caveman` skills were followed; the UI/UX search helper
+  remained unavailable because no Python executable was on PATH, so built-in
+  responsive layout guidance was applied.
+- Above 900px, the left content-plus-action wrapper now shares the image's 4:3
+  footprint. Card padding and list rhythm were tightened so all copy fits inside
+  that measured height, making both columns share exact top and bottom edges
+  while the right image stays uncropped. At 900px and below, the section stacks
+  image, copy, and action at equal width with no forced content aspect ratio.
+- Added trailing spaces inside the page's multi-line heading spans. This keeps
+  visual line breaks unchanged while correcting extracted and accessible text
+  from "MostBollywood" to "Most Bollywood" and similar page headings.
+- Extended the Hair Transplant verifier with exact side-by-side height/top
+  matching, responsive stacked order/width checks, and the normalized Bollywood
+  heading assertion. Added an 820x900 small-tablet pass.
+- Verification: `npm.cmd run build` passed with 2,056 modules transformed; the
+  existing 516.56 kB chunk warning remains. Route checks passed at 1440x900,
+  1024x900, 820x900, 390x844, and 1440x900 reduced motion. Desktop matched both
+  columns at 360.39px high; tablet matched 341px to 340.98px, within subpixel
+  rounding. Small-tablet and phone layouts stacked image before copy at exactly
+  equal widths. Full 4:3 media, normalized heading text, zero overflow, broken
+  images, console errors, and failed requests passed everywhere. Focused
+  desktop, tablet, small-tablet, and phone screenshots were inspected. No
+  remaining issue in this request.
+
+### 2026-08-31 - Add Process result video CTA
+
+- Request: move "Watch the video." onto the second line of the Process result
+  band, underline it, and link it to the supplied YouTube video. The requested
+  `ui-ux-pro-max` and `caveman` skills were followed; the UI/UX search helper
+  remained unavailable because no Python executable was on PATH, so built-in
+  accessibility and touch-target rules were used.
+- Split the centralized Process result copy into summary text plus a dedicated
+  `resultVideo` object. Normalized the supplied URL to
+  `https://www.youtube.com/watch?si=-NXdBuo8rl8b6hZT&v=-od3mv_pHHQ&feature=youtu.be`
+  and render it as a semantic external link opening in a new tab with
+  `noopener noreferrer`.
+- Styled the CTA as its own underlined line with a 44px minimum target, visible
+  white focus ring, and stronger underline on hover. The existing "Discuss With
+  a Consultant" button remains unchanged.
+- Extended the Hair Transplant verifier with exact label/URL/target/rel checks,
+  underline and minimum-height checks, second-line geometry, and focused Process
+  screenshots.
+- Corrected the outstanding-work note: Process now has an approved external
+  video target; only the Hair Transplant hero still lacks playable media.
+- Verification: `npm.cmd run build` passed with 2,056 modules transformed; the
+  existing 516.84 kB chunk warning remains. Route checks passed at 1440x900,
+  1024x900, 820x900, 390x844, and 1440x900 reduced motion. Every viewport found
+  the exact visible label and URL, `_blank`, both safe `rel` tokens, underline,
+  44px target height, and link top exactly after the summary paragraph. All runs
+  also retained zero overflow, broken images, console errors, or failed
+  requests. Desktop and phone Process screenshots were inspected. No remaining
+  issue in this request.
+
+### 2026-08-31 - Narrow mobile Combination Method cards further
+
+- Request: the prior image-only inset was not enough; reduce mobile card width
+  itself so all three portraits stop feeling cut out and keep it responsive.
+  The requested `caveman` skill was followed.
+- Inside `max-width: 900px` only, changed card basis from
+  `min(82vw, 330px)` to `clamp(250px, 72vw, 290px)`. Rebalanced card height from
+  `min(132vw, 560px)` to `clamp(430px, 122vw, 520px)` so narrower cards do not
+  retain excessive empty height. Existing 22px portrait insets, natural ratios,
+  horizontal snap rail, and every desktop rule remain unchanged.
+- Extended the verifier with exact responsive card width and height formulas in
+  addition to existing desktop-stability and portrait-ratio assertions.
+- Verification: `npm.cmd run build` passed with 2,056 modules transformed; the
+  existing 516.84 kB chunk warning remains. Route checks passed at 1440x900,
+  1024x900, 820x900, 390x844, and 1440x900 reduced motion. At 820px the cards
+  measured 290x520px with 244x338.27px portraits; at 390px they measured
+  280.8x475.8px with 234.8x325.5px portraits. Desktop stayed unchanged at
+  339.69x600px with 337.69x460.92px portraits. Every run retained zero
+  overflow, broken images, console errors, or failed requests. Desktop,
+  small-tablet, and phone screenshots were inspected. No remaining issue.
+
+### 2026-08-31 - Inset mobile Combination Method portraits
+
+- Request: fix the three Combination Method portraits feeling cut out on mobile
+  without changing desktop. The requested `caveman` skill was followed.
+- Added a rule only inside the existing `max-width: 900px` layout: each portrait
+  is centred with a 22px inset on both sides, uses `height: auto`, and keeps its
+  natural source ratio. Card width, card height, copy, snap behavior, and every
+  desktop image rule remain unchanged.
+- Extended the Hair Transplant verifier to measure all portrait elements. Wide
+  viewports must still keep full-width image sizing; 900px and below must keep
+  the 44px total inset plus each file's natural ratio.
+- Verification: `npm.cmd run build` passed with 2,056 modules transformed; the
+  existing 516.84 kB chunk warning remains. Route checks passed at 1440x900,
+  1024x900, 820x900, 390x844, and 1440x900 reduced motion. Desktop and reduced
+  motion retained the prior full-width image measurement with a 2px border
+  difference. Small-tablet portraits measured 284px inside 330px cards; phone
+  portraits measured 273.8px inside 319.8px cards, exactly the expected 46px
+  border-plus-inset difference, and all kept the 1408:1952 source ratio. Every
+  run retained zero overflow, broken images, console errors, or failed requests.
+  Desktop, small-tablet, and phone screenshots were inspected. No remaining
+  issue in this request.
+
+### 2026-08-31 - Match mobile Combination Method image and card widths
+
+- Request: correct the still-visible width mismatch between all three mobile
+  benefit cards and their portraits after two earlier sizing attempts. The
+  requested `ui-ux-pro-max` and `caveman` skills were followed. The UI/UX search
+  helper was unavailable because no Python executable was on PATH, so its
+  built-in responsive full-width image guidance was applied.
+- Root cause: the previous mobile-only rule deliberately made each portrait
+  44px narrower than its card. After removing that inset, verification exposed
+  a second issue: the fixed card height plus `max-height: 100%` compressed the
+  full-width phone portrait vertically. Removed both height constraints. At
+  900px and below, every card now derives its height from its copy plus image;
+  every portrait fills 100% of the inner width at its natural 1408:1952 ratio.
+  Mobile card width, swipe behavior, copy, and every desktop rule stay unchanged.
+- Updated the route verifier: mobile portrait width may now differ from the
+  card's outer border box by only the expected 2px total border, and natural
+  image ratio remains required.
+- Verification: `npm.cmd run build` passed with 2,056 modules transformed; the
+  existing 516.84 kB chunk warning remains. Route checks passed at 1440x900,
+  1024x900, 820x900, 390x844, and 1440x900 reduced motion. At 390px, all three
+  cards measured 280.8px wide and all three portraits measured 278.8x386.5px:
+  the exact inner width after the 1px borders and the natural 1408:1952 ratio.
+  At 820px, cards measured 290px and portraits 288x399.27px with the same exact
+  relationship. Desktop remained unchanged. Every run retained zero overflow,
+  broken images, console errors, or failed requests. Mobile screenshot and all
+  three source portraits were inspected. No remaining issue.
+
+### 2026-08-31 - Restyle mobile Hybrid comparison as one table
+
+- Request: make the mobile "Why Hybrid Wins: Natural Hairline And Good Density"
+  section follow the supplied compact comparison-table reference without
+  changing desktop. The requested `ui-ux-pro-max` and `caveman` skills were
+  followed. The UI/UX search helper was unavailable because no Python
+  executable was on PATH, so built-in responsive table guidance was applied.
+- At 700px and below only, replaced the seven separate stacked comparison cards
+  with the existing semantic table rendered as one rounded, bordered,
+  three-column surface. Restored the visible dark header, white grid rows,
+  bold left-aligned feature labels, centered comparison values, compact row
+  rhythm, left-aligned heading, and soft-grey section background from the
+  reference. Source copy and desktop rules remain unchanged.
+- Verification: `npm.cmd run build` passed with 2,056 modules transformed; the
+  existing 516.84 kB chunk warning remains. Route checks passed at 1440x900,
+  1024x900, 820x900, 390x844, and 1440x900 reduced motion. At 390px, the
+  section had the requested soft-grey background and left-aligned heading; the
+  wrapper had a 1px border, 14px radius, hidden overflow, visible three-cell
+  dark header, table-row body, 68px rows, and aligned three-column cells. At
+  every width, there was zero page overflow, broken images, console errors, or
+  failed requests. Desktop kept its white background, centered heading, and
+  original table dimensions. Mobile and desktop comparison screenshots were
+  inspected. No remaining issue.
+
+### 2026-08-31 - Add founder consultation footer link
+
+- Request: add “Consult with Founder” directly below “About us” in the shared
+  footer Quick Links column, matching the supplied reference. The requested
+  `caveman` skill was followed.
+- Added the centralized footer link in `src/site.ts`; it now opens the dedicated
+  `#/consult-with-founder` route, so every route using `Footer` receives the
+  same ordered item without component duplication.
+- Extended `scripts/verify-footer.mjs` to assert the exact second Quick Links
+  label and target at every checked viewport.
+- Verification: `npm.cmd run build` passed with 2,056 modules transformed; the
+  existing 516.89 kB chunk warning remains. Footer checks passed at 1440x900,
+  390x844, and 1440x900 reduced motion: Quick Links contained seven items,
+  “Consult with Founder” was second; its target is now
+  `#/consult-with-founder`, page overflow stayed 0,
+  and desktop/mobile screenshots showed the requested order. Existing missing
+  homepage video requests remained in normal-motion runs and are unrelated to
+  this footer change; reduced motion had no failed requests. No remaining issue.
+
+### 2026-08-31 - Build Consult with Founder page
+
+- Request: turn the new footer item into a complete page using all eight
+  supplied section references, with suitable animation and micro-interactions.
+  The requested `ui-ux-pro-max`, `gsap-scrolltrigger`,
+  `animated-component-libraries`, `ui-styling`, and `caveman` skills were
+  followed. The UI/UX search helper could not run because Python was unavailable,
+  so the skill's built-in responsive and accessibility guidance was used.
+- Added `src/pages/ConsultFounder.tsx` and
+  `src/styles/consult-founder.css`, registered `#/consult-with-founder` in
+  `src/App.tsx`, imported the stylesheet in `src/main.tsx`, and changed the
+  shared footer item in `src/site.ts` to that route. The page implements the
+  reference hero, decision-risk cards, audience qualification, five outcomes,
+  founder introduction, ₹25,000 value comparison, four-step process, and final
+  CTA. Both booking CTAs are functional `tel:+919222666111` links.
+- Added `gsap` and `@gsap/react`. GSAP/ScrollTrigger now handles the hero
+  sequence, one-time section reveals/staggers, and process-line draw. Cards and
+  CTAs have restrained hover, focus, press, and shimmer feedback. The existing
+  `usePrefersReducedMotion` hook and CSS media query keep every item visible
+  while suppressing motion when requested.
+- No standalone founder portrait was supplied. The founder panel therefore
+  reuses the project's verified Vinitt Dessai artwork at
+  `public/checklist/21-point-checklist.png`; its page-scoped crop was visually
+  tuned to isolate Vinitt and omit the artwork's embedded play control. A
+  publicly indexed image inspected during the task was rejected because it was
+  a mislabeled client before/after image, and it was not retained.
+- Added `scripts/verify-consult-founder.mjs` and updated
+  `scripts/verify-footer.mjs`. The founder-page verifier passed at 1440×900,
+  1024×900, 768×900, 390×844, 844×390 landscape, and 1440×900 reduced motion:
+  all eight sections and expected card counts were present, booking links and
+  footer route were correct, controls were at least 52px tall, grids/timeline
+  changed orientation at the intended breakpoints, animations settled visible,
+  and there was zero overflow, broken imagery, console errors, or failed
+  requests. Desktop and mobile founder crops were inspected. The footer verifier
+  passed, the LAN URL returned HTTP 200, and `git diff --check` passed.
+- Final `npm.cmd run build` passed with 2,064 modules transformed. The production
+  JS chunk is 648.03 kB (203.02 kB gzip), so Vite reports its existing-style
+  >500 kB advisory; this is non-blocking. No remaining implementation issue.
+
+### 2026-08-27 - "Why This Consultation Is Different": logo replaces the photograph
+
+- Request: use `Images/final logo.png` here and remove the current image.
+- The image it replaced was `/checklist/21-point-checklist.png` - a photograph
+  borrowed from the checklist section, carrying the alt "Vinitt Dessai
+  demonstrating a custom hair-system fitting". Installed the mark unchanged at
+  `public/consult-founder-logo.png`, 416x164, 20.8 KB; no resize needed.
+- **The frame was built for a tall portrait and had to be told otherwise.**
+  `.cfFounder__media` is `min-height: 430px` with `object-fit: cover`, a dark
+  gradient across the bottom 45%, and - crucially - `transform: scale(2.5)` on
+  the image, a zoom that existed to crop a wide photograph into a portrait. A
+  `data-cf-logo` variant now switches all of that off: `contain`, padding, a
+  white ground, no scrim, and `transform: none`.
+  - **The zoom was the trap.** The first attempt set `contain` and a `max-width`
+    but left the transform, and the 416px mark rendered at 850px inside a 545px
+    figure - clipped rather than fitted. Caught by measuring the image against
+    its frame rather than trusting the declaration. The hover rule
+    (`scale(2.54)`) needed the same reset.
+- **The figcaption was removed, and that is a content decision worth stating.**
+  It read "Meet / Vinitt Dessai" over what is now a logo, which would have
+  captioned a brand mark as a person. The alt is now simply "American Hairline".
+  If a real photograph of the founder arrives, the caption and the portrait
+  framing both want restoring - the base rules are untouched and still there.
+- Verified at 1440, 900, 390, 320 and reduced motion: the mark sits **inside**
+  its frame at every width with an aspect of 2.54, matching the source file's
+  2.54 exactly, so it is fitted rather than stretched; `transform: none`
+  throughout; page overflow 0; zero console errors and zero failed requests.
+- Files changed: new `public/consult-founder-logo.png`,
+  `src/pages/ConsultFounder.tsx`, `src/styles/consult-founder.css`.
+- Verification: `npm run build` passes.
+- Not committed; belongs to the eventual version 2.
+
+### 2026-08-27 - "Why This Consultation Is Different": founder photograph installed
+
+- Request: use `Images/founder.png` here, replacing the logo placed an hour
+  earlier.
+- 2176x1632, 4:3 landscape - the same shape the frame was originally built for.
+  Installed at `public/consult-founder.png`, 1400x1050, 2.26 MB down to 1.13 MB.
+  The logo file and its `data-cf-logo` CSS variant were both deleted rather than
+  left as dead code, and the portrait framing, scrim and caption restored.
+- **The inherited zoom had to go, and finding that needed looking at the render
+  rather than the numbers.** `.cfFounder__media img` carried
+  `transform: scale(2.5)` with `transform-origin: 0 38%`, tuned to crop one
+  region of the checklist photograph that had sat here originally. Every measured
+  value came back correct - right file, right size, `cover`, nothing broken - but
+  the screenshot showed 2.5x of out-of-focus background with the founder cropped
+  entirely out of frame. Removed, with `object-position` moved from `left center`
+  to `center`; the hover now scales from 1 rather than 2.5, and the
+  reduced-motion override is `none` rather than `scale(2.5)`.
+- **The run-on accessible name, for the thirteenth time.** The caption is
+  `<span>Meet</span><strong>Vinitt Dessai</strong>` with no separator, so it
+  announced as "MeetVinitt Dessai". This was pre-existing markup that I restored
+  verbatim before noticing. Fixed with a real space; verified it now reads
+  "Meet Vinitt Dessai" at every width.
+- Verified at 1440, 900, 390, 320 and reduced motion: correct file loading,
+  nothing broken, `transform: none`, caption reading correctly, page overflow 0,
+  zero console errors and zero failed requests.
+- Files changed: new `public/consult-founder.png`, deleted
+  `public/consult-founder-logo.png`, `src/pages/ConsultFounder.tsx`,
+  `src/styles/consult-founder.css`.
+- Verification: `npm run build` passes.
+- Not committed; belongs to the eventual version 2.
+
+### 2026-08-31 - Build About Us page and restore logo in founder consultation
+
+- Requests: (1) replace the current media in “Why This Consultation Is
+  Different” with `Images/final logo.png`; (2) build the Header “About us” page
+  from all supplied section references and six supplied source images. The
+  requested `ui-ux-pro-max`, `ui-styling`, `animated-component-libraries`,
+  `gsap-scrolltrigger`, and `caveman` skills were followed. The UI/UX design
+  search could not run because Python was unavailable, so its built-in web
+  accessibility, responsive, performance, and motion guidance was applied.
+- Consultation media: `Images/final logo.png` is byte-identical to the existing
+  `public/brand/logo.png`, so `ConsultFounder.tsx` now uses that shipped asset
+  without creating a duplicate. Removed the current `/consult-founder.png`
+  portrait from the section markup. Rebuilt the media frame as a centered,
+  light brand panel with `object-fit: contain`, no person caption, and a small
+  non-layout-shifting hover scale. Updated `verify-consult-founder.mjs` to
+  assert the 416×164 mark and `contain`; all six existing route viewports pass.
+- About route: added `src/pages/AboutUs.tsx`, `src/styles/about.css`, the
+  `#/about-us` map entry in `src/App.tsx`, stylesheet import in `src/main.tsx`,
+  and changed both shared Header/Footer “About us” links in `src/site.ts` from
+  the dead `#about` anchor to the dedicated route. Navigation correctly reports
+  `aria-current="page"` on the route.
+- Page implements eleven sections: team hero; four proof stats; Our Story card;
+  shared Achievements; Mission; shared Backed proof; Founder; shared Services;
+  journey CTA; shared Salons; Careers. The proof copy uses the settled canonical
+  “12+ Countries / Clients Served” wording rather than restoring the retired
+  “12+ Nations / Client Base” reference wording. Consultation CTAs are working
+  `tel:+919222666111` links; Careers opens a pre-addressed email to
+  `info@americanhairline.com`.
+- Our Story opens a native modal dialog containing the supplied long-form copy,
+  collage, and team image. It supports Escape, outside click, a 48px desktop /
+  44px mobile close control, visible focus, page-scroll locking while open, and
+  scroll restoration on close. A visual pass caught and removed an initial
+  duplicate title/scrim because the supplied Story card image already contains
+  its own label and heading.
+- Added `scripts/optimize-about-assets.mjs`. It converted the six 3968–4672px
+  PNG masters in `Images/About us/` (roughly 42 MB combined) to correctly sized
+  WebP derivatives in `public/about/` totaling under 1 MB. Hero stays eager;
+  below-fold imagery has intrinsic dimensions and lazy loading.
+- GSAP/ScrollTrigger provides a short hero sequence and one-time reveals for
+  page-local sections. Reused components keep their existing interactions. CSS
+  adds restrained shimmer/lift/press feedback using transform/opacity; reduced
+  motion keeps content static and fully visible.
+- Added `scripts/verify-about.mjs`. It passed at 1440×900, 1024×900, 390×844,
+  844×390 landscape, and 1440×900 reduced motion: one correct H1, eleven
+  sections, four stats in a responsive 2×2 grid, exact optimized image sources
+  and dimensions, active Header/Footer route, two 44px+ phone CTAs, working
+  careers mailto, complete reveals, functioning Story dialog, zero overflow,
+  broken custom images, console errors, or failed requests. Desktop/mobile Hero,
+  Story, Founder, and dialog screenshots were inspected.
+- Final `npm.cmd run build` passed with 2,066 modules transformed. Output is
+  658.58 kB JS (205.67 kB gzip) and 228.08 kB CSS (41.85 kB gzip); Vite's
+  non-blocking >500 kB chunk advisory remains. No remaining implementation issue.
+
+### 2026-08-31 - Restore founder portrait in consultation section
+
+- Request: use `Images/founder.png` in “Why This Consultation Is Different” and
+  remove the current logo image.
+- Replaced `/brand/logo.png` with the existing optimized 1400×1050
+  `/consult-founder.png` derivative of the supplied 2176×1632 source. Restored a
+  full-frame 4:3 `cover` treatment with centered positioning and a restrained
+  1.025 hover scale. No HTML caption was added because “MEET VINITT DESSAI” is
+  already baked into the source image.
+- Files changed: `src/pages/ConsultFounder.tsx`,
+  `src/styles/consult-founder.css`, `scripts/verify-consult-founder.mjs`,
+  `README.md`, and `PROJECT-CONTEXT.md`. No duplicate asset was created.
+- Verification: `scripts/verify-consult-founder.mjs` passed at desktop, tablet,
+  small-tablet, mobile, landscape, and reduced-motion widths with the exact
+  1400×1050 source, zero overflow, broken images, console errors, or failed
+  requests. Desktop/mobile section screenshots were inspected and keep the
+  founder and baked-in name fully visible. `npm.cmd run build` passed with 2,066
+  modules transformed; Vite's existing non-blocking >500 kB chunk advisory remains.
+
+### 2026-08-31 - Fix About Us Story artwork and dialog centering
+
+- Request: remove black spacing around the Our Story card image, center its
+  overlay instead of opening at the top-left, and keep both responsive. The
+  requested `ui-ux-pro-max` and `caveman` skills were followed. Python was not
+  available through `python`, `python3`, or `py -3`, so the UI skill's built-in
+  layout/accessibility guidance and static quick reference were used.
+- Root causes: the supplied 4672×2524 Story artwork contains a baked decorative
+  outer frame, and the project reset removes the native dialog's automatic
+  margins. Cropped only that outer frame while producing the optimized
+  1600×834 `public/about/our-story.webp`; the actual title, team image, and
+  intended dark title band remain intact. The card image now exactly matches its
+  button box at every width.
+- Made `.aboutStoryDialog` explicitly fixed with `inset: 0` and `margin: auto`,
+  keeping its existing 92dvh cap, internal vertical scroll, backdrop, Escape,
+  outside-click dismissal, and 44px+ close control. Added contained overscroll.
+- `scripts/optimize-about-assets.mjs` now supports an optional output filename
+  and records the Story crop, preventing future regeneration from restoring the
+  unwanted frame. Updated image intrinsic dimensions and expanded
+  `scripts/verify-about.mjs` to assert exact card/image fit and horizontal plus
+  vertical dialog centering at every normal-motion test width.
+- Files changed: `public/about/our-story.webp`, `src/pages/AboutUs.tsx`,
+  `src/styles/about.css`, `scripts/optimize-about-assets.mjs`,
+  `scripts/verify-about.mjs`, `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: About route checks passed at 1440×900, 1024×900, 390×844,
+  375×812, 844×390 landscape, and 1440×900 reduced motion. Story image-to-card deltas
+  were 0px; every tested dialog center delta was within 1px; no overflow, broken
+  images, console errors, or failed requests. Desktop/mobile Story and
+  desktop/mobile/landscape dialog screenshots were inspected. `npm.cmd run build`
+  passed with 2,066 modules transformed; Vite's existing non-blocking >500 kB
+  chunk advisory remains.
+
+### 2026-08-31 - Grey About sections and animated Careers stage
+
+- Request: add grey backgrounds to Our Big Achievements, Backed By Thousands Of
+  Confident Men, and Transform Your Life With Hair Again; restyle Careers like
+  the Stick-on or Clip-on page's dark “Still Confused?” reveal. The requested
+  `ui-ux-pro-max` and `caveman` skills were followed. Python was unavailable
+  through `python`, `python3`, and `py -3`, so the UI skill's static responsive,
+  accessibility, performance, and motion guidance was applied.
+- Applied the About page's existing `--about-soft` grey only to the shared
+  `Achievements` and `Backed` section shells on this route plus the page-local
+  journey CTA shell. Shared component styling on other routes remains unchanged.
+- Replaced the plain Careers close with the existing production
+  `StillConfused` component and page-specific data: Careers eyebrow, “Open
+  Positions. Build The Future With Us.” headline, existing recruiting copy,
+  and the same working `mailto:info@americanhairline.com` CTA. This brings the
+  dark pinned stage, ambient capsule, scroll-scrubbed word illumination,
+  supporting-copy/CTA reveal, hover feedback, and reduced-motion fallback
+  without duplicating animation code.
+- A visual pass exposed mobile headline overflow caused by shrink-to-content
+  animated lines. About-scoped rules now give the title and each flex line 100%
+  width, preserving centered wrapping at 375px and in landscape without changing
+  the original component elsewhere.
+- Expanded `scripts/verify-about.mjs` to assert all three exact grey surfaces,
+  dark Careers surface, seven animated words, accessible heading, eyebrow,
+  ambient capsule, 44px+ email CTA, settled reveal, reduced-motion class, and
+  zero Careers overflow. Added focused screenshots for all three grey sections
+  and Careers start/revealed states.
+- Files changed: `src/pages/AboutUs.tsx`, `src/styles/about.css`,
+  `scripts/verify-about.mjs`, `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: About checks passed at 1440×900, 1024×900, 390×844, 375×812,
+  844×390 landscape, and 1440×900 reduced motion. All requested surfaces were
+  `rgb(243, 245, 247)`; Careers was `rgb(8, 9, 12)`, fully revealed with zero
+  content/page overflow, broken images, console errors, or failed requests.
+  Desktop/mobile grey stages and desktop/mobile/landscape Careers screenshots
+  were inspected. `npm.cmd run build` passed with 2,066 modules transformed;
+  Vite's existing non-blocking >500 kB chunk advisory remains.
+
+### 2026-08-31 - Mobile-only About Mission and Founder artwork
+
+- Request: on the mobile About Us page only, replace the Mission image with
+  `Images/About us/Frame 2085665212.png` and the Founder image with
+  `Images/About us/Frame 20856651921.png`, without changing desktop. The
+  requested `caveman` and `ui-ux-pro-max` skills were followed. Python was not
+  available through `python`, `python3`, or `py -3`, so the UI skill's static
+  responsive and accessibility guidance was applied.
+- Added optimized 900x1124 `public/about/mission-mobile.webp` and 900x1858
+  `public/about/founder-mobile.webp`. Both sections now use semantic `<picture>`
+  elements with those sources selected only at `max-width: 700px`; tablet,
+  landscape-phone at 844px, and desktop retain the existing `mission.webp` and
+  `founder.webp` assets and layouts.
+- Updated `scripts/optimize-about-assets.mjs` so either mobile derivative can be
+  regenerated by output filename. Expanded `scripts/verify-about.mjs` to assert
+  the actual `currentSrc` and intrinsic dimensions at every tested viewport and
+  to capture focused Mission screenshots.
+- Files/assets changed: `src/pages/AboutUs.tsx`, `src/styles/about.css`,
+  `scripts/optimize-about-assets.mjs`, `scripts/verify-about.mjs`, new
+  `public/about/mission-mobile.webp`, new `public/about/founder-mobile.webp`,
+  `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: About checks passed at 1440x900, 1024x900, 390x844, 375x812,
+  844x390 landscape, and 1440x900 reduced motion with the expected source at
+  each breakpoint, zero horizontal overflow, broken images, console errors, or
+  failed requests. Mobile Mission/Founder and unchanged desktop Mission/Founder
+  screenshots were inspected. `npm.cmd run build` passed with 2,066 modules;
+  Vite's existing non-blocking >500 kB chunk advisory remains.
+
+### 2026-08-31 - Start Team page and connect About Careers CTA
+
+- Request: make the About Careers “Join The Team” CTA open a new Team page;
+  build the supplied “Life At American Hairline” hero responsively with four
+  supplied reel thumbnails in proper reel ratio, supplied eyebrow/Instagram
+  icons, and the provided Instagram URL. The requested `ui-ux-pro-max` and
+  `caveman` skills were followed. The UI design-system search could not run
+  because `python`, `python3`, and `py -3` are unavailable, so the established
+  American Hairline system and the skill's static accessibility, performance,
+  responsive-layout, and motion rules were used.
+- Added `#/team` to the hash router and changed About Careers from the old
+  email link to that route. The initial Team page uses shared Header/Footer,
+  centered supplied copy, the supplied badge and Instagram icons, and a working
+  Instagram CTA. Each thumbnail also opens the same supplied Instagram profile
+  because no individual reel URLs were provided.
+- Converted the four PNG thumbnails plus two supplied PNG icons to six optimized
+  WebP assets under `public/team/` (about 235 kB total). Cards are exact 9:16 at
+  every viewport. Desktop shows four columns; tablet/mobile use native scroll
+  snap with visible 48x48 previous/next controls and keyboard-accessible card
+  links. GSAP provides one short transform/opacity entrance; reduced motion is
+  static. `scripts/optimize-team-assets.mjs` reproduces every derivative.
+- Added `scripts/verify-team.mjs` and updated About verification for `#/team`.
+  Team checks passed at 1440x900, 1024x900, 390x844, 375x812, 844x390
+  landscape, and 1440x900 reduced motion: four 0.5625 ratio cards, exact asset
+  and icon sources, working external CTA, 48px controls, zero horizontal
+  overflow, broken images, console errors, or failed requests. Desktop, mobile,
+  and landscape screenshots were inspected. About's full six-viewport
+  regression suite also passed with the new Careers route.
+- Files/assets changed: `src/App.tsx`, `src/main.tsx`, `src/pages/AboutUs.tsx`,
+  new `src/pages/Team.tsx`, new `src/styles/team.css`, new
+  `scripts/optimize-team-assets.mjs`, new `scripts/verify-team.mjs`, updated
+  `scripts/verify-about.mjs`, six new `public/team/*.webp` assets, `README.md`,
+  and `PROJECT-CONTEXT.md`.
+- Production build passed with 2,068 modules transformed. Vite's existing
+  non-blocking >500 kB chunk advisory remains. No remaining issue in the
+  supplied Team hero; later Team sections still require new references/content.
+
+### 2026-08-27 - Team hero: rail arrows removed
+
+- Request: remove the two arrow buttons under the team reels.
+- **They did nothing at desktop width.** `.teamHero__rail` is
+  `display: grid; grid-template-columns: repeat(4, minmax(0, 1fr))` there - four
+  reels, nothing to scroll - so `moveRail` had no distance to move. The scrolling
+  variant with `overflow-x: auto` and snap only exists inside a narrow
+  breakpoint. Measured after removal: the rail reports "fits" and four columns at
+  1440, 900, 390 and 320, confirming there was never anything to page through at
+  any of those widths.
+- Removed with everything that existed only to serve them: the controls markup,
+  `moveRail`, `railRef`, the `ChevronLeft`/`ChevronRight` imports and the five
+  `.teamHero__controls` CSS rules. Nothing left behind - both files report zero
+  matches.
+- **The reels stay reachable without the buttons**, which was the thing to check
+  before removing them: each reel is an `<a href>`, so a keyboard user tabs
+  through them and the browser scrolls the rail itself where it scrolls. Verified
+  all four are links at every width.
+- Verified at 1440, 900, 390 and 320: zero controls, zero buttons, four reels,
+  page overflow 0, zero console errors.
+- Files changed: `src/pages/Team.tsx`, `src/styles/team.css`.
+- Verification: `npm run build` passes.
+- Not committed; belongs to the eventual version 2.
+
+### 2026-08-27 - Founder photograph carries its own caption
+
+- Finding, reported rather than acted on: `public/consult-founder.png` has
+  "MEET VINITT DESSAI" and a dark gradient **burned into the image file**.
+- That is why the earlier screenshot showed the caption twice, slightly offset:
+  the HTML `<figcaption>` and the baked-in text were both rendering. Removing the
+  figcaption removed the duplicate, not the text the user can still see.
+- Removing the remaining text means editing the photograph - cropping the bottom
+  roughly 22%, which would cut his lower torso, or a supplied version without it.
+  Left for the user to choose rather than altering their asset unasked.
+
+### 2026-09-01 - Build Team office photo scroll section
+
+- Request: build the supplied “P.S. - Check Out Our Office” Team-page section
+  from its desktop reference and four supplied photographs, with a scroll-driven
+  interaction matching the site's other pinned sections. The requested
+  `ui-ux-pro-max`, `gsap-scrolltrigger`, and `caveman` skills were followed. The
+  UI search helper could not run because `python`, `python3`, and `py -3` are
+  unavailable, so its static accessibility, performance, responsive-layout,
+  and motion guidance was used.
+- Added the section after “Why You Will Love Working Here”. Above 900px a
+  full-height two-tone stage pins while vertical page scroll moves the four-photo
+  track from first to last through a GSAP ScrollTrigger scrub. At 900px and
+  below the photos become a two-column grid, then one column below 620px.
+  Reduced motion uses the same static grid and creates no ScrollTrigger.
+- Matched the visual source order rather than filename order:
+  `Frame 2085665336.png`, `Frame 2085665598.png`,
+  `Frame 2085665039.png`, `Frame 2085665337.png`. Added 1600×904 WebP
+  derivatives as `public/team/office-01.webp` through `office-04.webp`; source
+  masters remain unchanged. Updated `scripts/optimize-team-assets.mjs` so all
+  four derivatives are reproducible.
+- Expanded `scripts/verify-team.mjs` and corrected its stale expectation that
+  removed hero arrow controls still existed. It now checks the office heading,
+  exact asset order/natural sizes, 2960:1672 card ratio, desktop flex pin and
+  full track travel, static fallback grids, failed requests, and page overflow.
+- Files changed: `src/pages/Team.tsx`, `src/styles/team.css`,
+  `scripts/optimize-team-assets.mjs`, `scripts/verify-team.mjs`, four new
+  `public/team/office-*.webp` assets, `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: `npm.cmd run build` passed with 2,068 modules; Vite's existing
+  non-blocking >500 kB chunk advisory remains. Team route checks passed at
+  1440×900, 1024×900, 390×844, 375×812, 844×390 landscape, and 1440×900 reduced
+  motion. Desktop track travelled 0 to -1143px and tablet 0 to -813px while the
+  stage stayed pinned at the viewport top. All four 1600×904 files loaded,
+  responsive fallbacks rendered as grids, and every run had zero page overflow,
+  console errors, or failed requests. Desktop end-state and mobile full-page
+  screenshots were inspected. No remaining implementation issue.
+
+### 2026-09-01 - Build Team Apply Now jobs section
+
+- Request: build the supplied responsive “Apply Now” Team-page section from the
+  reference screenshot.
+- Added six accessible job cards after the office gallery: three Social Media
+  Executive openings, Senior Video Editor, AI Developer Intern, and Talent
+  Acquisition Executive. Cards include the reference descriptions, Mumbai /
+  Full-Time metadata with Lucide location/clock icons, and functional
+  `mailto:info@americanhairline.com` Apply Now links carrying the role in the
+  subject. No backend was implied or added.
+- Desktop uses a centered two-column card grid on the established light-grey
+  surface; below 700px it stacks to one column. Cards preserve a 44px minimum
+  CTA, readable 16px body text, focus-visible outlines, hover/press feedback,
+  and staggered ScrollTrigger reveal. `prefers-reduced-motion` leaves cards
+  immediately visible.
+- Expanded `scripts/verify-team.mjs` to check exact role order, six mailto
+  CTAs, CTA height, responsive job grid, office section, all supplied images,
+  route content, overflow, console errors, and failed requests.
+- Files changed: `src/pages/Team.tsx`, `src/styles/team.css`,
+  `scripts/verify-team.mjs`, `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: `npm.cmd run build` passed with 2,068 modules; existing
+  non-blocking >500 kB Vite advisory remains. Team checks passed at 1440×900,
+  1024×900, 390×844, 375×812, 844×390 landscape, and 1440×900 reduced motion.
+  All six cards and links met checks; zero page overflow, console errors, or
+  failed requests. Desktop and mobile full-page screenshots were inspected.
+
+### 2026-09-01 - Tighten Team office and jobs spacing
+
+- Request: make the Team office gallery background white, reduce its excessive
+  top/bottom spacing, and separate each Apply Now CTA from its location/meta row.
+- Changed `.teamOffice__stage` to a compact white stage at desktop and mobile;
+  removed both desktop and fallback two-tone gradients. Desktop minimum height
+  is now `clamp(420px, 38vw, 560px)` with `clamp(28px, 4vw, 52px)` vertical
+  padding; mobile/reduced motion uses `clamp(28px, 5vw, 48px)`.
+- Changed `.teamJobs__apply` from flex auto-placement to a fixed `24px` top
+  gap, keeping 44px CTA height and card alignment while giving metadata clear
+  breathing room.
+- Files changed: `src/styles/team.css`, `scripts/verify-team.mjs`, `README.md`,
+  and `PROJECT-CONTEXT.md`. No assets changed.
+- Verification: `npm.cmd run build` passed with 2,068 modules; Team route checks
+  passed at 1440×900, 1024×900, 390×844, 375×812, 844×390 landscape, and
+  1440×900 reduced motion. Desktop office stage measured 548px and tablet
+  420px; white background, compact padding, 24px CTA-to-meta gap, 44px CTAs,
+  zero page overflow, console errors, and failed requests confirmed. Desktop
+  and mobile screenshots were inspected.
+
+### 2026-09-01 - Enlarge Team mobile hero reels
+
+- Request: increase Team hero reel-card size on mobile to match the supplied portrait reference, without changing desktop.
+- Added a mobile-only (`max-width: 700px`) horizontal snap rail in `src/styles/team.css`; cards use `clamp(190px, 77vw, 320px)` so the active reel is large while neighbouring cards peek into view. Desktop four-column grid rules remain unchanged.
+- Updated `scripts/verify-team.mjs` to report reel widths and reject undersized mobile cards; relaxed its CTA-height tolerance for subpixel browser rounding.
+- Files changed: `src/styles/team.css`, `scripts/verify-team.mjs`, `README.md`, and `PROJECT-CONTEXT.md`. No assets changed.
+- Verification: `npm.cmd run build` passed (existing non-blocking >500 kB advisory). Team checks passed at desktop, tablet, portrait mobile, small mobile, landscape, and reduced-motion viewports; portrait reels measured 296px at 390px viewport and 284px at 375px, with zero overflow, console errors, or failed requests. Remaining note: 844px landscape is treated as tablet/desktop by the established 700px breakpoint.
+
+### 2026-09-01 - Fix mobile Team reel swiping
+
+- Request: mobile hero reel rail was not swipeable.
+- Cause: the flex rail used `width: max-content`, so its scroll container expanded to the full track width and had no horizontal overflow. Changed it to `width: 100%` with `min-width: 0` and explicit `touch-action: pan-x`.
+- Verification: Team checks passed across all configured desktop, tablet, portrait mobile, small-mobile, landscape, and reduced-motion viewports; portrait reel widths remain 296px/284px and page overflow stays zero.
+
+### 2026-09-01 - Build Results client stories section
+
+- Request: add the Results page “See How Real People Regain Hair And Confidence” section with five filters, client transformations, testimonials, product CTAs, responsive layout, and GSAP horizontal scroll.
+- Added category data from all supplied client folders, testimonial copy from each overlay notepad, and copied source PNGs under `public/results/clients/`. “All” combines all five categories; each card derives Clip-On or Stick-On CTA from its filename.
+- Added filter tabs, accessible tab state, desktop pinned GSAP horizontal track, and mobile native swipe/snap rail. Reduced motion skips the GSAP pin.
+- Files changed: `src/pages/Results.tsx`, `src/styles/results.css`, and `PROJECT-CONTEXT.md`; client assets added under `public/results/clients/`.
+- Verification: `npm.cmd run build` passed with existing non-blocking chunk-size advisory; TypeScript and Vite compilation clean.
+
+### 2026-09-01 - Correct Results category assets and testimonial overlay
+
+- Request: each Results toggle must show only its exact category clients; All must combine all five categories; no blank cards; CTA must not overlap testimonial text.
+- Fixed copied asset layout by placing high-density PNGs in `public/results/clients/high density/` (other category folders already matched). Confirmed counts: low 6, high 5, short 5, medium 7, long 2.
+- Preserved category-specific card data and All aggregation; constrained desktop testimonial text width to reserve CTA space, while mobile keeps CTA below text.
+- Verification: production build passed; `git diff --check` clean; every category folder contains expected client PNGs.
+
+### 2026-09-01 - Make Results Long Hair filter explicit
+
+- Request: correct the Long Hair toggle first, showing only Chandan Singh and Sanjay Kumar with their supplied images, exact testimonials, and Stick-On Hair System CTA.
+- Changed Results card data to retain its source category rather than deriving the image folder from the active filter. Each filter change resets the horizontal rail and recreates the desktop GSAP trigger, preventing a stale translated track from hiding newly selected cards.
+- Verification: Puppeteer clicked Long Hair at 1440px and confirmed active state `Long Hair`, exactly `CHANDAN SINGH` / `SANJAY KUMAR`, and exact long-hair image URLs. Production build passed. Existing unrelated `/brand/logo.png` request remains missing.
+
+### 2026-09-01 - De-duplicate Results All and complete rail endpoint
+
+- Request: remove repeated clients from Results All without changing category filters, and ensure the final card is fully reachable for All, Low Density, High Density, Short Hair, and Medium Hair.
+- All now retains the first card per client name while category filters continue to use their original complete file lists. It contains 15 unique clients.
+- The GSAP travel distance now uses the visible rail viewport rather than the full section width. Setup waits one animation frame for final layout measurements, so scroll completion aligns the final card with the viewport edge instead of clipping it.
+- Verification: production build passed. Puppeteer confirmed All has 15 cards / 15 unique names and, at horizontal-scroll completion, its last card right edge exactly matches the rail viewport right edge (1280px).
+
+### 2026-09-01 - Add shared homepage proof sections to Results
+
+- Request: add the three supplied sections already present on Homepage to Results.
+- Reused existing `Backed`, `ClientStories`, and `Achievements` components after the Results client-filter rail, in the supplied order. Their established desktop/mobile/reduced-motion behavior and assets remain unchanged.
+- Files changed: `src/pages/Results.tsx`, `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: production build passed. Puppeteer confirmed all three sections render on `#/results`, with zero horizontal page overflow and no page errors.
+
+### 2026-09-01 - Add Results comparison and consultation sections
+
+- Request: build supplied “What Most People Get Wrong”, “Why Men Choose American Hairline”, and “Still Thinking? Your Hair Won’t Wait” sections responsively.
+- Added semantic mistake/approach cards, five-row comparison table, and working consultation link to `#/consult-with-founder`. On phones, cards stack, the desktop comparison table becomes labelled vertical records, and the CTA spans its container with a 48px target.
+- Added `overflow-x: clip` at Results page scope to preserve mobile rails without page-level horizontal overflow.
+- Files changed: `src/pages/Results.tsx`, `src/styles/results.css`, `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: production build passed. Puppeteer confirmed all three sections at 1440px and 390px; zero horizontal overflow and 48px consultation CTA at both widths.
+
+### 2026-09-01 - Match Results mobile comparison table reference
+
+- Request: make mobile “Why Men Choose American Hairline” comparison match the supplied three-column table without changing desktop.
+- Replaced only the mobile single-column record override with a compact three-column table: visible dark header, 70px header cells, centred body cells, and reduced 12px mobile content type. Desktop rules remain unchanged.
+- Verification: production build passed. At 390px Puppeteer confirmed six rows, visible grid header, three equal 118.7px columns, and zero horizontal overflow.
+
+### 2026-09-01 - Update Homepage FAQ consultation and hair-system copy
+
+- Request: replace the Homepage FAQ consultation and hair-system content with supplied questions and answers.
+- Updated rendered FAQ content to the supplied Consultation and Hair System answers. Consultation now begins with “How long does the consultation take?” and contains six items.
+- Extended FAQ item data with optional display overrides so existing source history remains intact while the accordion renders supplied wording.
+- Files changed: `src/site.ts`, `src/components/Faq.tsx`, and `PROJECT-CONTEXT.md`.
+- Verification: `npm.cmd run build` passed with the existing non-blocking chunk-size advisory.
+
+### 2026-09-01 - Replace Clip-On Hair System FAQ
+
+- Request: replace Clip-On page FAQ with supplied Zycon/Clip-On Q&A, remove Consultation/Hair System tabs, retain the final “Still have questions?” card.
+- Extended shared `Faq` with an optional single-group input. Homepage retains its existing tabbed groups; Clip-On passes one supplied 11-item `clipOnFaqGroup`, so no topic-tab UI renders.
+- Files changed: `src/components/Faq.tsx`, `src/pages/ClipOnHairSystem.tsx`, `src/site.ts`, `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: production build passed. Puppeteer on `#/clip-on-hair-system` confirmed zero tabs, all 11 supplied questions, retained CTA heading, and zero horizontal overflow.
+
+### 2026-09-01 - Replace Stick-On Hair System FAQ with dark glass theme
+
+- Request: replace Stick-On FAQ with supplied six Zycon/Stick-On Q&As and change its prior white FAQ to the dark glass FAQ treatment while retaining the closing card.
+- Stick-On now uses shared `Faq` with one local six-item group. This removes old rendered Q&As and the white `stickFaq` section in favour of the dark shared FAQ, while retaining “Still have questions?”.
+- Files changed: `src/pages/StickOnHairSystem.tsx`, `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: production build passed. Puppeteer on `#/stick-on-hair-system` confirmed dark shared FAQ, no old white FAQ, all six supplied questions, retained CTA heading, and zero horizontal overflow.
+
+### 2026-09-01 - Update SMP FAQ answers
+
+- Request: replace SMP FAQ Q&As with supplied answers.
+- Updated all ten SMP FAQ entries with the supplied copy, including session count, fade/touch-up guidance, hair-growth, machine, pigment, and pricing answers. Corrected supplied question casing and hyphenation for display.
+- Files changed: `src/pages/Smp.tsx` and `PROJECT-CONTEXT.md`.
+- Verification: production build passed. Puppeteer on `#/smp` confirmed all ten supplied questions, ten answer panels, and zero horizontal overflow.
+
+### 2026-09-01 - Use portrait artwork for Results mobile client cards
+
+- Request: match supplied mobile reference for “See How Real People Regain Hair and Confidence” cards without changing desktop.
+- Added the supplied mobile category images under `public/results/clients-mobile/`. Results now selects those images below 701px and retains existing desktop image paths at wider viewports. Mobile cards use the portrait 0.77 aspect ratio (320×415px at 390px); category, testimonial, CTA, and rail behavior remain unchanged.
+- Accounted for supplied filename variations for Fuzail Khan and Sahil Khan to prevent broken images.
+- Files changed: `src/pages/Results.tsx`, `src/styles/results.css`, `README.md`, `PROJECT-CONTEXT.md`, plus copied mobile client assets.
+- Verification: production build passed. Puppeteer at 390px confirmed 15 portrait mobile image sources, zero broken client images, 320×415px cards, and zero page overflow.
+
+### 2026-09-01 - Replace Homepage and About Us salon photography
+
+- Request: replace existing Mumbai, Delhi, and Bangalore images in the shared “Walk Into Any Of Our Premium Salons” section and add a five-second slider with dots.
+- Replaced old stand-in paths with all seven supplied branch photos: Mumbai (3), Delhi (2), and Bangalore (2). The shared `Salons` component updates Homepage and About Us together.
+- Added cross-fading slides, dot controls, and pause/play controls. Slides pause on hover and keyboard focus, and do not auto-rotate for reduced-motion users. Mobile controls have 44px targets.
+- Files changed: `src/components/Salons.tsx`, `src/site.ts`, `src/styles/global.css`, `README.md`, `PROJECT-CONTEXT.md`, plus supplied assets copied under `public/salons/mumbai/`, `public/salons/delhi/`, and `public/salons/bangalore/`.
+- Verification: production build passed (existing bundle-size advisory only). Puppeteer confirmed Homepage has 3 branch cards, photo/dot counts of 3/2/2, zero desktop/mobile overflow, 44×44px mobile controls, and About Us Mumbai advances after five seconds.
+
+### 2026-09-01 - Add global call and WhatsApp buttons
+
+- Request: show floating Calling and WhatsApp controls on the right side of every page, from hero through footer.
+- Added one shared `FloatingContact` component after route rendering in `App.tsx`, so it appears on Homepage and all hash-routed pages. Call opens `tel:+919222666111`; WhatsApp opens a prefilled chat to the same number.
+- Controls use branded green/blue circular buttons, visible keyboard focus, descriptive labels, 48px mobile targets, and no page-level horizontal overflow.
+- Files changed: `src/components/FloatingContact.tsx`, `src/App.tsx`, `src/styles/global.css`, `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: production build passed (existing bundle-size advisory only). Puppeteer confirmed exactly two controls on all 14 routes; mobile buttons are 48×48px and page overflow is zero.
+
+### 2026-09-01 - Use supplied floating contact icons
+
+- Request: remove the first floating button styling and use the supplied WhatsApp and calling SVG icons.
+- Replaced the generated Lucide/custom icons and coloured circles with the supplied green WhatsApp and blue calling SVG assets. Both remain the same global links on every route.
+- Files changed: `src/components/FloatingContact.tsx`, `src/styles/global.css`, `README.md`, `PROJECT-CONTEXT.md`, plus copied assets `public/contact/whatsapp.svg` and `public/contact/call.svg`.
+- Verification: production build passed (existing bundle-size advisory only). Puppeteer confirmed both supplied SVGs load on mobile and desktop; controls are 56×56px on mobile with zero page overflow.
+
+### 2026-09-01 - Align contact controls with footer button
+
+- Request: align the floating WhatsApp and calling controls with the footer back-to-top button.
+- Adjusted only the floating contact rail's right inset. Its horizontal centre now matches the footer control despite their different diameters at desktop and mobile sizes.
+- File changed: `src/styles/global.css` and `PROJECT-CONTEXT.md`.
+- Verification: production build passed (existing bundle-size advisory only). Puppeteer measured a 0px centre-line difference at 1440px and 390px, with zero page overflow.
+
+### 2026-09-01 - Link footer solutions and update copyright
+
+- Request: link the three footer Solution entries to their matching pages and update copyright year from 2025 to 2026.
+- Footer routes now map Non-Surgical Hair Replacement to `#/stick-on-or-clip-on`, Scalp Micro Pigmentation to `#/smp`, and Hair Transplant to `#/hair-transplant`. Legal line now reads `American Hairline © 2026 – All Rights Reserved.`
+- Files changed: `src/site.ts` and `PROJECT-CONTEXT.md`.
+- Verification: production build passed (existing bundle-size advisory only). Puppeteer confirmed all three rendered href values and exact 2026 legal text.
+
+### 2026-09-01 - Link header Hair Systems solution
+
+- Request: link header Solutions dropdown item “Hair systems (No Surgery)” to the Stick-On or Clip-On page.
+- Changed its shared navigation route from the nonexistent `#/solutions-hair-systems` path to `#/stick-on-or-clip-on`; desktop and mobile navigation use the same data.
+- Files changed: `src/site.ts` and `PROJECT-CONTEXT.md`.
+- Verification: production build passed (existing bundle-size advisory only). Puppeteer confirmed the rendered dropdown href is `#/stick-on-or-clip-on`.
+
+### 2026-09-01 - Add supplied 21-point checklist video
+
+- Request: use `videos/21 points checklist 4.3.mp4` in every “Our 21-Point Checklist For A Perfect Hair System” section without removing the existing thumbnail.
+- Copied the supplied film to `public/checklist/21-point-checklist.mp4` and set the shared `checklistVideo.src`. All default Checklist instances now show the existing `21-point-checklist.png` poster and replace it with the inline controlled video only after Play is selected.
+- Affected routes: Homepage, Hair Patch vs Hair System, Clip-On Hair System, and Stick-On Hair System. The source video is 2,079,262,708 bytes, so a compressed web delivery copy remains advisable before production launch.
+- Files changed: `src/site.ts`, `README.md`, `PROJECT-CONTEXT.md`, plus copied video asset `public/checklist/21-point-checklist.mp4`.
+- Verification: production build passed (existing bundle-size advisory only). Puppeteer confirmed a playable button and unchanged poster on all four routes; after activation the video uses the supplied MP4 and retains the same poster attribute.
+
+### 2026-09-01 - Preserve 4:3 checklist video frame
+
+- Request: stop the supplied 4:3 checklist film from appearing cropped by making its media block 4:3.
+- Removed height caps that distorted the frame, derived responsive widths from the former height limits, retained a strict `4 / 3` aspect ratio, and changed the playing video to `object-fit: contain`. The existing poster remains unchanged.
+- Files changed: `src/styles/global.css` and `PROJECT-CONTEXT.md`.
+- Verification: production build passed (existing bundle-size advisory only). Puppeteer measured exact 1.3333 frame ratios before and after playback at 1440×900 and 390×844; playing video uses `object-fit: contain` and both viewports have zero page overflow.
+
+### 2026-09-01 - Align desktop checklist media and progress
+
+- Request: on desktop, left-align each checklist video with “We custom every detail.” and prevent the 01/21 progress row from exceeding the video width, without changing mobile.
+- Added a desktop-only rule that anchors the 4:3 media to the left edge and gives the progress wrapper the identical responsive width. Mobile retains its centred media layout.
+- Files changed: `src/styles/global.css` and `PROJECT-CONTEXT.md`.
+- Verification: production build passed (existing bundle-size advisory only). Puppeteer confirmed 0px left-edge and width differences across all four checklist routes at 1440×900, retained exact 4:3 media, and unchanged centred mobile media with zero overflow.
+
+### 2026-09-01 - Add all six client-story videos
+
+- Request: add supplied videos to every “Some Of Our Clients With The Most Natural Hairline” section, preserve current thumbnails, keep cards 16:9, and align all section elements.
+- Mapped the six source files to Rylan Rodrigues, Arun Sharma, Rohan Bera, Sahil Khan, Rohan Deshmukh, and Anup Kumar by filename. Copied them to `public/clients/client-story-1…6.mp4` and populated every `clientStories[].src` while retaining all existing PNG posters.
+- Kept every media container at 16:9, made the playing video a block-level 16:9 element with `object-fit: contain`, and retained equal card dimensions and top alignment across the rail.
+- Affected routes: Homepage, Hair Patch vs Hair System, Will My Hairline Look Real, Clip-On Hair System, Stick-On Hair System, and Results.
+- Files changed: `src/site.ts`, `src/styles/global.css`, `README.md`, `PROJECT-CONTEXT.md`, plus six copied MP4 assets under `public/clients/`.
+- Verification: production build passed (existing bundle-size advisory only). Puppeteer confirmed six playable cards on all six routes, retained poster paths, exact 16:9 card ratios on desktop/mobile, equal desktop card tops, zero overflow, and 1920×1080 metadata for all six videos.
+
+### 2026-09-01 - Add nine requested section and hero video placements
+
+- Request: install supplied films in Real Hair Or Illusion, Step-By-Step Process, Hair Patch vs Hair System hero, Will My Hairline Look Real hero and design section, both lifespan heroes, Hair Transplant hero, and Results hero; retain every current thumbnail, preserve 16:9 or 4:3 frames, and keep sections aligned.
+- Added seven unique MP4 assets under `public/`. The Real Hair Or Illusion film is reused by Results, and the Stick-On vs Clip-On film is reused by both lifespan heroes. The user-provided Hair Transplant path treated `Bollywood Celebrities` as a folder, but the actual source was the adjacent file `videos/Hair Transplant/Bollywood Celebrities_ Hair Transplant or Hair Systems.mp4`; that verified file was used.
+- Extended shared `GuideHero` with an accessible poster-to-inline-video control, so all four requested guide heroes gain playback without duplicating page markup. Existing still-only `GuideHero` users retain their fallback behavior. Results and Hair Transplant heroes now use equivalent labelled controls.
+- Exact mappings: `public/decide/client-before-after.mp4` (Homepage Decide and Results hero, 16:9), `public/process/step-by-step.mp4` (Process, 4:3), `public/patch-vs-system/patch-vs-system.mp4` (Patch vs System hero, 16:9), `public/hairline-real/natural-hairline.mp4` (Hairline hero, 16:9), `public/hairline-real/design-film.mp4` (Hairline design, 4:3), `public/guide-media/stick-on-vs-clip-on.mp4` (both lifespan heroes, 16:9), and `public/hair-transplant/hair-transplant-or-system.mp4` (Hair Transplant hero, 16:9).
+- Files changed: `src/site.ts`, shared media components and global CSS, `src/pages/Results.tsx`, `src/pages/HairTransplant.tsx`, their page styles, `README.md`, `PROJECT-CONTEXT.md`, `scripts/verify-requested-videos.mjs`, plus seven copied MP4 assets.
+- Verification: production build passed with 2,071 modules and the existing non-blocking chunk-size advisory. Headless Chrome verified all nine placements at 1440×900 and 390×844: correct source and poster paths, source metadata and card ratios exactly 16:9 or 4:3, `object-fit: contain` during playback, and zero horizontal overflow. `git diff --check` passed before this log update.
+- Remaining note: the seven source files total about 2.27 GB, led by the 971 MB hairline-design and 486 MB lifespan films. Web-compressed delivery copies are advisable before production launch.
+
+### 2026-10-27 - UX recommendation: circular "story" videos that expand to reels
+
+- Request: senior asked whether to copy 1hairstop.in's product-page pattern (row of circular video thumbnails that open into a 9:16 reel viewer) onto every American Hairline page, with titles. Advisory only; no code changed.
+- Recommendation given: yes as a pattern, but not as one identical block on all pages. One block per page, 4 circles max (Hick's/Miller's), each title phrased as the visitor's own objection for that page ("Can people tell?", "Gym & sweat"), placed just above the page's main CTA/form (the decision point, as 1HairStop places it beside Add to Cart), never in the hero (heroes de-escalate, §3). Reel viewer: full-screen on mobile, centred 9:16 modal on desktop, swipe/arrow to next, captions, Esc/back-button closes, end card with consultative CTA, floating WhatsApp/call hidden while open.
+- Key constraints recorded: (1) the six existing `public/clients/client-story-*.mp4` films are 1920×1080 files, but (corrected 2026-10-27, later the same day) their real content is a 4:5 vertical panel at x=528–1392 with blurred side fill, so they *can* be cut into reels; real page-specific vertical client clips are still the blocker, and placeholders must not ship to production. (2) Six routes already carry the 16:9 `ClientStories` rail (Homepage, Patch vs System, Hairline Real, Clip-On, Stick-On, Results), so circles there must carry different, page-specific clips or they duplicate proof. (3) Video weight is already high (§ 2026-09-01 note: ~2.27 GB of sources); circles must use small WebP posters with `preload="none"` and fetch the video only on tap. (4) Client consent for face reuse is required given the privacy-conscious buyer.
+- Suggested rollout: pilot on Will My Hairline Look Real, Stick-On and Clip-On; track circle tap rate, reel completion and end-card CTA clicks; extend to Consult with Founder (fills the flagged missing paid-session testimonial), SMP, Hair Transplant and lifespan pages afterward. Team page skipped (different audience, already has reels).
+- Unfinished: awaiting senior's decision and vertical video assets before any build.
+
+### 2026-10-27 - Build story reels (circular videos → 9:16 reel) on eight pages, placeholder media
+
+- Request: build the circle-video element from the recommendation above, with the per-page topics, placed where recommended, using placeholder videos for now; do not change anything else; give local and mobile links.
+- Built `src/components/StoryReels.tsx` + `src/styles/story-reels.css` (imported in `src/main.tsx`) and appended `StoryReel`/`StoryReelSet` types and the `storyReels` content record to the end of `src/site.ts`. One row, max four circles (SMP has three), titles phrased as the visitor's question; native modal `<dialog>` viewer (top layer covers FloatingContact), full-screen on phones with `object-fit: contain`, centred 9:16 frame on desktop with arrows outside; progress bars driven by rAF via ref; sound-on with muted fallback; tap pause, swipe sideways/down, Esc, backdrop click and phone back button close (one pushed history entry, guarded against StrictMode double push); WhatsApp "Discuss With a Consultant" CTA per clip plus end card; watched rings in localStorage key `ah-story-reels-watched`; scroll lock on `documentElement` per the §5 trap.
+- Placements (each directly above the page's main CTA/form): Hairline Real before `HairlineConfused` (tint); Stick-On before `ReadyCta` (tint); Clip-On before `ClipZyconCta` (tint); Consult with Founder before `.cfFinal` (white); SMP before `SmpForm` (tint); Hair Transplant before the form wrapper (white); both lifespan pages before `Form` (tint). Homepage, Results, Team and other pages untouched by design. No existing component or style was edited; page files only gained an import and one JSX line each.
+- Placeholder media: six `public/story-reels/placeholder-1…6.mp4` (540×960, H.264 CRF 27, 0.6–1.2 MB) cut from `public/clients/client-story-1…6.mp4` — the 4:5 panel scaled onto a blurred 9:16 fill — and six 320px WebP circle posters (7–13 KB) from an "after" frame. Names in the data match the source clients (Rylan Rodrigues, Arun Sharma, Rohan Bera, Sahil Khan, Rohan Deshmukh, Anup Kumar). Clips do NOT show the titled topics; swap `src`/`poster`/`name` per item when real vertical clips arrive.
+- Dev-server note: port 5173 on this machine was occupied by a different project (`D:\New Alcehamane Website`), which was left running. This project was started with `npx vite --port 5180 --strictPort --host`; LAN address at the time was 192.168.5.159.
+- Files added: `src/components/StoryReels.tsx`, `src/styles/story-reels.css`, `scripts/verify-story-reels.mjs`, `public/story-reels/*`. Files changed: `src/site.ts` (appended), `src/main.tsx` (one import), eight page files (import + one line), `README.md`, `PROJECT-CONTEXT.md`.
+- Verification: `tsc -b --noEmit` passed. `node scripts/verify-story-reels.mjs http://127.0.0.1:5180/ <dir>` passed on all eight routes at 1440×900 and 390×844 (circles 124px desktop / 94px phone, zero overflow, viewer opens and plays, wheel lock 0px, ArrowRight advances, Esc closes, two watched rings, back button closes and keeps the route, no console errors). Screenshots inspected; fixed a crop that cut burned-in captions and a "Clip-/On" heading break (non-breaking hyphen at render).
+- Unfinished: real per-topic vertical client videos plus consent; full `npm run build` not run this session.
+
+### 2026-10-27 - Move story reels below each consultation CTA
+
+- Request: the user pointed out the rows were not where the recommendation put them. The reference (1hairstop.in) places the circles directly *below* Add to Cart; the earlier recommendation text said "just above the CTA", and on Hairline Real (row above a long pinned stage) and Clip-On the row sat far from the real "Discuss With A Consultant" button.
+- Decision: every row now sits directly **after** the page's consultation CTA block or form. Hairline Real after `HairlineConfused`; Stick-On after `ReadyCta`; Clip-On after `ClipZyconCta`; Consult with Founder after `.cfFinal`; SMP after `SmpForm`; Hair Transplant after the form wrapper; both lifespan pages after `Form` (the last five are now the final section before the footer). This supersedes the "just above" placement in the two entries above; the senior-facing summary should read "just below the booking button".
+- Grounds re-chosen for the new neighbours: white on Hairline Real, Stick-On, Clip-On, Founder and Hair Transplant; tint on SMP and both lifespan pages.
+- Files changed: the eight page files (row line moved, ground prop adjusted), `README.md` placement table, `PROJECT-CONTEXT.md`.
+- Verification: `tsc -b --noEmit` passed; `node scripts/verify-story-reels.mjs http://127.0.0.1:5180/` passed on all eight routes at 1440×900 and 390×844; neighbour screenshots inspected.
+
+### 2026-11-12 - Interpret senior consultation-flow recordings
+
+- Request: review `reference/audio rec/a1.ogg`, `a2.ogg`, `b1.ogg`, and
+  `a3.ogg` and report the understood website requirements; no implementation
+  was requested.
+- Outcome: local multilingual transcription indicates that the senior wants a
+  prominent founder/expert CTA around “Looking for expert advice from the man
+  himself,” leading to “Book a Consultation.” The displayed name/designation
+  still needs a content decision: “Founder” versus a professional label such as
+  “Hair Expert.”
+- The recordings distinguish the normal consultation lead flow (form submission
+  to CRM, followed by a team call/WhatsApp message) from a paid booking flow.
+  The paid flow should collect a tentative time slot and an online/offline
+  preference, take payment through GPay/UPI, clearly state that the selected
+  slot is tentative, and have a team member call to confirm it.
+- Uncertainty: “between 1 and 5” most likely means consultation slots between
+  1 PM and 5 PM, but this should be confirmed before implementation. The exact
+  founder/expert designation also needs confirmation.
+- Files changed: `PROJECT-CONTEXT.md` only. Raw audio/transcripts were not copied
+  into tracked project files, and no application code was changed.
+- Verification: all four clips were processed locally with multilingual speech
+  recognition, comparing multiple model passes. The existing
+  `ConsultFounder.tsx`, shared `Form.tsx`, and relevant README section were
+  inspected to distinguish the requested flow from the current telephone CTAs
+  and non-persisting form. No build or browser test was needed for this advisory
+  task.
+- Remaining: no booking, CRM, payment, or UI work was implemented. Confirm the
+  two uncertain content details before changing the current page.
+
+### 2026-11-12 - Build homepage founder-consultation booking flow
+
+- Request: build the understood consultation section on the Homepage, choose an
+  appropriate placement, and implement the agreed online/offline → tentative
+  1–5 PM time → Razorpay → team-confirmation flow. The `frontend-design` skill
+  guided the visual and interaction direction.
+- Placement/design: added the section after FAQ and immediately before the
+  general guidance form, where a visitor has resolved common objections and is
+  choosing a next step. The contained dark “private advisory desk” panel uses
+  the existing brand type, blue accent, and quiet glass treatment. Its signature
+  status strip says the selected time remains tentative until the team confirms
+  it. The headline is “Looking for expert advice from the man himself?”; the CTA
+  is “Consult with the Founder,” while supporting copy identifies Vinitt Dessai
+  as Founder and Hair Restoration Expert.
+- Interaction: `FounderBooking.tsx` opens a native three-stage dialog. Stage 1
+  selects online or in-person plus one of five hourly tentative times from
+  1:00–5:00 PM; stage 2 validates name, Indian mobile number, and email; stage 3
+  reviews format/time and the existing ₹25,000 fee before the Razorpay handoff.
+  Verified payment produces a tentative-slot message and says the team will
+  call to confirm the final appointment. Dialog behavior includes Escape,
+  backdrop/close control, scroll lock, opener focus restoration, a full-screen
+  phone layout, 44px+ controls, and reduced-motion handling.
+- Payment boundary: no payment is faked and no secret is placed in the browser.
+  The component requires `VITE_RAZORPAY_CREATE_ORDER_URL` and
+  `VITE_RAZORPAY_VERIFY_PAYMENT_URL`; without both, it gives a call-to-reserve
+  message. The server must create the Razorpay order, decide the amount, verify
+  the signature, persist the booking, and return `{ verified: true }` before the
+  UI shows success.
+- Files added: `src/components/FounderBooking.tsx`,
+  `src/styles/founder-booking.css`, and
+  `scripts/verify-founder-booking.mjs`. Files changed: `src/App.tsx`,
+  `src/main.tsx`, `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: `npm.cmd run typecheck` passed. `npm.cmd run build` passed with
+  2,075 modules; the existing non-blocking >500 kB Vite advisory remains. The
+  focused Puppeteer verifier passed at 1440×900, 390×844, and 1440×900 reduced
+  motion: exact placement before `Form`, four process rows, two modes, five
+  slots, three-stage completion, ₹25,000 review, explicit tentative wording,
+  safe unconfigured-payment fallback, full-screen phone dialog, focus/scroll
+  restoration, zero page overflow, console errors, or failed requests.
+  Desktop/mobile section and review-dialog screenshots were inspected.
+- Remaining: connect the two server endpoints and test with Razorpay test-mode
+  credentials before accepting real payments. Confirm whether 1–5 PM is the
+  final daily window; the UI currently implements the recording literally.
+
+### 2026-11-12 - Simplify founder CTA, clarify heading, and change fee
+
+- Request: remove the homepage founder section's four-step preview card shown in
+  the supplied screenshot, change the consultation fee to ₹10,000, replace the
+  unclear “from the man himself” headline, and keep the result mobile-friendly.
+  The requested `ui-ux-pro-max`, `frontend-design`, and `caveman` skills were
+  followed. The UI/UX search helper could not run because `python`, `python3`,
+  and `py -3` are unavailable, so its static accessibility, touch, performance,
+  responsive-layout, and pre-delivery guidance was applied.
+- Simplified the dark homepage panel from a two-column explainer to one focused,
+  centered CTA. Removed the entire tentative-status/four-row process preview and
+  its unused responsive CSS. The booking dialog still explains the actual flow
+  progressively after the visitor chooses to engage.
+- Replaced “Looking for expert advice from the man himself?” with the plain,
+  visitor-centered “Need Expert Advice About Your Hair?” Supporting copy still
+  identifies Vinitt Dessai as Founder and Hair Restoration Expert; CTA remains
+  “Consult with the Founder.”
+- Changed the current founder consultation fee from ₹25,000 to ₹10,000 across
+  the Homepage booking section/dialog, `ConsultFounder` page process/value/final
+  CTA copy, and founder story-reel placeholder title. Updated current-state docs
+  and tests; preserved older work-log entries as history.
+- Files changed: `src/components/FounderBooking.tsx`,
+  `src/styles/founder-booking.css`, `src/pages/ConsultFounder.tsx`,
+  `src/site.ts`, `scripts/verify-founder-booking.mjs`, `README.md`, and
+  `PROJECT-CONTEXT.md`.
+- Verification: focused Puppeteer checks passed at 1440×900, 390×844, 375×812,
+  844×390 landscape, and 1440×900 reduced motion. They confirm the process panel
+  is absent, the new heading and ₹10,000 review/payment label render, five slots
+  and three dialog stages still work, phone dialogs fill the viewport, controls
+  meet size requirements, focus/scroll restore correctly, and there is zero
+  page overflow, console error, or failed request. Desktop, small-phone,
+  landscape, and phone review-dialog screenshots were inspected.
+  `npm.cmd run build` passed with 2,075 modules; the existing non-blocking
+  >500 kB Vite chunk advisory remains.
+- Remaining: live Razorpay still needs the server endpoints described in the
+  previous entry. The tentative 1–5 PM window remains awaiting final business
+  confirmation.
+
+### 2026-11-12 - Strip secondary content from homepage founder CTA
+
+- Request: remove the “Private 1-to-1 advisory” eyebrow, shorten “Hair
+  Restoration Expert” to “Hair Expert,” remove the repeated Vinitt Dessai
+  identity row below the paragraph, and remove the visible ₹10,000 line below
+  the CTA. The requested `ui-ux-pro-max` skill was followed; its local search
+  helper remains unavailable because Python is not installed, so the skill's
+  static accessibility, touch, responsive, and performance rules were used.
+- Removed all four elements and their now-unused CSS. The section now contains
+  only the clear heading, one explanatory paragraph, and the “Consult with the
+  Founder” CTA. The ₹10,000 fee remains inside the booking review/payment flow,
+  where the amount is needed before payment, but no longer appears below the
+  homepage CTA.
+- Files changed: `src/components/FounderBooking.tsx`,
+  `src/styles/founder-booking.css`, `scripts/verify-founder-booking.mjs`, and
+  `PROJECT-CONTEXT.md`.
+- Verification: `npm.cmd run typecheck` passed. Focused Puppeteer checks passed
+  at 1440×900, 390×844, 375×812, 844×390 landscape, and 1440×900 reduced motion;
+  they confirm all removed elements are absent, “Founder and Hair Expert” is
+  present, the modal flow still reaches the ₹10,000 review, phone dialogs remain
+  full-screen, focus/scroll restore correctly, and there is zero page overflow,
+  console error, or failed request.
+- Remaining: live Razorpay server endpoints and final confirmation of the
+  tentative 1–5 PM business window are still outstanding.
+
+### 2026-11-12 - Restore session details and align founder CTA typography
+
+- Request: correct the previous over-removal by restoring the useful line below
+  the CTA without the price, change the section typography to match the rest of
+  the site, and add a reference-inspired pill eyebrow that fits the consultation
+  content. The requested `ui-ux-pro-max`, `frontend-design`, and `caveman`
+  skills were followed. Python remains unavailable for the UI/UX search helper,
+  so its static accessibility, touch, typography, and responsive guidance was
+  used.
+- Added a compact outlined glass pill with a Lucide Send icon and the label
+  “Expert Consultation.” Replaced the section headline's Playfair Display with
+  the site's standard Inter/body font at an 800 weight, preserving the existing
+  responsive type scale and balanced wrapping.
+- Restored only “45–60 minutes · Online or in person” below the CTA. The ₹10,000
+  amount remains hidden on the homepage section and still appears at the booking
+  review/payment step where it is required.
+- Files changed: `src/components/FounderBooking.tsx`,
+  `src/styles/founder-booking.css`, `scripts/verify-founder-booking.mjs`, and
+  `PROJECT-CONTEXT.md`.
+- Verification: `npm.cmd run typecheck` and `npm.cmd run build` passed with
+  2,075 modules; the existing non-blocking >500 kB Vite advisory remains.
+  Focused Puppeteer checks passed at 1440×900, 390×844, 375×812, 844×390
+  landscape, and 1440×900 reduced motion. They confirm the eyebrow text,
+  Inter heading font, restored no-price session line, ₹10,000 modal review,
+  full-screen phone dialogs, focus/scroll restoration, and zero page overflow,
+  console error, or failed request. Desktop, small-phone, and landscape section
+  screenshots were inspected.
+- Remaining: live Razorpay endpoints and final confirmation of the tentative
+  1–5 PM window remain outstanding.
+
+### 2026-11-12 - Clarify founder heading and rebuild mobile booking sheet
+
+- Request: assess and use “Looking for expert advice from the founder?” and fix
+  the attached mobile booking-review alignment so the flow is fully responsive.
+  The requested `ui-ux-pro-max`, `ui-styling`, `frontend-design`, and `caveman`
+  skills were followed. The project remains plain CSS; no Tailwind/shadcn
+  dependency was added merely because the styling skill documents them.
+- Changed the Homepage section heading to “Looking for Expert Advice from the
+  Founder?” The copy is more specific than “Need Expert Advice About Your Hair?”
+  and is supported immediately by Vinitt Dessai's name and role.
+- Replaced the phone dialog's full-viewport white canvas with a compact centered
+  sheet using a 10px viewport inset, 20px radius, auto height, and constrained
+  internal scrolling. Rebuilt the phone header with reserved close-button space,
+  responsive title wrapping, consistent 20px content/progress insets, aligned
+  review columns, centered security note, and full-width primary action. The
+  Homepage CTA now keeps one line and a stable 52px height down to 320px; the
+  longer heading uses a smaller responsive phone scale.
+- Files changed: `src/components/FounderBooking.tsx`,
+  `src/styles/founder-booking.css`, `scripts/verify-founder-booking.mjs`,
+  `README.md`, and `PROJECT-CONTEXT.md`.
+- Verification: `npm.cmd run typecheck` and `npm.cmd run build` passed with
+  2,075 modules; the existing non-blocking >500 kB Vite advisory remains.
+  Focused Puppeteer checks passed at 1440×900, 390×844, 375×812, 360×780,
+  320×568, 844×390 landscape, and 1440×900 reduced motion. They confirm the
+  exact new heading, stable 52px phone CTA, compact centered phone sheet,
+  aligned review content, usable internal scroll at short heights, ₹10,000
+  review, focus/scroll restoration, and zero page overflow, console error, or
+  failed request. The 360px review sheet and 360px/320px Homepage sections were
+  visually inspected.
+- Remaining: live Razorpay endpoints and final confirmation of the tentative
+  1–5 PM window remain outstanding.
+
+### 2026-11-12 - Expert spacing and responsive UX audit for founder booking
+
+- Request: review the Homepage founder-consultation section and booking flow
+  for spacing and overall UI/UX quality, then fix verified issues. The requested
+  `ui-ux-pro-max` and `caveman` skills were followed. Python remains unavailable
+  for the skill search helper, so its complete static accessibility, touch,
+  responsive-layout, typography, forms, and pre-delivery guidance was applied.
+- Visual review found the section's spacing, typography, contrast, hierarchy,
+  52px CTA, 44px close target, responsive gutters, and portrait layouts already
+  balanced. Two interaction defects were verified in the booking dialog:
+  short landscape viewports retained the previous step's internal scroll offset
+  and opened the next step below its heading; touch-capable browsers could also
+  display a sticky hover style identical to a selected meeting/time option.
+- Added a dialog-card ref and resets its internal scroll to the top whenever a
+  booking step changes or the dialog opens. Restricted hover-only transforms
+  and selection-like colors to devices that truly support hover; selected
+  states remain driven by `aria-pressed` on every device.
+- Expanded `scripts/verify-founder-booking.mjs` with screenshots for all three
+  stages, an initial no-selection assertion, and a step-three scroll-origin
+  assertion. Files changed: `src/components/FounderBooking.tsx`,
+  `src/styles/founder-booking.css`, `scripts/verify-founder-booking.mjs`, and
+  `PROJECT-CONTEXT.md`.
+- Verification: `npm.cmd run typecheck` passed. Focused Puppeteer checks passed
+  at 1440×900, 390×844, 375×812, 360×780, 320×568, 844×390 landscape, and
+  1440×900 reduced motion. All stages start at scroll position zero, initial
+  controls have no false selection, minimum target sizes and compact sheet
+  geometry hold, page overflow is zero, and focus/scroll lock restore cleanly.
+  Desktop, portrait-phone, compact-phone, and landscape screenshots for stages
+  1–3 were visually inspected. Production build passed with 2,075 modules; the
+  existing non-blocking >500 kB Vite chunk advisory remains.
+- Remaining: live Razorpay server endpoints and final confirmation of the
+  tentative 1–5 PM business window remain outstanding.
+
+### 2026-11-13 - Thank-you page for the founder-booking "Pay ₹10,000 securely" CTA
+
+- Request: build a thank-you page for the last-built section (homepage founder booking dialog, step 3) so Pay ₹10,000 securely leads to it, visual only because Razorpay is not connected. The user's reference was the live site's generic form thank-you (big blue "THANK YOU", "Hi Test,", Home button); this page is deliberately richer because the visitor has chosen a format and time and paid.
+- Added route `#/consultation-booked` (`ConsultationBooked.tsx`, `consultation-booked.css`, `bookingConfirmation.ts`; route in `App.tsx`, CSS import in `main.tsx`). Content: tick badge, "Thank you, {first name}.", lead repeating that the team will call the visitor's number, a ticket-style booking pass (mode, preferred time, name, phone, email, fee, reference if any) with notches anchored to the dashed tear line, a three-step "What happens next", a photos tip, and Back to home / Call 9222666111 / WhatsApp. No invented SLA or refund wording (the missing refund/reschedule policy in the content flags still stands).
+- `FounderBooking.tsx` changed: with `VITE_RAZORPAY_*` unset, Pay no longer shows the "not connected" error; it saves the booking to `sessionStorage` (`ah-booking-confirmation`) with `preview: true` and sets the hash. A verified payment calls the same hand-off with the server's `bookingReference` and no preview flag. The in-dialog `confirmed` step, its `bookingReference` state and the `BookingStep` `'confirmed'` member were removed as unreachable. The thank-you page shows a "Preview only — no payment was taken" banner whenever `preview` is set, so the demo cannot be mistaken for a real booking; the banner goes away with no code change once payment is wired.
+- Decision: booking travels in `sessionStorage`, never the URL, so a phone number stays out of history and referrers. Direct visit with no stored booking renders generic wording without the pass.
+- Files added: `src/pages/ConsultationBooked.tsx`, `src/styles/consultation-booked.css`, `src/bookingConfirmation.ts`, `scripts/verify-consultation-booked.mjs`. Files changed: `src/components/FounderBooking.tsx`, `src/App.tsx`, `src/main.tsx`, `scripts/verify-founder-booking.mjs` (fallback assertion replaced by the Pay → thank-you assertions), `README.md`, `PROJECT-CONTEXT.md`.
+- Verification: `tsc -b --noEmit` and `npm run build` passed (existing >500 kB advisory only). `verify-founder-booking.mjs` passed at all 7 viewports (1440, 390, 375, 360, 320, 844×390 landscape, reduced motion), including the hand-off to the thank-you route, content, banner, no leftover dialog or scroll lock, scroll at top and zero overflow. `verify-consultation-booked.mjs` passed at 1440, 390 and 320. Desktop and phone screenshots were inspected; the pass notches were misaligned on the first pass and were re-anchored to the divider.
+- Unfinished: live Razorpay endpoints; the ₹10,000 shown in the dialog vs the ₹25,000 in the 2026-11-12 entry and the brand memory should be settled by the client.
+
+### 2026-11-13 - Founder booking: date picker, more slots shown as booked, tentative-dates copy
+- Request (from the client's seniors): (1) add more slots and always show them as booked so the diary never looks free; (2) let users pick a date above the tentative time; (3) add the text "These are tentative dates / we will have 1 of the guys callback and give you a final confirmation" if not already present.
+- Built in the dialog's step 1 (`FounderBooking.tsx`, `founder-booking.css`): new "Choose a tentative date" (14 chips starting tomorrow; 7-column grid on desktop, swipeable rail on phones). The time grid appears only after a date is picked ("Pick a date to see the times." before). 12 hourly slots 9 AM–8 PM in 4 columns (3 on phones). Booked slots are disabled, greyed, struck through and labelled "Booked", with aria-label "<time>, booked". Changing date drops a chosen time if it is booked on the new date. Continue needs mode + date + time. Hint text under the time grid: "These are tentative dates. One of our team will call you back and give you a final confirmation." Step 3 gains a "Tentative date" row (4 rows) and its notice now says "preferred date and time, not a confirmed appointment ... final confirmation".
+- Booked rule (`src/bookingSlots.ts`, new): 9 AM–12 PM and 6–8 PM are booked on every date; each date also books up to two of the 1–5 PM slots (deterministic from the date), leaving 3–5 open. ⚠ This is presentational. It is not a real calendar, and visitors are told the dates are tentative and confirmed by phone. Flagged for the client: swap `isSlotBooked` for real availability when one exists, and consider whether showing invented bookings fits the brand's honesty-first copy convention.
+- Data: `BookingConfirmation` gained optional `date` (YYYY-MM-DD). Razorpay order and verify payloads and the order `notes` now include the date (`date`, `tentativeDate`); the backend contract in README was updated. Thank-you page shows the long date above the big time, "Tentative date and time. Our team will confirm the final one.", and the step now reads "One of our team calls you back".
+- Files added: `src/bookingSlots.ts`. Changed: `FounderBooking.tsx`, `founder-booking.css`, `bookingConfirmation.ts`, `ConsultationBooked.tsx`, `consultation-booked.css`, `scripts/verify-founder-booking.mjs` (default port now 5180; asserts 14 dates, 12 slots per date, 7+ booked and 3+ open on every date, labels, booked click ignored, differing patterns across dates, tentative copy, 4 review rows, date and time on the thank-you page), `README.md`, `PROJECT-CONTEXT.md`.
+- Verification: `tsc` and `npm run build` passed (existing >500 kB advisory). `verify-founder-booking.mjs` passed at 1440, 390, 375, 360, 320, 844×390 and reduced motion. Desktop and 360px screenshots and the thank-you page were inspected.
+- Unfinished: real availability source; Razorpay endpoints; ₹10,000 vs ₹25,000 fee; nothing committed.
+
+### 2026-11-13 (later) - Founder booking: month calendar, Monday closed, 12-7 PM slots
+- Request: the business is closed on Mondays and open 11 AM–8 PM, so offer slots 12 PM–7 PM (with booked ones too), and make the date and time UI familiar, simple and easy.
+- Replaced the 14-chip date strip with a month calendar (Calendly/diary pattern): Sunday-first grid, previous/next month arrows (disabled at the window edges), window = tomorrow to +30 days. Open days are pale-blue discs; selected is solid blue; Mondays and out-of-window days are grey and disabled (Monday cells have aria-label "<date>, closed"). Caption under it: "Open 11 AM – 8 PM · Closed on Mondays". Calendar and time list sit side by side on desktop (>620px), stacked on phones. Time list: 2 columns, 8 hourly slots 12:00 PM–7:00 PM; always booked 12 PM, 6 PM, 7 PM; each date also books up to two of 1–5 PM (deterministic per date), so 3–5 booked and 3–5 open. A Monday would show everything booked, but it cannot be selected. The tentative-dates sentence moved below both columns.
+- Files changed: `src/bookingSlots.ts` (rewritten: window, month cells, `getMonthCells`, `shiftMonth`, `openingHours`), `FounderBooking.tsx` (calendar and time fieldsets, month view state), `founder-booking.css` (calendar styles replace the chip styles), `scripts/verify-founder-booking.mjs` (walks every month: 24-26 open days, no Mondays selectable, 8 slots per day in order, 3-5 booked / 3+ open, 12/6/7 PM booked, patterns vary, prev/next bounds, hours caption), `README.md`, `PROJECT-CONTEXT.md`. The earlier 2026-11-13 entry's "14 chips / 9 AM–8 PM slots" description is superseded by this one.
+- Verification: `tsc` and `npm run build` passed; `verify-founder-booking.mjs` passed at 1440, 390, 375, 360, 320, 844x390 and reduced motion; desktop and 360px screenshots inspected.
+- Unfinished: real availability source (booked state is presentational); public holidays are not modelled; Razorpay endpoints; ₹10,000 vs ₹25,000; nothing committed.
+
+### 2026-11-14 - Consultation fee lowered to ₹5,000
+- Request: the client's senior asked for the founder-consultation price to drop to ₹5,000. This also settles the earlier ₹10,000 vs ₹25,000 question: **the current fee is ₹5,000**; older log entries that say ₹10,000 or ₹25,000 are history.
+- Changed ₹10,000 to ₹5,000 everywhere it is shown: `FounderBooking.tsx` (`consultationFee` constant, so the review row, Pay button label and the thank-you pass all follow), `ConsultFounder.tsx` (process step, "Why Clients Gladly Pay ₹5,000 For This", price card, "More Than ₹5,000" closing headline), `site.ts` (placeholder reel title "Worth ₹5,000?"), code comments in `ConsultationBooked.tsx` and `consultation-booked.css`, `README.md`, and the two verify assertions in `scripts/verify-founder-booking.mjs`.
+- Open: when Razorpay is wired, the server order amount must be ₹5,000 (500000 paise) to match; the browser only displays the fee. The Consult with Founder page's value cards still compare against "₹50k - ₹3L+" for a wrong decision; that framing still reads fine at ₹5,000.
+
+### 2026-11-14 (later) - Founder booking section added to three inner pages
+- Request: after advice on where the "Looking for Expert Advice from the Founder?" section belongs, the user approved the three recommended pages (a fourth, Consult with Founder, was offered and not chosen).
+- Mounted `<FounderBooking />` on: `StickOnClipOn.tsx` (before `StillConfused`), `WillMyHairlineLookReal.tsx` (before `HairlineConfused`, so the reels still follow that CTA) and `HairTransplant.tsx` (before the free form `#hair-transplant-form`). Rationale per page: decision page (visitor cannot choose), single-objection page (the founder is the proof), complex hybrid (visitor asks "does this fit me?"). Deliberately NOT added to the Stick-On / Clip-On detail pages, Lifespan pages, SMP, Patch vs System, Results, About, Team: they already end in a free form/CTA or the audience is wrong. The transplant page does now show a paid CTA directly above its free form, which breaks that rule; watch which converts and drop it if the free form loses leads.
+- Trap found and fixed: `hair-transplant.css` resets `h1-h4, p, figure` margins to 0 on `.hairTransplantPage` (specificity 0,1,1), which beat the section's own `.founderBooking__*` margins and squashed the heading, lede and eyebrow together (and would have hit the dialog too, since it is a DOM descendant). `HairTransplant.tsx` now renders `<main>` with two `.hairTransplantPage` divs around `<FounderBooking />`. Any other page that scopes a margin reset to a wrapper needs the section outside that wrapper.
+- Files changed: `StickOnClipOn.tsx`, `WillMyHairlineLookReal.tsx`, `HairTransplant.tsx`, `README.md`, `PROJECT-CONTEXT.md`. Added: `scripts/verify-founder-booking-pages.mjs` (per page at 1440 and 390: section appears once, sits before the expected element, opens the dialog, picks mode/date/time, enters details, reaches `#/consultation-booked`, zero overflow, no console errors).
+- Verification: `tsc` passed; `verify-founder-booking-pages.mjs` passed on all three pages at both widths; `verify-hair-transplant.mjs` (run with `VERIFY_URL=http://localhost:5180/#/hair-transplant`, the script needs the full hash route) passed at all 5 viewports; computed heading/lede spacing on the three pages now equals the homepage (20px / 22px). Nothing committed.
+- Unfinished: Consult with Founder page still has its own separate booking button; Razorpay endpoints; the reel and "Booked" slot flags above.
+
+### 2026-11-14 (later still) - Handoff package for a standalone founder-booking page
+- Request: build a full-page (not popup) version of the founder booking flow, steps 1 to 3 and the thank-you page, for the Instagram link tree, as a separate project, and supply all assets and a prompt.
+- Created a new folder outside this repo: `C:\Users\ADMIN\Desktop\Founder Booking Page\`. It holds `PROMPT.md` (full build brief: rules, layout, Instagram in-app browser rules, UTM attribution, Razorpay contract, acceptance checklist), `README.md`, `CLAUDE.md`/`AGENTS.md`, `assets/` and `public/` (logo, favicon, founder photo as original PNG plus 900 and 480 WebP made from `public/consult-founder.png`, WhatsApp icon), `src/tokens.css`, copies of the working reference code (`FounderBooking.tsx`, `bookingSlots.ts`, `bookingConfirmation.ts`, `ConsultationBooked.tsx`, the two CSS files, `tokens.css`, a base-reset excerpt, `verify-founder-booking.mjs`) and starter config (`package.json`, `tsconfig.json`, `vite.config.ts` on port 5190, `index.html`, `vercel.json`, `public/_redirects`, `.env.example`).
+- Decisions baked into the brief: real paths `/` and `/thank-you` (own URL for conversion tracking), inline steps with browser Back moving between steps, sticky mobile action bar, no dialog, `noindex` by default, UTM capture sent to the order request but never shown, same ₹5,000 / Mon closed / 11-8 / 12-7 PM rules and the same invented-Booked-slots caveat.
+- Nothing in this repo's source changed, and the new project has not been installed or built yet (no `npm install` was run). The reference copies are snapshots from 2026-11-14 and will not follow later edits to this repo.
+
+### 2026-11-14 (evening) - Founder booking: popup replaced by a full-screen page
+- Request (senior's feedback): the steps that open after the "Consult with the Founder" CTA should be a full-screen page, not a popup.
+- Result: the CTA is now a link (`<a class="founderBooking__cta" href="#/book-consultation">`). New route `#/book-consultation` (`src/pages/BookConsultation.tsx`) holds the same three steps and the same rules (₹5,000, Mondays closed, 11 AM–8 PM, slots 12–7 PM, invented Booked slots, tentative-dates copy, Razorpay contract incl. `date`). `FounderBooking.tsx` shrank to the dark teaser. Pay still ends on `#/consultation-booked`.
+- Page design: slim bar (logo, Close), no site nav/footer, `FloatingContact` hidden on this route (`App.tsx`); inline steps with progress; calendar and time list in one soft panel; from 900px a sticky "founder + live summary" card (images `public/book/founder-480.webp` and `-900.webp`, made from `public/consult-founder.png`); on phones the action row is `position: sticky; bottom: 0` with safe-area padding. 44px minimum targets.
+- Behaviour decisions: each step pushes a history entry (`history.state = { bookingDepth, step, fromSite }`), so browser/phone Back walks 3 → 2 → 1 → out; a step is clamped down if earlier answers are missing (refresh or history jump). Choices and details persist in `sessionStorage` `ah-booking-draft` (`bookingDraft.ts`; stale dates or now-booked times are dropped on read) and are cleared when the booking is handed over. Close uses `history.go(-(depth+1))` when the CTA flagged `ah-booking-from-site` (one-shot, read and cleared on first mount, then stored in the history entry so StrictMode and refresh are safe), else goes to `#/`. Focus moves to the page heading on each step.
+- Refactor: Razorpay types, loader, fee, env URLs and validators moved to `src/bookingPayment.ts`; `bookingSlots.ts` gained `isBookableDate`. Old popup CSS removed from `founder-booking.css` (now teaser only, no `.founderBooking-lock`); new `src/styles/book-consultation.css` (imported in `main.tsx`). Trap hit and fixed: a `.bookPage h1, p {margin: 0}` reset outranked every single-class margin and squashed the layout, so it is now `:where(.bookPage) :is(...)` (zero specificity). Same family of trap as the transplant wrapper reset.
+- Verification: `tsc` and `npm run build` passed. `scripts/verify-founder-booking.mjs` was rewritten for the page flow and passed at 1440, 390, 375, 360, 320, 844x390 and reduced motion (teaser; page opens with no dialog, nav or floating buttons; every open day in the window has 8 correct slots; Mondays closed; summary follows choices; mobile bar pinned to the bottom; Back/Forward; validation; refresh keeps step and typed data; review; Close returns home; reopen keeps choices and details; Pay reaches the preview thank-you; draft cleared after booking). `scripts/verify-founder-booking-pages.mjs` was updated (full-page flow, Close returns to the same inner page) and passed on the three inner pages at both widths. Desktop and phone screenshots were inspected. `verify-founder-booking.mjs` now ignores `net::ERR_ABORTED` requests (the homepage hero video cancelled on navigation).
+- Not touched: the separate handoff folder `C:\Users\ADMIN\Desktop\Founder Booking Page\` (its reference copies still show the old popup code, and its standalone page was built by another session). Unfinished: Razorpay endpoints; real availability behind the Booked slots; refund policy text; the Consult with Founder page's own booking button; nothing committed.
+
+### 2026-11-14 (night) - Founder consultation ported to the Alchemane project
+- Request: add the "Looking for expert advice from the founder?" section to `D:\New Alcehamane Website`, matching that project's design.
+- That project is a different stack (vanilla JS, Vite 7, Tailwind, multi-page `.html`, Source Serif 4 / Source Sans 3, ink `#232928` and teal, 2px corners) and a different brand (Alchemane hair extensions; Vinitt Dessai is also its founder, studio in Khar West, Mon closed, Tue-Sun 11 AM-8 PM). Nothing was copied as React; the flow was re-implemented in plain JS.
+- Added there: homepage teaser (ink band, `src/sections/founder-advice.css`, markup in `src/homepage.html`, between the FAQ and the consultation form), `founder-consultation.html` (+ `src/pages/founder-consultation.js/.css`), `founder-consultation-booked.html` (+ `.js/.css`), shared modules in `src/founder/` (`booking-slots.js`, `booking-store.js`, `booking-links.js`), `scripts/check-founder-consultation.mjs` (Playwright, `npm run check:founder-consultation`), `docs/founder-consultation.md`, a README paragraph. Edited: `vite.config.js` (two build inputs, and `data-site-chrome="none"` opt-out in `addSiteChrome`), `src/main.js`, `package.json`.
+- Behaviour matches the AHL build (steps are history entries, draft in sessionStorage, Close returns to the origin page, preview thank-you, same slot rules). Differences: modes are `online` / `studio` ("In person at our Khar West studio"), contact is +91 99671 23333, phone check is a 10-digit Indian mobile, storage keys are `alchemane-founder-*`.
+- Decision flagged to the user: the fee was carried over as ₹5,000, but Alchemane's existing consultation is ₹299 (`consultation.html`). Must be confirmed; it is one constant (`founderBooking.fee`).
+- Verification: the new check passed at 1440, 390, 320, 844x390 and reduced motion; `vite build` (to a temp folder) passed with both new pages; screenshots of the teaser, booking steps and thank-you were inspected. The Alchemane dev server was started on port 5173 for review. That project's git tree was not committed; its unrelated untracked files (`src/collections/*`, `tmp/`) were left alone.

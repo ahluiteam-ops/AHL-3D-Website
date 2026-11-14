@@ -54,12 +54,14 @@ Paste this after opening the folder:
   - `#/clip-on-hair-system`
   - `#/stick-on-hair-system`
   - `#/smp`
-- Current state: version 2, including all routes above, is committed on
-  `master` and published to GitHub. Preserve every unrelated future edit and
-  asset.
+  - `#/hair-transplant`
+- Current state: the version-2 baseline is committed on `master` and published
+  to GitHub. The Hair Transplant route and later refinements are intentional
+  uncommitted work; preserve every unrelated edit and asset.
 - Content: shared strings and asset paths live in `src/site.ts`; design tokens
   are in `src/styles/tokens.css`; most presentation rules are in
-  `src/styles/global.css`, with SMP rules in `src/styles/smp.css`.
+  `src/styles/global.css`, with route-scoped rules in `src/styles/smp.css` and
+  `src/styles/hair-transplant.css`.
 - Source material: client reasoning is in `Website page document pdf's/`; the
   supplied old-site visual designs are in `Website page design pdf's/`; original
   image inputs are in `Images/`; web-delivery assets are in `public/`.

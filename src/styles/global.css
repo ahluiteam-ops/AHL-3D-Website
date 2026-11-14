@@ -1807,11 +1807,10 @@ ol {
 .checklist__media {
   position: relative;
   display: block;
-  width: 100%;
-  margin: clamp(20px, 2.6vw, 36px) 0 0;
+  width: min(100%, clamp(266.67px, 56svh, 626.67px));
+  margin: clamp(20px, 2.6vw, 36px) auto 0;
   padding: 0;
   aspect-ratio: 4 / 3;
-  max-height: clamp(200px, 42svh, 470px);
   border: 1px solid rgb(255 255 255 / 0.1);
   border-radius: clamp(14px, 1.2vw, 22px);
   background: #101319;
@@ -1826,6 +1825,10 @@ ol {
   object-fit: cover;
   object-position: center;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.checklist__video {
+  object-fit: contain;
 }
 
 .checklist__media--playable {
@@ -1891,6 +1894,17 @@ ol {
   font-weight: 600;
   letter-spacing: 0.14em;
   font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 901px) {
+  .checklist__media {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  .checklist__progress {
+    width: min(100%, clamp(266.67px, 56svh, 626.67px));
+  }
 }
 
 /* ---- Right column: the scrubbed list ---- */
@@ -2064,7 +2078,7 @@ ol {
   }
 
   .checklist__media {
-    max-height: clamp(170px, 28svh, 300px);
+    width: min(100%, clamp(226.67px, 37.33svh, 400px));
   }
 
   .checklist__viewport {
@@ -2280,10 +2294,17 @@ ol {
 
 .voices__media img,
 .voices__video {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.voices__video {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #000;
 }
 
 .voices__media--playable {
@@ -3224,6 +3245,10 @@ ol {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.process__video {
+  object-fit: contain;
 }
 
 .process__media--playable {
@@ -4528,11 +4553,18 @@ ol {
 }
 
 .salons__media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transform: scale(1.02);
-  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transition: opacity 0.45s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.salons__media img.is-active {
+  opacity: 1;
 }
 
 .salons__item:hover .salons__media img {
@@ -4561,6 +4593,80 @@ ol {
   letter-spacing: -0.03em;
   line-height: 1;
   text-shadow: 0 6px 24px rgb(0 0 0 / 0.4);
+}
+
+.salons__controls {
+  position: absolute;
+  z-index: 2;
+  right: clamp(12px, 1.4vw, 22px);
+  bottom: clamp(10px, 1.15vw, 18px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.salons__dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 7px;
+  border-radius: 999px;
+  background: rgb(12 13 16 / 0.38);
+  backdrop-filter: blur(8px);
+}
+
+.salons__dot,
+.salons__pause {
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.salons__dot::before {
+  width: 6px;
+  height: 6px;
+  border-radius: inherit;
+  background: rgb(255 255 255 / 0.58);
+  content: '';
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.salons__dot.is-active::before {
+  transform: scale(1.35);
+  background: #fff;
+}
+
+.salons__pause {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  background: rgb(12 13 16 / 0.46);
+  backdrop-filter: blur(8px);
+}
+
+.salons__pause svg {
+  width: 14px;
+  height: 14px;
+}
+
+.salons__dot:focus-visible,
+.salons__pause:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.salons__dot:active,
+.salons__pause:active {
+  transform: scale(0.94);
 }
 
 .salons__address {
@@ -4597,6 +4703,87 @@ ol {
   filter: saturate(1.06);
 }
 
+/* ==========================================================================
+   Persistent contact controls
+   ========================================================================== */
+.floatingContact {
+  position: fixed;
+  z-index: 900;
+  top: 50%;
+  /* Match the 52px footer back-to-top button's horizontal centre. */
+  right: max(calc(clamp(16px, 2.4vw, 46px) - 4px), env(safe-area-inset-right));
+  display: grid;
+  gap: 0;
+  transform: translateY(-50%);
+}
+
+.floatingContact__button {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  border: 0;
+  transition: transform 0.2s ease;
+  touch-action: manipulation;
+}
+
+.floatingContact__button img { width: 100%; height: 100%; }
+
+.floatingContact__button span {
+  position: absolute;
+  right: calc(100% + 10px);
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  color: #fff;
+  background: #13171d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  white-space: nowrap;
+}
+
+.floatingContact__button:hover,
+.floatingContact__button:focus-visible {
+  transform: scale(1.07);
+}
+
+.floatingContact__button:hover span,
+.floatingContact__button:focus-visible span {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.floatingContact__button:focus-visible {
+  outline: 3px solid var(--accent-ink);
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  .floatingContact {
+    top: auto;
+    /* Footer control becomes 44px here; keep both centre lines identical. */
+    right: max(calc(clamp(16px, 2.4vw, 46px) - 6px), env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
+    transform: none;
+  }
+
+  .floatingContact__button {
+    width: 56px;
+    height: 56px;
+  }
+
+  .floatingContact__button span { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floatingContact__button,
+  .floatingContact__button span { transition: none; }
+}
+
 @media (max-width: 900px) {
   .salons__title {
     font-size: clamp(1.55rem, 6.4vw, 2.2rem);
@@ -4609,6 +4796,22 @@ ol {
 
   .salons__item {
     width: min(84vw, 420px);
+  }
+
+  .salons__dot,
+  .salons__pause {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .salons__dots {
+    gap: 0;
+    padding: 0 2px;
+  }
+
+  .salons__pause {
+    width: 44px;
+    height: 44px;
   }
 }
 
@@ -5161,8 +5364,7 @@ ol {
 
 /* The poster is oversized and moves against its own frame, so the card reads
    as having a front and a back rather than as a flat plane being rotated. */
-.decide__poster,
-.decide__video {
+.decide__poster {
   position: absolute;
   inset: -3%;
   width: 106%;
@@ -5170,6 +5372,15 @@ ol {
   object-fit: cover;
   transform: translate3d(calc(var(--ry) * -0.6%), calc(var(--rx) * 0.6%), 0);
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.decide__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #08090b;
 }
 
 .decide__card--playable {
@@ -7649,6 +7860,29 @@ ol {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.guideHero__trigger,
+.guideHero__video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.guideHero__trigger {
+  z-index: 2;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.guideHero__video {
+  z-index: 3;
+  object-fit: contain;
+  background: #08090b;
 }
 
 .guideHero__play {

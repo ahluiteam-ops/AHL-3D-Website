@@ -18,7 +18,9 @@ import { Methods } from './components/Methods'
 import { Form } from './components/Form'
 import { Salons } from './components/Salons'
 import { Faq } from './components/Faq'
+import { FounderBooking } from './components/FounderBooking'
 import { Footer } from './components/Footer'
+import { FloatingContact } from './components/FloatingContact'
 import { StickOnClipOn } from './pages/StickOnClipOn'
 import { HairPatchVsSystem } from './pages/HairPatchVsSystem'
 import { WillMyHairlineLookReal } from './pages/WillMyHairlineLookReal'
@@ -27,6 +29,13 @@ import { ClipOnLifespan } from './pages/ClipOnLifespan'
 import { ClipOnHairSystem } from './pages/ClipOnHairSystem'
 import { StickOnHairSystem } from './pages/StickOnHairSystem'
 import { Smp } from './pages/Smp'
+import { HairTransplant } from './pages/HairTransplant'
+import { ConsultFounder } from './pages/ConsultFounder'
+import { BookConsultation } from './pages/BookConsultation'
+import { AboutUs } from './pages/AboutUs'
+import { Team } from './pages/Team'
+import { Results } from './pages/Results'
+import { ConsultationBooked } from './pages/ConsultationBooked'
 
 /**
  * Routes are hash-based and matched on a **leading slash**, which is the whole
@@ -51,6 +60,13 @@ const routes: Record<string, () => JSX.Element> = {
   '/clip-on-hair-system': ClipOnHairSystem,
   '/stick-on-hair-system': StickOnHairSystem,
   '/smp': Smp,
+  '/hair-transplant': HairTransplant,
+  '/consult-with-founder': ConsultFounder,
+  '/about-us': AboutUs,
+  '/team': Team,
+  '/results': Results,
+  '/book-consultation': BookConsultation,
+  '/consultation-booked': ConsultationBooked,
 }
 
 function useHashRoute() {
@@ -95,6 +111,7 @@ function Home() {
         <Deck />
         <Salons />
         <Faq />
+        <FounderBooking />
         <Form />
       </main>
       <Footer />
@@ -105,5 +122,12 @@ function Home() {
 export default function App() {
   const route = useHashRoute()
   const Page = routes[route]
-  return Page ? <Page /> : <Home />
+  return (
+    <>
+      {Page ? <Page /> : <Home />}
+      {/* The booking page is a focused checkout: the floating buttons would sit
+          over its form and its bottom action bar. */}
+      {route !== '/book-consultation' && <FloatingContact />}
+    </>
+  )
 }

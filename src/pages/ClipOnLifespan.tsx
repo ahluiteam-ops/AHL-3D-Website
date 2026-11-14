@@ -10,7 +10,9 @@ import {
   clipOnBaseChoiceOptions,
   clipOnBaseOptions,
   clipOnBaseOptionsTitle,
+  storyReels,
 } from '../site'
+import { StoryReels } from '../components/StoryReels'
 
 /**
  * "Clip-On System Lifespan" — the guide page at `#/clip-on-lifespan`, the
@@ -49,6 +51,7 @@ export function ClipOnLifespan() {
         <BaseChoice options={clipOnBaseChoiceOptions} />
         <Systems />
         <Form />
+        <StoryReels set={storyReels.clipOnLifespan} ground="tint" />
       </main>
       <Footer />
     </>

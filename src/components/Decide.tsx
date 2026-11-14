@@ -18,8 +18,7 @@ import { decideNote, decideTitle, decideVideo } from '../site'
  * without one overwriting the other. It is skipped for coarse pointers and for
  * reduced motion by the hook itself.
  *
- * The film has not been supplied, so this is a `<figure>` rather than a dead
- * button — a control that cannot do anything is worse than no control.
+ * The supplied film plays inline only after the poster control is selected.
  */
 export function Decide() {
   const { ref: revealRef, shown } = useReveal<HTMLDivElement>()

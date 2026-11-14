@@ -7,6 +7,7 @@ import { Transformations } from '../components/Transformations'
 import { Systems } from '../components/Systems'
 import { StillConfused } from '../components/StillConfused'
 import { Footer } from '../components/Footer'
+import { FounderBooking } from '../components/FounderBooking'
 
 /**
  * "Stick-On or Clip-On" — the second page of the site, reached at
@@ -24,6 +25,7 @@ export function StickOnClipOn() {
         <Comparison />
         <TwoMethods />
         <Transformations />
+        <FounderBooking />
         <StillConfused />
       </main>
       <Footer />

@@ -19,6 +19,7 @@ import { Achievements } from '../components/Achievements'
 import { Backed } from '../components/Backed'
 import { Checklist } from '../components/Checklist'
 import { ClientStories } from '../components/ClientStories'
+import { Faq } from '../components/Faq'
 import {
   ClipZyconRange,
   type ZyconRangeContent,
@@ -28,6 +29,9 @@ import { HairlineTruth } from '../components/HairlineTruth'
 import { Nav } from '../components/Nav'
 import { Photo, type Slot } from '../components/Photo'
 import { StackRow, useScrollStack } from '../components/ScrollStack'
+import type { FaqGroup } from '../site'
+import { StoryReels } from '../components/StoryReels'
+import { storyReels } from '../site'
 
 const media = {
   hero: {
@@ -493,7 +497,24 @@ const faqs = [
   },
 ] as const
 
-function StickFaq() {
+const stickOnFaqGroup: FaqGroup = {
+  id: 'stick-on',
+  label: 'Stick-On Hair System',
+  items: [
+    { q: 'What is Zycon range?', a: 'The Zycon range is a stick-on hair system that supports scalp health by using antibacterial protection and controlling odor. It is designed to help you stay comfortable, confident, and unrestricted in your active lifestyle.' },
+    { q: 'Will it fall off with sweat?', a: 'No, our medical-grade adhesives are designed to be sweat and water-resistant, ensuring your system stays secure during workouts or swimming.' },
+    { q: 'Will it damage my scalp?', a: 'Not at all. We use breathable, skin-friendly materials and medical-grade bonding agents that are safe for long-term wear.' },
+    { q: 'How often servicing?', a: 'We generally recommend a service every 3-4 weeks to clean the scalp, re-bond the system, and trim your natural hair.' },
+    { q: 'Can I style it?', a: 'Absolutely! You can cut, wash, and style it just like your own hair. Gel, wax, or spray – it’s all good.' },
+    { q: 'Will my partner notice?', a: 'Our systems are designed to be undetectable, even up close. The hairline and density are matched perfectly to look completely natural.' },
+  ],
+}
+
+function StickDarkFaq() {
+  return <Faq groups={[stickOnFaqGroup]} />
+}
+
+export function StickFaq() {
   const [open, setOpen] = useState(0)
   return (
     <section className="stickFaq" aria-labelledby="stick-faq-title">
@@ -581,8 +602,9 @@ export function StickOnHairSystem() {
         <LocalComparison />
         <ClientStories />
         <Dermatologist />
-        <StickFaq />
+        <StickDarkFaq />
         <ReadyCta />
+        <StoryReels set={storyReels.stickOn} />
         <LearnClipOn />
       </main>
       <Footer />

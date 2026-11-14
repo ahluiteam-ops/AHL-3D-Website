@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Pause, Play } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { usePrefersReducedMotion } from '../hooks'
 import { salons, salonsAction, salonsOutro, salonsTitle } from '../site'
@@ -82,31 +82,7 @@ export function Salons() {
             </a>
           </div>
 
-          {salons.map((salon) => (
-            <article
-              className={`salons__item salons__item--${salon.city.toLowerCase()}`}
-              key={salon.city}
-            >
-              {/* The city is the card's heading and is set over the
-                  photograph, as the reference sets each project's own type
-                  over its shot. One element, so it is not announced twice. */}
-              <div className="salons__media">
-                <img src={salon.image} alt={salon.alt} loading="lazy" />
-                <h3 className="salons__city">{salon.city}</h3>
-              </div>
-
-              <p className="salons__address">{salon.address}</p>
-              <a
-                className="salons__direction"
-                href={salon.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {salonsAction}
-                <ArrowUpRight size={14} strokeWidth={2.4} aria-hidden="true" />
-              </a>
-            </article>
-          ))}
+          {salons.map((salon) => <SalonCard key={salon.city} salon={salon} reduced={reduced} />)}
 
           <div className="salons__outro">
             <p className="salons__outroCopy">{salonsOutro.copy}</p>
@@ -118,5 +94,81 @@ export function Salons() {
         </motion.div>
       </div>
     </section>
+  )
+}
+
+function SalonCard({ salon, reduced }: { salon: (typeof salons)[number]; reduced: boolean }) {
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const canRotate = salon.images.length > 1 && !reduced && !paused
+
+  useEffect(() => {
+    if (!canRotate) return
+    const timer = window.setInterval(() => {
+      setActive((current) => (current + 1) % salon.images.length)
+    }, 5000)
+    return () => window.clearInterval(timer)
+  }, [canRotate, salon.images.length])
+
+  const selectPhoto = (index: number) => {
+    setActive(index)
+    setPaused(true)
+  }
+
+  return (
+    <article className={`salons__item salons__item--${salon.city.toLowerCase()}`}>
+      <div
+        className="salons__media"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocusCapture={() => setPaused(true)}
+        onBlurCapture={() => setPaused(false)}
+      >
+        {salon.images.map((image, index) => (
+          <img
+            className={index === active ? 'is-active' : ''}
+            src={image}
+            alt={index === active ? salon.alt : ''}
+            aria-hidden={index === active ? undefined : true}
+            key={image}
+            loading="lazy"
+          />
+        ))}
+        <h3 className="salons__city">{salon.city}</h3>
+        {salon.images.length > 1 ? (
+          <div className="salons__controls" aria-label={`${salon.city} salon photos`}>
+            <div className="salons__dots" role="group" aria-label={`Choose ${salon.city} salon photo`}>
+              {salon.images.map((_, index) => (
+                <button
+                  className={`salons__dot${index === active ? ' is-active' : ''}`}
+                  type="button"
+                  aria-label={`Show ${salon.city} salon photo ${index + 1}`}
+                  aria-pressed={index === active}
+                  onClick={() => selectPhoto(index)}
+                  key={index}
+                />
+              ))}
+            </div>
+            {!reduced ? (
+              <button
+                className="salons__pause"
+                type="button"
+                aria-label={`${paused ? 'Play' : 'Pause'} ${salon.city} salon photo slideshow`}
+                aria-pressed={paused}
+                onClick={() => setPaused((value) => !value)}
+              >
+                {paused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
+              </button>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
+
+      <p className="salons__address">{salon.address}</p>
+      <a className="salons__direction" href={salon.href} target="_blank" rel="noreferrer">
+        {salonsAction}
+        <ArrowUpRight size={14} strokeWidth={2.4} aria-hidden="true" />
+      </a>
+    </article>
   )
 }

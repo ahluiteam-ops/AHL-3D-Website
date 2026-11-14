@@ -55,6 +55,10 @@ const probe = () => {
     linkCounts: [...document.querySelectorAll('.foot__col')].map(
       (c) => c.querySelectorAll('a').length,
     ),
+    quickLinks: [...document.querySelectorAll('.foot__col:first-of-type a')].map((a) => ({
+      label: a.textContent.trim(),
+      href: a.getAttribute('href'),
+    })),
     socials: [...document.querySelectorAll('.foot__socials a')].map((a) =>
       a.getAttribute('aria-label'),
     ),
@@ -91,6 +95,10 @@ async function run(width, height, reduced, tag) {
 
   console.log(`\n=== ${tag} (${width}x${height}${reduced ? ', reduced' : ''}) ===`)
   const a = await page.evaluate(probe)
+  const founderLink = a.quickLinks[1]
+  if (founderLink?.label !== 'Consult with Founder' || founderLink.href !== '#/consult-with-founder') {
+    throw new Error(`${tag}: Consult with Founder is not directly below About us ${JSON.stringify(a.quickLinks)}`)
+  }
   console.log('at rest', JSON.stringify(a))
   await page.screenshot({ path: `${outDir}/${tag}.png` })
 

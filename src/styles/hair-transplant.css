@@ -1,0 +1,971 @@
+/* Front Hairline Transplant + Hair System
+   Page-scoped visual system: quiet white/soft-grey chapters, one dark opening
+   panel, restrained blue actions, and short viewport-enter reveals. */
+
+.hairTransplantPage {
+  --ht-soft: #f3f5f7;
+  --ht-card: #fff;
+  --ht-ink: #111318;
+  --ht-muted: #575e69;
+  --ht-line: rgb(15 23 42 / 0.09);
+  --ht-green: #56dba0;
+  --ht-blue: #1769ff;
+  --ht-radius: clamp(16px, 1.35vw, 22px);
+
+  color: var(--ht-ink);
+  background: #fff;
+}
+
+.hairTransplantPage h1,
+.hairTransplantPage h2,
+.hairTransplantPage h3,
+.hairTransplantPage h4,
+.hairTransplantPage p,
+.hairTransplantPage figure {
+  margin: 0;
+}
+
+.hairTransplantPage h2 {
+  font-size: clamp(1.85rem, 3.35vw, 3.15rem);
+  font-weight: 820;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.hairTransplantPage h2 > span,
+.hairTransplantPage h1 > span {
+  display: block;
+}
+
+.htSrOnly {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.htAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--grad);
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.htAction svg {
+  width: 17px;
+  height: 17px;
+  padding: 2px;
+  border-radius: 5px;
+  background: #fff;
+  color: var(--ht-blue);
+}
+
+.htAction:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px -16px rgb(23 105 255 / 0.68);
+}
+
+.htAction:focus-visible {
+  outline: 3px solid #0f55d8;
+  outline-offset: 3px;
+}
+
+/* Hero */
+
+.htHero {
+  padding: clamp(18px, 2.6vw, 42px) var(--gutter) clamp(64px, 8vw, 110px);
+  background: #fff;
+}
+
+.htHero__panel {
+  overflow: hidden;
+  width: min(1180px, 100%);
+  padding: clamp(38px, 5.5vw, 76px) clamp(20px, 4.6vw, 66px) clamp(24px, 4vw, 54px);
+  border-radius: clamp(20px, 1.8vw, 28px);
+  background:
+    radial-gradient(60% 46% at 50% 5%, rgb(255 255 255 / 0.06), transparent 72%),
+    #101112;
+  color: #fff;
+  box-shadow: 0 38px 80px -58px rgb(8 10 14 / 0.8);
+  text-align: center;
+}
+
+.htHero__copy {
+  display: grid;
+  justify-items: center;
+}
+
+.htHero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ht-green);
+  font-size: clamp(0.75rem, 0.8vw, 0.88rem);
+  font-weight: 650;
+}
+
+.htHero__eyebrow > span {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  background: currentColor;
+  -webkit-mask: var(--ht-eyebrow-icon) no-repeat center / contain;
+  mask: var(--ht-eyebrow-icon) no-repeat center / contain;
+}
+
+.htHero h1 {
+  max-width: 18ch;
+  margin-top: clamp(14px, 1.6vw, 22px);
+  font-size: clamp(2.2rem, 4.4vw, 4.2rem);
+  font-weight: 850;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.htHero__copy > p {
+  max-width: 62ch;
+  margin-top: clamp(18px, 2vw, 26px);
+  color: rgb(255 255 255 / 0.76);
+  font-size: clamp(0.94rem, 1.05vw, 1.08rem);
+  line-height: 1.58;
+}
+
+.htHero__copy > p strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.htHero__trust {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-top: clamp(20px, 2.6vw, 30px);
+  color: rgb(255 255 255 / 0.82);
+  font-size: clamp(0.78rem, 0.82vw, 0.9rem);
+}
+
+.htHero__avatars {
+  display: flex;
+  justify-content: center;
+  padding-left: 8px;
+}
+
+.htHero__avatars img {
+  display: block;
+  width: 38px;
+  height: 38px;
+  margin-left: -8px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #e8eaee;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.htHero__media {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: clamp(32px, 4vw, 54px);
+  border: 1px solid rgb(255 255 255 / 0.13);
+  border-radius: clamp(15px, 1.5vw, 22px);
+  background: #d9d9d9;
+  box-shadow: 0 24px 54px -28px rgb(0 0 0 / 0.75);
+}
+
+.htHero__media > button,
+.htHero__media > video {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.htHero__media > button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.htHero__media > button > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.htHero__media > video {
+  object-fit: contain;
+  background: #090a0c;
+}
+
+.htHero__play {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  display: grid;
+  place-items: center;
+  width: clamp(42px, 4vw, 58px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(15 23 42 / 0.12);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.94);
+  color: #111;
+  box-shadow: 0 14px 28px -14px rgb(0 0 0 / 0.6);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.htHero__play svg {
+  width: 42%;
+  height: 42%;
+  transform: translateX(5%);
+}
+
+/* Benefits */
+
+.htBenefits {
+  padding-block: clamp(64px, 8vw, 118px);
+  background: var(--ht-soft);
+}
+
+.htBenefits > .wrap {
+  max-width: 1200px;
+}
+
+.htBenefits h2 {
+  max-width: 26ch;
+}
+
+.htBenefits__rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.2vw, 30px);
+  margin-top: clamp(30px, 4vw, 50px);
+}
+
+.htBenefits__rail:focus-visible {
+  outline: 3px solid var(--accent-ink);
+  outline-offset: 6px;
+  border-radius: var(--ht-radius);
+}
+
+.htBenefits__card article {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: clamp(470px, 45vw, 600px);
+  border: 1px solid var(--ht-line);
+  border-radius: var(--ht-radius);
+  background: #fff;
+  box-shadow: 0 24px 48px -40px rgb(12 13 16 / 0.46);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.htBenefits__card article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 32px 62px -42px rgb(12 13 16 / 0.55);
+}
+
+.htBenefits__copy {
+  position: relative;
+  z-index: 1;
+  padding: clamp(22px, 2.4vw, 30px);
+}
+
+.htBenefits__copy h3 {
+  font-size: clamp(1.08rem, 1.35vw, 1.3rem);
+  font-weight: 760;
+  line-height: 1.25;
+}
+
+.htBenefits__copy p {
+  margin-top: 9px;
+  color: var(--ht-muted);
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  line-height: 1.52;
+}
+
+.htBenefits__card img {
+  align-self: end;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+/* Comparison */
+
+.htCompare {
+  padding-block: clamp(64px, 8vw, 118px);
+  background: #fff;
+}
+
+.htCompare__in {
+  max-width: 1030px;
+}
+
+.htCompare h2 {
+  text-align: center;
+}
+
+.htCompare__tableWrap {
+  overflow: hidden;
+  margin-top: clamp(30px, 4vw, 52px);
+  border: 1px solid var(--ht-line);
+  border-radius: var(--ht-radius);
+  box-shadow: 0 24px 50px -42px rgb(12 13 16 / 0.44);
+}
+
+.htCompare table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: clamp(0.84rem, 0.95vw, 0.98rem);
+}
+
+.htCompare thead {
+  background: #111314;
+  color: #fff;
+}
+
+.htCompare th,
+.htCompare td {
+  padding: clamp(18px, 2vw, 27px) clamp(12px, 1.7vw, 22px);
+  border-right: 1px solid var(--ht-line);
+  text-align: center;
+  line-height: 1.42;
+  vertical-align: middle;
+}
+
+.htCompare tr > :last-child {
+  border-right: 0;
+}
+
+.htCompare tbody tr {
+  border-bottom: 1px solid var(--ht-line);
+}
+
+.htCompare tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.htCompare tbody tr:nth-child(even) {
+  background: #f7f8fa;
+}
+
+.htCompare tbody th {
+  font-weight: 720;
+}
+
+.htCompare__close,
+.htIdeal__close {
+  max-width: 62ch;
+  margin: clamp(26px, 3.4vw, 42px) auto 0;
+  color: #8b9097;
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  font-weight: 650;
+  line-height: 1.45;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.htCompare__close strong,
+.htIdeal__close strong {
+  color: var(--ht-ink);
+  font-weight: 780;
+}
+
+/* Who is this for */
+
+.htIdeal {
+  padding-block: clamp(64px, 8vw, 118px);
+  background: var(--ht-soft);
+}
+
+.htIdeal__in {
+  max-width: 1160px;
+}
+
+.htIdeal h2 {
+  text-align: center;
+}
+
+.htIdeal__card {
+  margin-top: clamp(30px, 4vw, 50px);
+  padding: clamp(24px, 3vw, 38px);
+  border: 1px solid var(--ht-line);
+  border-radius: var(--ht-radius);
+  background: #fff;
+  box-shadow: 0 28px 56px -42px rgb(12 13 16 / 0.48);
+}
+
+.htIdeal__card h3 {
+  font-size: clamp(1.02rem, 1.25vw, 1.2rem);
+  font-weight: 760;
+}
+
+.htIdeal__card ul,
+.htBollywood__card ul,
+.htProcess__step ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.htIdeal__card ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 25px) clamp(26px, 4vw, 62px);
+  margin-top: clamp(22px, 2.8vw, 32px);
+}
+
+.htIdeal__card li,
+.htBollywood__card li,
+.htProcess__step li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.htIdeal__card li > span,
+.htBollywood__card li > span,
+.htProcess__step li > span {
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  border-radius: 4px;
+  background: var(--ht-blue);
+  color: #fff;
+}
+
+.htIdeal__card li svg,
+.htBollywood__card li svg,
+.htProcess__step li svg {
+  width: 11px;
+  height: 11px;
+  stroke-width: 3;
+}
+
+.htIdeal__card li p {
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  line-height: 1.52;
+}
+
+/* Bollywood */
+
+.htBollywood {
+  padding-block: clamp(64px, 8vw, 118px);
+  background: #fff;
+}
+
+.htBollywood > .wrap {
+  max-width: 1120px;
+}
+
+.htBollywood h2 {
+  max-width: 21ch;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.htBollywood__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.8vw, 38px);
+  align-items: start;
+  margin-top: clamp(30px, 4vw, 52px);
+}
+
+.htBollywood__content {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 18px;
+  aspect-ratio: 4 / 3;
+}
+
+.htBollywood__card {
+  min-height: 0;
+  padding: 24px;
+  border: 1px solid var(--ht-line);
+  border-radius: var(--ht-radius);
+  background: #fff;
+  box-shadow: 0 24px 48px -42px rgb(12 13 16 / 0.45);
+}
+
+.htBollywood__card h3 {
+  font-size: clamp(1rem, 1.2vw, 1.16rem);
+  font-weight: 720;
+}
+
+.htBollywood__card ul {
+  display: grid;
+  gap: 11px;
+  margin-top: 14px;
+}
+
+.htBollywood__card li > span {
+  background: #181a1e;
+}
+
+.htBollywood__card li p {
+  color: #262a31;
+  font-size: clamp(0.88rem, 0.95vw, 0.98rem);
+  line-height: 1.46;
+}
+
+.htBollywood__content > .htAction {
+  width: 100%;
+}
+
+.htBollywood__media {
+  overflow: hidden;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--ht-radius);
+  background: #c8c9ca;
+  box-shadow: 0 26px 50px -42px rgb(12 13 16 / 0.48);
+}
+
+.htBollywood__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Process */
+
+.htProcess {
+  padding-block: clamp(64px, 8vw, 118px);
+  background: var(--ht-soft);
+}
+
+.htProcess h2 {
+  max-width: 24ch;
+}
+
+.htProcess__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(15px, 2vw, 26px);
+  margin-top: clamp(30px, 4vw, 52px);
+}
+
+.htProcess__step,
+.htProcess__step article {
+  height: 100%;
+}
+
+.htProcess__step article {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 24px;
+  padding: clamp(22px, 2.4vw, 30px);
+  border: 1px solid var(--ht-line);
+  border-top: 4px solid #3d7eff;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 26px 52px -42px rgb(12 13 16 / 0.5);
+}
+
+.htProcess__step h3 {
+  font-size: clamp(1rem, 1.22vw, 1.18rem);
+  font-weight: 780;
+  line-height: 1.34;
+}
+
+.htProcess__step article > div > p {
+  margin-top: 8px;
+  color: var(--ht-muted);
+  font-size: clamp(0.86rem, 0.94vw, 0.96rem);
+  line-height: 1.55;
+}
+
+.htProcess__step h4 {
+  margin-top: 22px;
+  font-size: 0.96rem;
+  font-weight: 760;
+}
+
+.htProcess__step ul {
+  display: grid;
+  gap: 12px;
+  margin-top: 13px;
+}
+
+.htProcess__step li p {
+  color: var(--ht-muted);
+  font-size: clamp(0.84rem, 0.92vw, 0.94rem);
+  line-height: 1.45;
+}
+
+.htProcess__takeaway {
+  display: block;
+  padding-top: 20px;
+  border-top: 1px solid var(--ht-line);
+  font-size: clamp(0.88rem, 0.96vw, 1rem);
+  font-weight: 750;
+  line-height: 1.48;
+  text-align: center;
+}
+
+.htProcess__result {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: clamp(24px, 3vw, 38px);
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: var(--ht-radius);
+  background:
+    radial-gradient(40% 160% at 75% 50%, rgb(255 255 255 / 0.17), transparent 70%),
+    linear-gradient(125deg, #4c92ff, #2372f5);
+  color: #fff;
+  box-shadow: 0 26px 56px -36px rgb(23 105 255 / 0.55);
+}
+
+.htProcess__result h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  font-weight: 780;
+}
+
+.htProcess__result h3 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.htProcess__result p {
+  max-width: 62ch;
+  margin-top: 10px;
+  color: rgb(255 255 255 / 0.88);
+  font-size: clamp(0.88rem, 1vw, 1rem);
+  line-height: 1.5;
+}
+
+.htProcess__videoLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #fff;
+  font-size: clamp(0.88rem, 1vw, 1rem);
+  font-weight: 750;
+  line-height: 1.4;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+}
+
+.htProcess__videoLink:hover {
+  text-decoration-thickness: 2px;
+}
+
+.htProcess__videoLink:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.htAction--light {
+  flex: 0 0 auto;
+  background: #fff;
+  color: #121419;
+  box-shadow: 0 15px 30px -18px rgb(0 0 0 / 0.35);
+}
+
+.htAction--light svg {
+  background: #121419;
+  color: #fff;
+}
+
+/* Surgeons */
+
+.htSurgeons {
+  padding-block: clamp(64px, 8vw, 118px);
+  background: #fff;
+}
+
+.htSurgeons > .wrap {
+  max-width: 1120px;
+}
+
+.htSurgeons h2 {
+  text-align: center;
+}
+
+.htSurgeons__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.8vw, 34px);
+  margin-top: clamp(30px, 4vw, 52px);
+}
+
+.htSurgeons__card figure {
+  overflow: hidden;
+  border-radius: var(--ht-radius);
+  background: #d4d0c9;
+  box-shadow: 0 28px 56px -42px rgb(12 13 16 / 0.52);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.htSurgeons__card figure:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 34px 66px -42px rgb(12 13 16 / 0.6);
+}
+
+.htSurgeons__card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#hair-transplant-form {
+  scroll-margin-top: 90px;
+}
+
+.hairTransplantPage .form {
+  background: var(--ht-soft);
+}
+
+@media (max-width: 900px) {
+  .htHero {
+    padding-inline: 14px;
+  }
+
+  .htHero__panel {
+    padding-inline: clamp(18px, 5vw, 34px);
+  }
+
+  .htBenefits__rail {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 2px var(--gutter) 14px;
+    scroll-padding-inline: var(--gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+
+  .htBenefits__card {
+    display: flex;
+    flex: 0 0 clamp(250px, 72vw, 290px);
+    scroll-snap-align: start;
+  }
+
+  .htBenefits__card article {
+    width: 100%;
+    height: auto;
+    grid-template-rows: auto auto;
+  }
+
+  .htBenefits__card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .htProcess__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .htProcess__result {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .htBollywood__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .htBollywood__content {
+    aspect-ratio: auto;
+  }
+
+  .htBollywood__media {
+    order: -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .hairTransplantPage h2 {
+    font-size: clamp(1.7rem, 8vw, 2.35rem);
+  }
+
+  .htHero h1 {
+    font-size: clamp(2rem, 10.2vw, 2.85rem);
+  }
+
+  .htHero__copy > p {
+    max-width: 34ch;
+  }
+
+  .htCompare {
+    background: var(--ht-soft);
+  }
+
+  .htCompare h2 {
+    text-align: left;
+  }
+
+  .htCompare__tableWrap {
+    overflow: hidden;
+    border: 1px solid var(--ht-line);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 18px 38px -32px rgb(12 13 16 / 0.42);
+  }
+
+  .htCompare table {
+    display: table;
+    font-size: clamp(0.72rem, 3.25vw, 0.84rem);
+  }
+
+  .htCompare thead {
+    position: static;
+    display: table-header-group;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+  }
+
+  .htCompare tbody {
+    display: table-row-group;
+  }
+
+  .htCompare tbody tr {
+    display: table-row;
+    overflow: visible;
+    border: 0;
+    border-bottom: 1px solid var(--ht-line);
+    border-radius: 0;
+    background: #fff !important;
+    box-shadow: none;
+  }
+
+  .htCompare th,
+  .htCompare td {
+    height: 68px;
+    padding: 13px 8px;
+    line-height: 1.3;
+  }
+
+  .htCompare tr > :first-child {
+    width: 29%;
+    text-align: left;
+  }
+
+  .htCompare tr > :nth-child(2) {
+    width: 31%;
+  }
+
+  .htCompare tr > :nth-child(3) {
+    width: 40%;
+  }
+
+  .htCompare thead th {
+    height: 58px;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 760;
+  }
+
+  .htCompare tbody th {
+    display: table-cell;
+    padding-inline: 12px 8px;
+    background: #fff;
+    color: var(--ht-ink);
+    text-align: left;
+  }
+
+  .htCompare tbody td {
+    display: table-cell;
+    min-height: 0;
+    text-align: center;
+  }
+
+  .htCompare tbody td::before {
+    display: none;
+  }
+
+  .htIdeal__card ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .htSurgeons__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .htAction--light {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .htHero {
+    padding-top: 12px;
+  }
+
+  .htHero__panel {
+    border-radius: 18px;
+  }
+
+  .htHero__media {
+    margin-top: 28px;
+  }
+
+  .htBenefits h2,
+  .htProcess h2 {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hairTransplantPage *,
+  .hairTransplantPage *::before,
+  .hairTransplantPage *::after {
+    scroll-behavior: auto !important;
+  }
+
+  .htAction,
+  .htBenefits__card article,
+  .htSurgeons__card figure {
+    transition: none;
+  }
+
+  .htAction:hover,
+  .htBenefits__card article:hover,
+  .htSurgeons__card figure:hover {
+    transform: none;
+  }
+}

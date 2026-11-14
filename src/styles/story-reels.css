@@ -1,0 +1,517 @@
+/* ==========================================================================
+   Story reels — circular client videos that open into a 9:16 reel.
+   `StoryReels.tsx`. The ring is the brand gradient while unwatched and turns
+   grey once opened; the gap between ring and photo is the section's own
+   ground colour, so it reads as a cut rather than a white border.
+   ========================================================================== */
+
+.reels {
+  --reels-ground: var(--page);
+  --reel-size: clamp(104px, 8.6vw, 148px);
+  padding-block: clamp(52px, 6vw, 96px);
+  background: var(--reels-ground);
+}
+
+.reels[data-ground='tint'] {
+  --reels-ground: var(--page-2);
+}
+
+.reels__in {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) auto;
+  align-items: center;
+  gap: clamp(32px, 5vw, 96px);
+}
+
+.reels__head h2 {
+  color: var(--text);
+  font-size: clamp(1.75rem, 3vw, 3.1rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.reels__head p {
+  max-width: 34ch;
+  margin-top: 14px;
+  color: var(--text-dim);
+  font-size: clamp(1rem, 1.15vw, 1.2rem);
+  line-height: 1.5;
+}
+
+.reels__row {
+  display: flex;
+  gap: clamp(16px, 2vw, 34px);
+  margin: 0;
+}
+
+.reels__circle {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 14px;
+  width: calc(var(--reel-size) + 20px);
+  border-radius: 12px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reels__disc {
+  position: relative;
+  display: block;
+  width: var(--reel-size);
+  aspect-ratio: 1;
+  padding: 3px;
+  border-radius: 50%;
+  background: var(--grad);
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reels__circle[data-watched='true'] .reels__disc {
+  background: rgb(12 13 16 / 0.16);
+}
+
+.reels__disc img {
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--reels-ground);
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--card);
+}
+
+.reels__badge {
+  position: absolute;
+  right: 2%;
+  bottom: 2%;
+  display: grid;
+  place-items: center;
+  width: clamp(30px, 2.4vw, 38px);
+  aspect-ratio: 1;
+  border: 3px solid var(--reels-ground);
+  border-radius: 50%;
+  background: var(--grad);
+  color: #fff;
+  box-shadow: var(--shadow-ctrl);
+}
+
+.reels__badge svg {
+  width: 44%;
+  height: 44%;
+  margin-left: 8%;
+  fill: currentColor;
+}
+
+.reels__label {
+  color: var(--text);
+  font-size: clamp(0.92rem, 0.95vw, 1.02rem);
+  font-weight: 650;
+  line-height: 1.25;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.reels__circle:hover .reels__disc {
+  transform: scale(1.04);
+}
+
+.reels__circle:active .reels__disc {
+  transform: scale(0.97);
+}
+
+.reels__circle:focus-visible {
+  outline: none;
+}
+
+.reels__circle:focus-visible .reels__disc {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 4px;
+}
+
+@media (max-width: 1100px) {
+  .reels__in {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+}
+
+/* Phones: a swipeable rail running edge to edge. The fourth circle is cut by
+   the screen edge on purpose — the peek is what says "there is more". */
+@media (max-width: 700px) {
+  .reels {
+    --reel-size: clamp(88px, 24vw, 108px);
+  }
+
+  .reels__row {
+    gap: 14px;
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    padding-block: 4px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .reels__row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reels__row > li {
+    flex: none;
+    scroll-snap-align: start;
+  }
+}
+
+/* ---- Viewer ------------------------------------------------------------- */
+
+.reelView {
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  overflow: hidden;
+}
+
+.reelView[open] {
+  display: grid;
+  place-items: center;
+}
+
+.reelView::backdrop {
+  background: rgb(6 8 12 / 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.reelView__frame {
+  position: relative;
+  height: min(88vh, 880px);
+  height: min(88dvh, 880px);
+  aspect-ratio: 9 / 16;
+  max-width: calc(100vw - 32px);
+  border-radius: 18px;
+  background: #000;
+  box-shadow: 0 40px 90px -30px rgb(0 0 0 / 0.7);
+  touch-action: none;
+  user-select: none;
+  animation: reelIn 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes reelIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
+.reelView__video {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.reelView__top {
+  position: absolute;
+  inset: 0 0 auto;
+  padding: 12px 12px 36px;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(rgb(0 0 0 / 0.55), transparent);
+}
+
+.reelView__bars {
+  display: flex;
+  gap: 4px;
+}
+
+.reelView__barTrack {
+  flex: 1;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 0.32);
+}
+
+.reelView__bar {
+  display: block;
+  height: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.reelView__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.reelView__meta img {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.reelView__meta p {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.reelView__meta strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.reelView__meta span {
+  color: rgb(255 255 255 / 0.78);
+  font-size: 0.8rem;
+}
+
+.reelView__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #fff;
+  transition: background-color 160ms ease;
+}
+
+.reelView__icon:hover {
+  background: rgb(255 255 255 / 0.16);
+}
+
+.reelView__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.reelView__paused {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 0.45);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.reelView__paused svg {
+  width: 32px;
+  height: 32px;
+  margin-left: 4px;
+  fill: #fff;
+}
+
+.reelView__bottom {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+  padding: 64px 18px 20px;
+  border-radius: 0 0 18px 18px;
+  background: linear-gradient(transparent, rgb(0 0 0 / 0.72));
+}
+
+.reelView__bottom h3 {
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.reelView__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid rgb(255 255 255 / 0.55);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.14);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: background-color 160ms ease;
+}
+
+.reelView__cta:hover {
+  background: rgb(255 255 255 / 0.26);
+}
+
+.reelView__cta svg {
+  width: 18px;
+  height: 18px;
+}
+
+.reelView__cta--solid {
+  border-color: transparent;
+  background: var(--grad);
+  box-shadow: var(--shadow-btn);
+}
+
+.reelView__cta--solid:hover {
+  background: var(--grad-ink);
+}
+
+.reelView__end {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 16px;
+  padding: 32px;
+  border-radius: inherit;
+  background: rgb(6 8 12 / 0.82);
+  text-align: center;
+}
+
+.reelView__end h3 {
+  max-width: 14ch;
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.reelView__end p {
+  max-width: 28ch;
+  color: rgb(255 255 255 / 0.8);
+  line-height: 1.5;
+}
+
+.reelView__replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.reelView__replay svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Desktop: arrows sit outside the frame so they never cover the video. */
+.reelView__nav {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.14);
+  color: #fff;
+  transform: translateY(-50%);
+  transition: background-color 160ms ease, opacity 160ms ease;
+}
+
+.reelView__nav:hover {
+  background: rgb(255 255 255 / 0.26);
+}
+
+.reelView__nav:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reelView__nav svg {
+  width: 26px;
+  height: 26px;
+}
+
+.reelView__nav--prev {
+  right: calc(100% + 24px);
+}
+
+.reelView__nav--next {
+  left: calc(100% + 24px);
+}
+
+.reelView :focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Phones: the reel takes the whole screen, as it does in every app that
+   taught people this pattern. Arrows move inside the frame edges. */
+@media (max-width: 700px) {
+  .reelView__frame {
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    height: 100dvh;
+    aspect-ratio: auto;
+    border-radius: 0;
+  }
+
+  /* Contain, not cover: a phone screen is taller than 9:16, and cover would
+     cut the sides of the clip, including any burned-in captions. The bars
+     this leaves sit under the top and bottom overlays. */
+  .reelView__video {
+    object-fit: contain;
+  }
+
+  .reelView__top {
+    padding-top: max(12px, env(safe-area-inset-top));
+    border-radius: 0;
+  }
+
+  .reelView__bottom {
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    border-radius: 0;
+  }
+
+  .reelView__nav {
+    width: 44px;
+    height: 44px;
+    background: rgb(0 0 0 / 0.28);
+  }
+
+  .reelView__nav--prev {
+    right: auto;
+    left: 8px;
+  }
+
+  .reelView__nav--next {
+    left: auto;
+    right: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reels__disc,
+  .reelView__frame {
+    transition: none;
+    animation: none;
+  }
+
+  .reels__circle:hover .reels__disc,
+  .reels__circle:active .reels__disc {
+    transform: none;
+  }
+}

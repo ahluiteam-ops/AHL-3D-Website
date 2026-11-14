@@ -41,14 +41,194 @@ export const nav: NavItem[] = [
     label: 'Solutions',
     href: '#solutions',
     items: [
-      { label: 'Hair systems (No Surgery)', href: '#/solutions-hair-systems' },
+      { label: 'Hair systems (No Surgery)', href: '#/stick-on-or-clip-on' },
       { label: 'SMP (Scalp Micropigmentation)', href: '#/smp' },
       { label: 'Hair transplant', href: '#/hair-transplant' },
     ],
   },
-  { label: 'Results', href: '#results' },
-  { label: 'About us', href: '#about' },
+  { label: 'Results', href: '#/results' },
+  { label: 'About us', href: '#/about-us' },
 ]
+
+/* Front Hairline Transplant + Hair System
+ *
+ * This solution page explains the hybrid method: transplanted hair at the
+ * front, where the hairline is most visible, and a hair system behind it for
+ * density. Copy and media stay together here so the page component remains a
+ * layout, not a second content source. */
+export const hairTransplant = {
+  hero: {
+    eyebrow: 'Hair Transplant',
+    eyebrowIcon: '/hair-transplant/hair-skin-icon.png',
+    title: ['Front Hairline Transplant', '+ Hair System'],
+    lede: [
+      'If you\u2019re serious about looking your ',
+      'absolute best',
+      ', this is the most ',
+      'advanced solution',
+      ' available today.',
+    ],
+    trust: 'Trusted by 6,000+ men around the world',
+    avatars: [
+      '/hair-transplant/trusted-client-1.png',
+      '/hair-transplant/trusted-client-2.png',
+      '/hair-transplant/trusted-client-3.png',
+      '/hair-transplant/trusted-client-4.png',
+      '/hair-transplant/trusted-client-5.png',
+    ],
+    media: {
+      src: '/hair-transplant/hair-transplant-or-system.mp4',
+      poster: '/hair-transplant/combination-method.png',
+      label: 'Watch the hair transplant comparison',
+      alt: 'A transplanted front hairline beside the finished combination method result.',
+      width: 3968,
+      height: 2232,
+    },
+  },
+  benefits: {
+    title: ['Why Combination Method Is', 'The Best Solution'],
+    items: [
+      {
+        title: 'Natural Hairline',
+        body: 'A perfectly designed, natural hairline, including the temples.',
+        image: '/hair-transplant/natural-hairline.png',
+        alt: 'Front view of a client\u2019s finished natural hairline.',
+        width: 1408,
+        height: 1952,
+      },
+      {
+        title: 'Full Density',
+        body: 'Coverage at the back, even if your donor area is weak.',
+        image: '/hair-transplant/full-density.png',
+        alt: 'Top view showing full hair density across the crown.',
+        width: 1408,
+        height: 1952,
+      },
+      {
+        title: '360\u00b0 Real Look',
+        body: 'Looks like your real hair from every angle.',
+        image: '/hair-transplant/real-look.png',
+        alt: 'Side view of a client\u2019s finished haircut and natural temple area.',
+        width: 1408,
+        height: 1952,
+      },
+    ],
+  },
+  comparison: {
+    title: ['Why Hybrid Wins:', 'Natural Hairline And Good Density'],
+    columns: ['Feature', 'Hair Transplant', 'Front Transplant + Hair System'],
+    rows: [
+      ['Front Hairline', 'Thin, weak', 'Extremely natural hairline'],
+      ['Brush Back', 'Gaps visible', 'Full, smooth look'],
+      ['Overall Density', 'Thin once hair falls', 'Full, even density'],
+      ['Temple Area', 'Often skipped', 'Well-defined temples'],
+      ['Weak Graft', 'Limited results', 'Works with limited grafts'],
+      ['Donor Need', '5000+ grafts', 'Low, only front needed'],
+      ['Self-Belief', 'Often disappointing', 'Boosts confidence'],
+    ],
+    closeLead: 'If your donor area falls short, this ',
+    closeStrong: 'hybrid solution gives you a flawless, natural look.',
+  },
+  idealFor: {
+    title: 'Who Is This For?',
+    intro: 'This combination is ideal if:',
+    items: [
+      'Your **donor area** isn\u2019t enough for complete coverage.',
+      'You\u2019re focused on **uniform density** from front to crown.',
+      'You\u2019re willing to **invest in the best** long-term solution.',
+      'You care about **face aesthetics**, not just hair quantity.',
+      'You want a **front hairline** that looks natural, including temples.',
+      'You want a **brush-back style** without exposing bald spots.',
+      'You know a **full transplant** won\u2019t give side-and-back density.',
+      'You\u2019ve had a **failed transplant** that didn\u2019t deliver density.',
+      'You want a **complete look**, not just coverage, but proper design.',
+      'You want **undetectable blending** even if someone touches your scalp.',
+    ],
+    closeLead: 'If you want an ',
+    closeStrong: 'extremely natural hairline with good density,',
+    closeEnd: ' then this method is designed for you.',
+  },
+  bollywood: {
+    title: ['The Secret Behind Most', 'Bollywood Actors\u2019 Hair'],
+    intro: 'The Hybrid Method gives you:',
+    items: [
+      'Extremely natural hairline with good density, including the temples.',
+      'Full, camera-ready density.',
+      'No thinning from any angle.',
+      'Style versatility without the sacrifice.',
+      'A flawless, undetectable finish.',
+    ],
+    action: 'Talk To An Expert',
+    media: {
+      src: '/hair-transplant/bollywood-hair.png',
+      alt: 'Privacy-blurred comparison illustrating natural-looking hairlines used for camera-facing work.',
+      width: 2176,
+      height: 1632,
+    },
+  },
+  process: {
+    title: ['A Step-By-Step Design Process', 'For Your Perfect Look'],
+    steps: [
+      {
+        title: 'Step 1: Expert Consultation',
+        body: 'Meet with our core team of hair system designers, transplant surgeons, and specialists.',
+        label: 'We assess:',
+        items: [
+          'Your donor area',
+          'Face structure',
+          'Hair texture, color, and volume',
+          'Desired hairstyle, hairline shape, temple area, and density',
+        ],
+        close: 'This step provides 100% clarity on what\u2019s possible and what will look best for you.',
+      },
+      {
+        title: 'Step 2: Strategic Planning & Design',
+        body: 'The design process begins as our team of surgeons, hair experts, and designers collaborate to map your scalp.',
+        label: 'We plan:',
+        items: [
+          'Transplant areas (using FUE for a minimally invasive, precise extraction process)',
+          'Custom hair system coverage',
+        ],
+        close: 'Every detail is tailored to your needs, from texture to volume and color, ensuring a natural result.',
+      },
+      {
+        title: 'Step 3: Execution & Styling',
+        body: 'Your transplant is performed with precision and care, and after 15\u201330 days of healing, we begin the fitting of your hair system.',
+        label: 'We blend:',
+        items: ['Your new front hairline', 'Full volume at the back'],
+        close: 'The final styling is designed to match your face shape and lifestyle, creating a seamless, natural look.',
+      },
+    ],
+    resultTitle: 'The Result:',
+    resultBody: 'A natural front hairline and full volume at the back. Want more details?',
+    resultVideo: {
+      label: 'Watch the video.',
+      href: 'https://www.youtube.com/watch?si=-NXdBuo8rl8b6hZT&v=-od3mv_pHHQ&feature=youtu.be',
+    },
+    action: 'Discuss With a Consultant',
+  },
+  surgeons: {
+    title: ['Meet Our Expert Team Of', 'Transplant Surgeons'],
+    items: [
+      {
+        name: 'Dr. Ashutosh Mishra',
+        credential: 'Plastic & Cosmetic Surgeon MCH',
+        image: '/hair-transplant/dr-ashutosh-mishra.png',
+        alt: 'Dr. Ashutosh Mishra, Plastic and Cosmetic Surgeon MCH.',
+        width: 2176,
+        height: 1780,
+      },
+      {
+        name: 'Dr. Vinod Sonawane',
+        credential: 'MD Hair Transplant Surgeon',
+        image: '/hair-transplant/dr-vinod-sonawane.png',
+        alt: 'Dr. Vinod Sonawane, MD Hair Transplant Surgeon.',
+        width: 2176,
+        height: 1780,
+      },
+    ],
+  },
+} as const
 
 /* `client` is the caption under the card. `style` never appears on screen —
  * it stays as the image's alt text, so the description of what is actually
@@ -151,12 +331,11 @@ export const checklistTitle = [
 
 export const checklistLede = 'We custom every detail.'
 
-/* `src` is intentionally empty until the client supplies the film. With no
- * source the block renders as a still figure; the moment a path is set here it
- * becomes a real play control with an inline <video>. */
+/* Shared by every Checklist instance. The supplied film plays inline while
+ * the existing image remains its poster before playback. */
 export const checklistVideo = {
   poster: '/checklist/21-point-checklist.png',
-  src: '',
+  src: '/checklist/21-point-checklist.mp4',
   alt: 'Vinitt Dessai matching a client’s hair system against the American Hairline colour, wave and density charts.',
   label: 'Watch the 21-point check',
 }
@@ -265,9 +444,8 @@ export const checklistPoints: ChecklistPoint[] = [
  * The one thing still worth confirming before launch is that each man agreed
  * to appear here by name.
  *
- * `src` is empty until the client supplies the films; with no source a card
- * renders as a still figure. Set a path and it becomes a real play control
- * with an inline <video>, the same arrangement as the checklist film. */
+ * Every supplied 16:9 film is matched to its client by name. Posters remain
+ * visible until playback starts and continue to serve as each video's poster. */
 export type ClientStory = {
   name: string
   quote: string
@@ -286,42 +464,42 @@ export const clientStories: ClientStory[] = [
     name: 'Rylan Rodrigues',
     quote: 'I felt that the hair looks very natural, and it feels really good.',
     poster: '/clients/client-story-1.png',
-    src: '',
+    src: '/clients/client-story-1.mp4',
     alt: 'Client before and after: thinning crown, then a full swept-back system.',
   },
   {
     name: 'Arun Sharma',
     quote: 'I travel a lot, so now people will not recognize me from my passport photo.',
     poster: '/clients/client-story-2.png',
-    src: '',
+    src: '/clients/client-story-2.mp4',
     alt: 'Client before and after: receded hairline, then a restored natural front.',
   },
   {
     name: 'Rohan Bera',
     quote: 'The hair patch was very comfortable. It gives a very natural look. I really liked it.',
     poster: '/clients/client-story-3.png',
-    src: '',
+    src: '/clients/client-story-3.mp4',
     alt: 'Client before and after: visible scalp, then dense matched hair.',
   },
   {
     name: 'Sahil Khan',
     quote: 'I really liked the entire process, from start to finish. I feel like a new person.',
     poster: '/clients/client-story-4.png',
-    src: '',
+    src: '/clients/client-story-4.mp4',
     alt: 'Client before and after: grey thinning front, then a full styled system.',
   },
   {
     name: 'Rohan Deshmukh',
     quote: 'It feels so good to touch my head again. This is amazing. I am very happy with it.',
     poster: '/clients/client-story-5.png',
-    src: '',
+    src: '/clients/client-story-5.mp4',
     alt: 'Client before and after: bare crown, then a textured natural finish.',
   },
   {
     name: 'Anup Kumar',
     quote: 'The hair system is amazing, and the facilities are amazing.',
     poster: '/clients/client-story-6.png',
-    src: '',
+    src: '/clients/client-story-6.mp4',
     alt: 'Client before and after: advanced hair loss, then a matched hairline.',
   },
 ]
@@ -453,10 +631,7 @@ export const services: Service[] = [
 
 export const servicesAction = 'Explore Now'
 
-/* "The Step-By-Step Process To Natural Hair" — copy exactly as supplied in the
- * client's artwork. The film itself has not been supplied: `processVideo.src`
- * is empty, so the block renders as a still figure carrying the poster. Set a
- * path there and nothing else needs changing. */
+/* "The Step-By-Step Process To Natural Hair" — copy and supplied 4:3 film. */
 export type ProcessStep = { label: string; title: string; body: string }
 
 export const processTitle = [
@@ -484,24 +659,19 @@ export const processSteps: ProcessStep[] = [
 
 export const processVideo = {
   poster: '/process/steps.png',
-  src: '',
+  src: '/process/step-by-step.mp4',
   alt: 'A client’s template, hairline mapping and fitting shown beside his finished look.',
   label: 'Watch the process',
 }
 
 export const processAction = 'Discuss With A Consultant'
 
-/* "Real Hair Or Illusion? Watch & Decide".
- *
- * The film has not been supplied: `decideVideo.src` is empty, so the block
- * renders as a still figure carrying the poster. Set a path and nothing else
- * needs changing — the same convention as `checklistVideo` and
- * `processVideo`. */
+/* "Real Hair Or Illusion? Watch & Decide" with supplied 16:9 film. */
 export const decideTitle = ['Real Hair Or Illusion?', 'Watch & Decide'] as const
 
 export const decideVideo = {
   poster: '/decide/from-bald-to-bold.png',
-  src: '',
+  src: '/decide/client-before-after.mp4',
   alt: 'Before-and-after transformation of a client, from bald to bold, with the hairline marked on both portraits.',
   label: 'Watch and decide',
 }
@@ -626,7 +796,8 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
   {
     title: 'Quick Links',
     links: [
-      { label: 'About us', href: '#about' },
+      { label: 'About us', href: '#/about-us' },
+      { label: 'Consult with Founder', href: '#/consult-with-founder' },
       { label: 'Customer Support', href: '#support' },
       { label: 'Terms of Services', href: '#terms' },
       { label: 'Privacy Policy', href: '#privacy' },
@@ -637,9 +808,9 @@ export const footerColumns: { title: string; links: FooterLink[] }[] = [
   {
     title: 'Solution',
     links: [
-      { label: 'Non-Surgical Hair Replacement', href: '#solutions' },
-      { label: 'Scalp Micro Pigmentation', href: '#solutions' },
-      { label: 'Hair Transplant', href: '#solutions' },
+      { label: 'Non-Surgical Hair Replacement', href: '#/stick-on-or-clip-on' },
+      { label: 'Scalp Micro Pigmentation', href: '#/smp' },
+      { label: 'Hair Transplant', href: '#/hair-transplant' },
     ],
   },
 ]
@@ -661,21 +832,18 @@ export const footerContact = {
   email: 'info@americanhairline.com',
 }
 
-export const footerLegal = 'American Hairline © 2025 – All Rights Reserved.'
+export const footerLegal = 'American Hairline © 2026 – All Rights Reserved.'
 
 /* "Walk Into Any Of Our Premium Salons".
  *
  * Addresses are the client's, verbatim.
  *
- * ⚠ The three photographs are STAND-INS — Unsplash salon interiors, not
- * American Hairline's own studios. They are here so the section can be built
- * and reviewed; shipping them live would be showing someone else's salon as
- * ours. Replace all three with real photography before launch. See §7 of
- * PROJECT-CONTEXT. */
+ * Each branch uses the supplied American Hairline photography. Multiple images
+ * per city power the in-card carousel used on Homepage and About Us. */
 export type Salon = {
   city: string
   address: string
-  image: string
+  images: string[]
   alt: string
   href: string
 }
@@ -687,24 +855,28 @@ export const salons: Salon[] = [
     city: 'Mumbai',
     address:
       '4th floor Empressa Building, 2nd Rd, Khar, Ram Krishna Nagar, Khar West, Mumbai, Maharashtra 400052.',
-    image: '/salons/mumbai.jpg',
-    alt: 'Placeholder interior for the Mumbai studio.',
+    images: [
+      '/salons/mumbai/salon-1.png',
+      '/salons/mumbai/salon-2.png',
+      '/salons/mumbai/salon-3.png',
+    ],
+    alt: 'Inside the American Hairline Mumbai salon.',
     href: 'https://maps.google.com/?q=Empressa+Building+2nd+Rd+Khar+West+Mumbai+400052',
   },
   {
     city: 'Delhi',
     address:
       'Plot No. 2, 2nd Floor, Main Road, Hudson Lane, GTB Nagar, Delhi - 110009.',
-    image: '/salons/delhi.jpg',
-    alt: 'Placeholder interior for the Delhi studio.',
+    images: ['/salons/delhi/salon-1.jpg', '/salons/delhi/salon-2.jpg'],
+    alt: 'Inside the American Hairline Delhi salon.',
     href: 'https://maps.google.com/?q=Plot+No+2+Hudson+Lane+GTB+Nagar+Delhi+110009',
   },
   {
     city: 'Bangalore',
     address:
       'Golden hive Luxury Unisex salon, 484, 2nd Floor, Signature Square, Circle, Chinmaya mission Hospital Rd, Indira Nagar 1st stage, Bengaluru, Karnataka - 560038',
-    image: '/salons/bangalore.jpg',
-    alt: 'Placeholder interior for the Bangalore studio.',
+    images: ['/salons/bangalore/salon-1.png', '/salons/bangalore/salon-2.png'],
+    alt: 'Inside the American Hairline Bangalore salon.',
     href: 'https://maps.google.com/?q=Golden+Hive+Luxury+Unisex+Salon+484+2nd+Floor+Signature+Square+Circle+Chinmaya+Mission+Hospital+Rd+Indira+Nagar+1st+Stage+Bengaluru+Karnataka+560038',
   },
 ]
@@ -729,7 +901,7 @@ export const salonsOutro = {
  * servicing interval is stated three ways across the client's own pages, and
  * so is base durability. Those answers say what decides the figure and leave
  * the figure to the consultant rather than shipping one of three. */
-export type FaqItem = { q: string; a: string }
+export type FaqItem = { q: string; a: string; question?: string; answer?: string; hidden?: boolean }
 export type FaqGroup = { id: string; label: string; items: FaqItem[] }
 
 export const faqTitle = 'Frequently Asked Questions'
@@ -747,22 +919,27 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: 'What happens in the consultation?',
+        answer: 'We assess your hair loss condition, discuss your lifestyle needs, and recommend the best hair system options for you.',
         a: 'We look at your stage of hair loss, run the Advanced 3D Scan, and talk through your routine — your work, your travel, how much upkeep you actually want. Then we show you what suits you, and what does not.',
       },
       {
         q: 'Is it an in-person or online consultation?',
+        answer: 'We offer both! You can visit our clinic for a physical assessment or book a video call for a virtual consultation.',
         a: 'Either. In person at our Mumbai, Delhi or Bangalore studios, or online if you are travelling or based abroad. The scan and the samples are the parts worth coming in for, so we will tell you honestly if a visit would serve you better.',
       },
       {
         q: 'Will I get to see real samples or demos?',
+        answer: 'Yes, during an in-person consultation, you can see and feel the hair systems. For online consultations, we show high-quality videos and close-ups.',
         a: 'Yes. You can hold the bases and the hair, see the density and the hairline up close, and try a system on so you are deciding from something real rather than a photograph.',
       },
       {
         q: 'Will I be pressured to buy during the consultation?',
+        answer: 'Absolutely not. Our goal is to educate you so you can make an informed decision when you are ready.',
         a: 'No. There is no upselling and nothing is decided on the day. If a hair system is not the right answer for you, we will say so — we have turned people away before.',
       },
       {
         q: 'Will I know the total cost after the consultation?',
+        answer: 'Yes, we provide a transparent cost breakdown including the hair system, fitting, and maintenance.',
         a: 'Yes. You leave knowing the price of the system you chose and what its servicing costs, in writing. No hidden charges appear later.',
       },
     ],
@@ -773,26 +950,38 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: 'Will it look fake?',
+        question: 'How long does a hair system last?',
+        answer: 'Depending on the base type and care, a hair system typically lasts between 3 to 6 months.',
         a: 'No, it looks just like your real hair — even stylists cannot tell. The giveaway is always the front, which is why the hairline is custom-designed to your face and goes through the 21-point check before it reaches you.',
       },
       {
         q: 'Will it damage my hair?',
+        question: 'Can I swim and shower with it?',
+        answer: 'Yes! Our hair systems are securely bonded, allowing you to swim, shower, and exercise without worry.',
         a: 'No. The system sits on the area where hair has already gone, and your remaining hair keeps its own growth cycle. Damage comes from a badly fitted patch pulling on live hair, which is what a custom-designed system is built to avoid.',
       },
       {
         q: 'Will people notice?',
+        question: 'Does it look natural?',
+        answer: 'Our systems are designed to be undetectable, with a natural hairline and density that matches your existing hair.',
         a: 'Not if the hairline is right. That is the whole job: a natural front edge, density that matches your age and face, and a base thin enough to disappear against the scalp up close.',
       },
       {
         q: 'Will I need to shave my head?',
+        question: 'How often do I need maintenance?',
+        answer: 'We recommend a maintenance session every 3-4 weeks for cleaning and re-bonding.',
         a: 'Only for a stick-on system, and only the area it attaches to. A clip-on needs no shaving at all and comes off whenever you want it to.',
       },
       {
         q: 'How long does a hair replacement system last?',
+        question: 'Can I style it like my own hair?',
+        answer: 'Yes, you can cut, style, and use products just like you would with your natural hair.',
         a: 'It depends on the base you choose — a thinner base looks more invisible and wears faster, a thicker one lasts longer. Your consultant will give you the life expectancy of the exact base you pick, along with the servicing it needs to reach it.',
       },
       {
         q: 'Are your hair systems itchy to the scalp?',
+        question: 'Is it comfortable to wear?',
+        answer: 'Modern hair systems are lightweight and breathable, ensuring comfort even during extended wear.',
         a: 'They should not be. The bases are breathable and the adhesives are skin-safe. Persistent itching almost always means servicing is overdue rather than that the system does not suit you — tell us and we will look at it.',
       },
     ],
@@ -804,6 +993,24 @@ export const faqCta = {
   body: 'No worries, we are here to guide you. Talk to us, we will explain everything.',
   action: 'Need Guidance',
   href: '#consult',
+}
+
+export const clipOnFaqGroup: FaqGroup = {
+  id: 'clip-on',
+  label: 'Clip-On Hair System',
+  items: [
+    { q: 'What is Zycon range?', a: 'The Zycon range is a clip-on hair system that supports scalp health by using antibacterial protection and controlling odor. It is designed to help you stay comfortable, confident, and unrestricted in your active lifestyle.' },
+    { q: 'Will my partner notice?', a: 'No, the system is designed to be undetectable, even up close. The materials used mimic the natural scalp and hair growth patterns.' },
+    { q: 'Can I swim?', a: 'Yes, you can swim with our secure clip-on systems. We recommend using a swimming cap for extra security during vigorous activities.' },
+    { q: 'What if I have little hair left?', a: 'We have solutions tailored for various stages of hair loss. The clip-on system can be adapted to work with your existing hair.' },
+    { q: 'Does it feel hot or heavy?', a: 'No, the base is breathable and lightweight for maximum comfort, even in warm climates.' },
+    { q: 'Will it fall off?', a: 'The clips are medical-grade and secure, ensuring it stays in place throughout your daily activities.' },
+    { q: 'Is it visible?', a: 'The hairline is ultra-natural and blends seamlessly with your existing hair, making it virtually invisible.' },
+    { q: 'Will it damage scalp?', a: 'No, the Zycon range is antibacterial and safe for your scalp. It promotes hygiene and prevents irritation.' },
+    { q: 'Can I wear in gym?', a: 'Absolutely, it is designed for active lifestyles including gym sessions. It handles sweat and movement well.' },
+    { q: 'Can I remove it?', a: 'Yes, the clip-on system allows for easy daily removal, giving you full control and flexibility.' },
+    { q: 'What about sweat & odor?', a: 'The antibacterial base helps control odor and manages sweat effectively, keeping you fresh all day.' },
+  ],
 }
 
 /* "Uses Advanced 3D Scan Technology".
@@ -999,6 +1206,8 @@ export const patchSystemHeroLede =
 
 export const patchSystemHeroMedia = {
   poster: '/patch-vs-system/thumbnail.png',
+  src: '/patch-vs-system/patch-vs-system.mp4',
+  label: 'Watch Hair Patch vs Hair System',
   alt: 'A side-by-side comparison of a man wearing a basic hair patch and a man wearing a styled hair system.',
 } as const
 
@@ -1508,6 +1717,8 @@ export const hairlineRealHeroLede =
 
 export const hairlineRealHeroMedia = {
   poster: '/hairline-real/thumbnail.png',
+  src: '/hairline-real/natural-hairline.mp4',
+  label: 'Watch the natural hairline transformation',
   alt: 'The same man before and after: a receding hairline traced with a dashed line on the left, and a full styled hairline on the right.',
   width: 2240,
   height: 1260,
@@ -1558,8 +1769,7 @@ export const hairlineDesignPoints: HairlineDesignPoint[] = [
   },
 ]
 
-/* `src` empty until a film is supplied — same convention as `checklistVideo`.
- * While it is empty the block renders as a figure, not a dead button. */
+/* Supplied 4:3 craft film; the existing still remains its poster. */
 /* The supplied `Images/nh.png` had the quote, its scrim and the card's rounded
  * corners all painted into the picture. The still shipped here is cropped above
  * that band and the quote is set as real text instead, so it is selectable,
@@ -1568,7 +1778,7 @@ export const hairlineDesignPoints: HairlineDesignPoint[] = [
  * `crop=2176:1090:0:0` — anything taller brings the baked caption back and it
  * will render twice. */
 export const hairlineDesignVideo = {
-  src: '',
+  src: '/hairline-real/design-film.mp4',
   poster: '/hairline-real/design-film.png',
   alt: 'A stylist lifting the front of a hair system to show the hairline blending into the scalp.',
   label: 'Watch how it is built',
@@ -1857,6 +2067,8 @@ export const stickOnLifespanHeroLede =
 
 export const stickOnLifespanHeroMedia = {
   poster: '/stick-on-lifespan/thumbnail.png',
+  src: '/guide-media/stick-on-vs-clip-on.mp4',
+  label: 'Watch Stick-On vs Clip-On',
   alt: 'A stick-on hair system lifted at the front to show the adhesive strip along the base and the scalp beneath.',
   width: 2240,
   height: 1260,
@@ -2221,6 +2433,8 @@ export const clipOnLifespanHeroLede =
 
 export const clipOnLifespanHeroMedia = {
   poster: '/clip-on-lifespan/thumbnail.png',
+  src: '/guide-media/stick-on-vs-clip-on.mp4',
+  label: 'Watch Stick-On vs Clip-On',
   alt: 'A clip-on hair system being lowered onto a client’s head, the base visible from above.',
   width: 2240,
   height: 1260,
@@ -2540,3 +2754,94 @@ export const clipLearnCard = {
     height: 2332,
   },
 }
+
+/* "Story reels" — a row of circular client videos that opens into a 9:16 reel
+ * viewer, modelled on the circles under Add to Cart on 1hairstop.in product
+ * pages. One row per page, four circles at most, each titled with the visitor's
+ * own question for that page, and placed directly below the page's
+ * consultation CTA or form, where the visitor is deciding.
+ *
+ * ⚠ PLACEHOLDER MEDIA. Every clip below is one of six 9:16 cuts made from the
+ * homepage client-story films (`public/clients/client-story-N.mp4`, whose real
+ * content is a vertical reel pillarboxed into 1920×1080 with blurred sides).
+ * The titles describe the video each page *should* carry; the clips do not
+ * show those topics yet. Replace `src`/`poster` per item when the real vertical
+ * clips arrive, and keep `name` in step with whoever is in the new clip. */
+export type StoryReel = {
+  id: string
+  title: string
+  name: string
+  poster: string
+  src: string
+}
+
+export type StoryReelSet = {
+  title: string
+  intro: string
+  reels: StoryReel[]
+}
+
+const placeholderClients = [
+  'Rylan Rodrigues',
+  'Arun Sharma',
+  'Rohan Bera',
+  'Sahil Khan',
+  'Rohan Deshmukh',
+  'Anup Kumar',
+] as const
+
+function placeholderReels(page: string, titles: readonly string[], start: number): StoryReel[] {
+  return titles.map((title, index) => {
+    const n = ((start + index) % placeholderClients.length) + 1
+    return {
+      id: `${page}-${index + 1}`,
+      title,
+      name: placeholderClients[n - 1],
+      poster: `/story-reels/placeholder-${n}.webp`,
+      src: `/story-reels/placeholder-${n}.mp4`,
+    }
+  })
+}
+
+export const storyReels = {
+  hairline: {
+    title: 'See The Hairline Up Close',
+    intro: 'Real clients, filmed close enough to judge for yourself.',
+    reels: placeholderReels('hairline', ['Close-up hairline', 'Wind test', 'Touch test', 'In daylight'], 0),
+  },
+  stickOn: {
+    title: 'Watch Life With A Stick-On System',
+    intro: 'Short videos from men who wear one every day.',
+    reels: placeholderReels('stick-on', ['Gym & swimming', 'Monthly service', 'First week', '1 year later'], 2),
+  },
+  clipOn: {
+    title: 'See How A Clip-On Fits Your Day',
+    intro: 'Short videos from men who put one on every morning.',
+    reels: placeholderReels('clip-on', ['On in 60 seconds', 'Daily removal', 'No shaving', 'Weekend use'], 4),
+  },
+  founder: {
+    title: 'Hear From Men Who Met Vinitt',
+    intro: 'Clients who took the one-on-one session, in their own words.',
+    reels: placeholderReels('founder', ['Why I booked', 'What he told me', 'Worth ₹5,000?', 'My plan after'], 1),
+  },
+  smp: {
+    title: 'Watch SMP Up Close',
+    intro: 'Short videos that answer the questions men ask most.',
+    reels: placeholderReels('smp', ['Is it a tattoo?', 'Healing, days 1–7', 'Close-up'], 3),
+  },
+  transplant: {
+    title: 'See The Hybrid Approach Explained',
+    intro: 'Short videos from clients who combined both.',
+    reels: placeholderReels('transplant', ['Hybrid explained', 'Why not transplant only?', 'Recovery', '6 months later'], 5),
+  },
+  stickOnLifespan: {
+    title: 'See How A Base Ages',
+    intro: 'Short videos comparing thin and thick bases over time.',
+    reels: placeholderReels('stick-lifespan', ['Thin base, 6 months', 'Thick base, 6 months', 'Side by side', 'When to replace'], 0),
+  },
+  clipOnLifespan: {
+    title: 'See How A Base Ages',
+    intro: 'Short videos comparing thin and thick bases over time.',
+    reels: placeholderReels('clip-lifespan', ['Thin base, 6 months', 'Thick base, 6 months', 'Side by side', 'When to replace'], 3),
+  },
+} satisfies Record<string, StoryReelSet>

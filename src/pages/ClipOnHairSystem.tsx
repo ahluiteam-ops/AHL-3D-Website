@@ -14,7 +14,8 @@ import { Faq } from '../components/Faq'
 import { ClipZyconCta } from '../components/ClipZyconCta'
 import { ClipLearnStickOn } from '../components/ClipLearnStickOn'
 import { Footer } from '../components/Footer'
-import { clipComparisonTitle, clipWhyPoints, clipWhyTitle } from '../site'
+import { clipComparisonTitle, clipOnFaqGroup, clipWhyPoints, clipWhyTitle, storyReels } from '../site'
+import { StoryReels } from '../components/StoryReels'
 
 /**
  * "Clip-On Hair System" — the product page at `#/clip-on-hair-system`.
@@ -58,8 +59,9 @@ export function ClipOnHairSystem() {
         <ClipZyconRange />
         <Comparison title={clipComparisonTitle} />
         <ClientStories />
-        <Faq />
+        <Faq groups={[clipOnFaqGroup]} />
         <ClipZyconCta />
+        <StoryReels set={storyReels.clipOn} />
         <ClipLearnStickOn />
       </main>
       <Footer />

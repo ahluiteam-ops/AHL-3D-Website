@@ -120,8 +120,7 @@ function ProcessMedia() {
     </>
   )
 
-  /* No film supplied yet, so the block is a figure rather than a dead button —
-   * a control that cannot do anything is worse than no control. */
+  /* Keep a valid figure fallback if this component is reused without media. */
   return playable ? (
     <button
       type="button"

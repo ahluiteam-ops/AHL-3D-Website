@@ -17,8 +17,7 @@ import {
  * same mark is the point rather than an oversight. The mark is painted as a CSS
  * mask, so the brand blue comes through the icon's shape.
  *
- * The poster has not been supplied yet; `GuideHero` renders it through `Photo`,
- * which falls back to a labelled frame naming the file it expects.
+ * The shared comparison film plays behind the existing page-specific poster.
  */
 export function ClipOnLifespanHero() {
   return (

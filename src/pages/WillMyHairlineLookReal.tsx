@@ -10,6 +10,9 @@ import { HdExposed } from '../components/HdExposed'
 import { NaturalFront } from '../components/NaturalFront'
 import { BrushBackFlow } from '../components/BrushBackFlow'
 import { Footer } from '../components/Footer'
+import { FounderBooking } from '../components/FounderBooking'
+import { StoryReels } from '../components/StoryReels'
+import { storyReels } from '../site'
 
 /**
  * "Will My Hairline Look Real?" — the guide page at
@@ -69,7 +72,9 @@ export function WillMyHairlineLookReal() {
         <ClientStories />
         <HairlineTruth />
         <HairlineBenefits />
+        <FounderBooking />
         <HairlineConfused />
+        <StoryReels set={storyReels.hairline} />
         <BrushBackFlow />
         <HdExposed />
         <NaturalFront />

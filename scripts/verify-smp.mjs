@@ -61,6 +61,32 @@ async function run(width, height, label, reducedMotion = false) {
       }),
       treatments: document.querySelectorAll('.smpTreatments__tabs button').length,
       faq: document.querySelectorAll('.smpFaq__item').length,
+      whyCardAlignment: [...document.querySelectorAll('.smpWhy article')].map((card) => {
+        const icon = card.querySelector('svg')?.getBoundingClientRect()
+        const copy = card.querySelector('p')?.getBoundingClientRect()
+        return icon && copy ? Math.abs(icon.top - copy.top) : null
+      }),
+      faqLayout: (() => {
+        const inner = document.querySelector('.smpFaq__in')
+        const header = document.querySelector('.smpFaq header')
+        const list = document.querySelector('.smpFaq__list')
+        const closing = document.querySelector('.smpFaq aside')
+        if (!(inner && header && list && closing)) return null
+        const innerRect = inner.getBoundingClientRect()
+        const listRect = list.getBoundingClientRect()
+        const closingRect = closing.getBoundingClientRect()
+        return {
+          innerWidth: innerRect.width,
+          centerDelta: Math.abs(innerRect.left + innerRect.width / 2 - window.innerWidth / 2),
+          headerAlign: getComputedStyle(header).textAlign,
+          listGap: parseFloat(getComputedStyle(list).rowGap),
+          closingGap: closingRect.top - listRect.bottom,
+          edgeDelta: Math.max(
+            Math.abs(listRect.left - closingRect.left),
+            Math.abs(listRect.right - closingRect.right),
+          ),
+        }
+      })(),
       resultsArrows: document.querySelectorAll('.smpResults .smpRailControls button').length,
       processArrows: document.querySelectorAll('.smpProcess .smpRailControls button').length,
       processRailTabIndex: document.querySelector('.smpProcess__rail')?.tabIndex,
@@ -104,6 +130,19 @@ async function run(width, height, label, reducedMotion = false) {
   if (result.brokenImages.length) throw new Error(`${label}: broken images ${result.brokenImages.join(', ')}`)
   if (result.results !== 7 || result.process !== 4 || result.treatments !== 5 || result.faq !== 10) {
     throw new Error(`${label}: content count mismatch ${JSON.stringify(result)}`)
+  }
+  if (result.whyCardAlignment.some((delta) => delta === null || delta > 1)) {
+    throw new Error(`${label}: Why-card checks are not top-aligned ${JSON.stringify(result.whyCardAlignment)}`)
+  }
+  if (
+    !result.faqLayout ||
+    result.faqLayout.innerWidth > 941 ||
+    result.faqLayout.centerDelta > 1 ||
+    result.faqLayout.headerAlign !== 'center' ||
+    result.faqLayout.edgeDelta > 1 ||
+    Math.abs(result.faqLayout.closingGap - result.faqLayout.listGap) > 1
+  ) {
+    throw new Error(`${label}: FAQ alignment or closing-card gap is incorrect ${JSON.stringify(result.faqLayout)}`)
   }
   if (result.processImages.some((item) => !item ||
     Math.abs(item.cardWidth - item.imageWidth) > 1 ||
@@ -201,9 +240,15 @@ async function run(width, height, label, reducedMotion = false) {
     await page.$eval('.smpTreatments', (element) => element.scrollIntoView({ block: 'start' }))
     await new Promise((resolve) => setTimeout(resolve, 250))
     await page.screenshot({ path: `${out}/smp-${label}-treatments.png` })
+    await page.$eval('.smpWhy', (element) => element.scrollIntoView({ block: 'start' }))
+    await new Promise((resolve) => setTimeout(resolve, 250))
+    await page.screenshot({ path: `${out}/smp-${label}-why.png` })
     await page.$eval('.smpFaq', (element) => element.scrollIntoView({ block: 'start' }))
     await new Promise((resolve) => setTimeout(resolve, 250))
     await page.screenshot({ path: `${out}/smp-${label}-faq.png` })
+    await page.$eval('.smpFaq aside', (element) => element.scrollIntoView({ block: 'center' }))
+    await new Promise((resolve) => setTimeout(resolve, 250))
+    await page.screenshot({ path: `${out}/smp-${label}-faq-close.png` })
   }
 
   if (errors.length || failed.length) throw new Error(`${label}: ${errors.length} console errors, ${failed.length} failed requests`)

@@ -8,6 +8,8 @@ import { BaseChoice } from '../components/BaseChoice'
 import { Systems } from '../components/Systems'
 import { Form } from '../components/Form'
 import { Footer } from '../components/Footer'
+import { StoryReels } from '../components/StoryReels'
+import { storyReels } from '../site'
 
 /**
  * "Stick-On System Lifespan" — the guide page at `#/stick-on-lifespan`, under
@@ -67,6 +69,7 @@ export function StickOnLifespan() {
         <BaseChoice />
         <Systems />
         <Form />
+        <StoryReels set={storyReels.stickOnLifespan} ground="tint" />
       </main>
       <Footer />
     </>
